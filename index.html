@@ -184,6 +184,11 @@
       </div>
       <div class="flex items-center gap-sm sm:gap-md">
         <div class="font-headline-md text-headline-md text-primary tracking-tight text-right text-sm sm:text-base">MUNDIAL 2026</div>
+        <sc-if value="{{ isHero }}">
+          <button onClick="{{ goToForm }}" class="hidden sm:inline-flex cta-gradient text-on-primary-container font-label-bold text-xs px-5 py-2 rounded-full uppercase tracking-wider hover:scale-105 duration-200 transition-all shadow-md font-extrabold">
+            Armar Pronóstico
+          </button>
+        </sc-if>
       </div>
     </div>
   </header>
@@ -219,10 +224,6 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-sm w-full sm:w-auto items-center mt-2">
-              <button onClick="{{ goToForm }}" class="cta-gradient text-on-primary-container font-label-bold text-sm px-10 py-4.5 rounded-xl uppercase tracking-wider hover:scale-105 duration-200 transition-all shadow-lg font-extrabold w-full sm:w-auto">
-                Armar Mi Pronóstico
-              </button>
-              
               <div class="flex flex-col items-center sm:items-start glass-card px-md py-sm rounded-xl w-full sm:w-auto">
                 <span class="text-[9px] font-bold text-on-surface-variant/80 uppercase tracking-widest">TIEMPO RESTANTE:</span>
                 <div class="flex gap-sm mt-1" id="countdown">
