@@ -1214,6 +1214,8 @@ class Component extends DCLogic {
     const tt = form.telefonoTutor.replace(/[\s\-\+\(\)]/g, '');
     if (!tt || !/^\d{7,15}$/.test(tt)) {
       e.telefonoTutor = 'El teléfono de tutor/referencia es obligatorio (7–15 dígitos)';
+    } else if (tt === tel) {
+      e.telefonoTutor = 'El teléfono del tutor no puede ser igual al del participante';
     }
     
     if (!form.terminos) e.terminos = 'Debes aceptar los términos y condiciones';
