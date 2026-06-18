@@ -158,6 +158,13 @@
     .scrollbar-hide::-webkit-scrollbar {
       display: none;
     }
+    @keyframes pulse-gentle {
+      0%, 100% { transform: scale(1); box-shadow: 0 12px 40px rgba(233, 196, 0, 0.45); }
+      50% { transform: scale(1.04); box-shadow: 0 12px 48px rgba(233, 196, 0, 0.65); }
+    }
+    .animate-pulse-gentle {
+      animation: pulse-gentle 3s infinite ease-in-out;
+    }
   </style>
 </head>
 <body class="text-on-background font-body-md overflow-x-hidden" style="min-height: 100vh; background: linear-gradient(rgba(249, 249, 255, 0.88), rgba(249, 249, 255, 0.88)), url('./assets/stadium_pitch_bg.png') no-repeat center center / cover fixed;">
@@ -175,7 +182,14 @@
           <div class="text-[10px] font-bold text-on-surface uppercase tracking-wider mt-0.5 leading-none">Desarrollo y la Innovación</div>
         </div>
       </div>
-      <div class="font-headline-md text-headline-md text-primary tracking-tight text-right text-sm sm:text-base">MUNDIAL 2026</div>
+      <div class="flex items-center gap-sm sm:gap-md">
+        <div class="font-headline-md text-headline-md text-primary tracking-tight text-right text-sm sm:text-base">MUNDIAL 2026</div>
+        <sc-if value="{{ isHero }}">
+          <button onClick="{{ goToForm }}" class="hidden sm:inline-flex cta-gradient text-on-primary-container font-label-bold text-xs px-5 py-2 rounded-full uppercase tracking-wider hover:scale-105 duration-200 transition-all shadow-md font-extrabold">
+            Armar Pronóstico
+          </button>
+        </sc-if>
+      </div>
     </div>
   </header>
 
@@ -802,6 +816,16 @@
     </sc-if>
 
   </main>
+
+  <sc-if value="{{ isHero }}">
+    <!-- Floating Bottom CTA for Mobile & Desktop -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 md:left-auto md:right-8 md:translate-x-0 z-40 w-[92%] sm:w-[80%] md:w-auto max-w-sm">
+      <button onClick="{{ goToForm }}" class="cta-gradient text-on-primary-container font-label-bold text-sm md:text-base px-6 py-4 md:py-3.5 rounded-xl uppercase tracking-wider hover:scale-105 active:scale-95 duration-200 transition-all shadow-[0_12px_40px_rgba(233,196,0,0.45)] font-extrabold w-full flex items-center justify-center gap-2 border border-primary-container animate-pulse-gentle">
+        <span class="material-symbols-outlined text-base md:text-lg">emoji_events</span>
+        Armar Mi Pronóstico
+      </button>
+    </div>
+  </sc-if>
 
   <!-- Footer Component -->
   <footer class="w-full py-8 px-gutter flex flex-col md:flex-row justify-between items-center gap-md max-w-container-max mx-auto bg-white/40 border-t border-outline-variant/20 mt-12 text-center md:text-left">
