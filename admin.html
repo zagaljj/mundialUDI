@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Panel de Administración - World Cup Predictor</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#c00025",
+            "on-primary": "#ffffff",
+            "outline-variant": "#d0c6ab",
+            "on-surface-variant": "#4d4732",
+            "secondary-fixed-dim": "#70db9d",
+            "on-surface": "#001a42",
+            "on-background": "#001a42",
+            "surface-container": "#e9edff",
+            "inverse-on-surface": "#edf0ff",
+            "on-secondary-fixed-variant": "#00522f",
+            "primary-container": "#ffd700",
+            "outline": "#7e775f",
+            "surface-variant": "#d8e2ff",
+            "surface-dim": "#cbdaff",
+            "surface-container-high": "#e0e8ff",
+            "tertiary-fixed": "#ffdad8",
+            "secondary-fixed": "#8df8b7",
+            "error-container": "#ffdad6",
+            "background": "#f9f9ff",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-container": "#705e00",
+            "secondary": "#006d40",
+            "on-error-container": "#93000a",
+            "on-secondary": "#ffffff",
+            "surface": "#f9f9ff",
+            "primary-fixed": "#ffe16d",
+            "surface-container-low": "#f1f3ff",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed-variant": "#93001a",
+            "tertiary-container": "#ffcecb",
+            "tertiary": "#bf0025",
+            "tertiary-fixed-dim": "#ffb3b0",
+            "on-tertiary-fixed": "#410006",
+            "on-tertiary": "#ffffff",
+            "secondary-container": "#8af5b4",
+            "surface-container-highest": "#d8e2ff",
+            "inverse-surface": "#192f59",
+            "primary-fixed-dim": "#e9c400",
+            "on-secondary-fixed": "#002110",
+            "on-primary-fixed": "#221b00",
+            "surface-bright": "#f9f9ff",
+            "primary": "#705d00",
+            "surface-tint": "#705d00",
+            "on-secondary-container": "#007243",
+            "error": "#ba1a1a",
+            "inverse-primary": "#e9c400",
+            "on-primary-fixed-variant": "#544600"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "md": "24px",
+            "sm": "12px",
+            "gutter": "20px",
+            "lg": "48px",
+            "container-max": "1280px",
+            "base": "8px",
+            "xs": "4px",
+            "xl": "80px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Anton"],
+            "headline-md": ["Anton"],
+            "label-bold": ["Inter"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+            "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 0.75rem;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #d8e2ff; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen" style="background: linear-gradient(rgba(249, 249, 255, 0.94), rgba(249, 249, 255, 0.94)), url('./assets/stadium_pitch_bg.png') no-repeat center center / cover fixed;">
+
+  <!-- Sidebar Component -->
+  <aside class="hidden lg:flex flex-col h-screen py-md bg-surface-container-high w-64 fixed left-0 top-0 shadow-md z-40">
+    <div class="px-md mb-xl flex items-center gap-2">
+      <div class="bg-white border border-outline-variant/30 rounded-lg p-1 shadow-sm flex-shrink-0">
+        <img src="./uploads/logo-1781790033987.png" alt="UDI" class="h-8 object-contain">
+      </div>
+      <div>
+        <h1 class="font-headline-md text-base text-primary tracking-tight leading-none uppercase">Admin Panel</h1>
+        <p class="text-[9px] text-on-surface-variant font-bold uppercase tracking-wider mt-0.5">Campaign Manager</p>
+      </div>
+    </div>
+    <nav class="flex-1 space-y-1">
+      <a class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 px-md py-sm transition-all shadow-sm font-bold" href="#">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 my-1 px-md py-sm transition-all" href="#">
+        <span class="material-symbols-outlined">groups</span>
+        <span>Participantes</span>
+      </a>
+      <a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 my-1 px-md py-sm transition-all" href="./index.html">
+        <span class="material-symbols-outlined">home</span>
+        <span>Ir a Landing</span>
+      </a>
+    </nav>
+    <div class="px-md pt-md border-t border-outline-variant/20">
+      <div class="flex items-center gap-sm">
+        <div class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center font-bold">AD</div>
+        <div class="overflow-hidden">
+          <p class="font-label-bold text-xs truncate">Administrador UDI</p>
+          <p class="text-[9px] text-on-surface-variant uppercase tracking-widest font-bold">Master Admin</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Canvas -->
+  <main class="lg:ml-64 p-gutter md:p-lg min-h-screen">
+    
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-lg gap-md">
+      <div>
+        <h2 class="font-headline-lg text-2xl md:text-3xl text-on-surface tracking-tight uppercase font-bold">Dashboard de Campaña</h2>
+        <p class="text-sm text-on-surface-variant leading-relaxed">Métricas de rendimiento en tiempo real y fixture pronosticado.</p>
+      </div>
+      <div class="flex gap-sm">
+        <button id="btnExportExcel" class="flex items-center gap-xs px-4 py-2 border border-outline-variant/50 text-on-surface hover:bg-white/60 font-bold text-xs rounded-xl transition-all shadow-sm">
+          <span class="material-symbols-outlined text-[18px]">download</span>
+          Exportar Excel
+        </button>
+        <button id="btnExportCSV" class="flex items-center gap-xs px-4 py-2 border border-outline-variant/50 text-on-surface hover:bg-white/60 font-bold text-xs rounded-xl transition-all shadow-sm">
+          <span class="material-symbols-outlined text-[18px]">csv</span>
+          Exportar CSV
+        </button>
+      </div>
+    </header>
+
+    <!-- Metrics Section: Bento Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md mb-lg">
+      
+      <!-- Total Registered Card -->
+      <div class="glass-card p-5 flex flex-col justify-between">
+        <div>
+          <span class="font-label-bold text-[10px] text-on-surface-variant/70 uppercase tracking-widest font-bold">Total Registrados</span>
+          <div class="flex items-baseline gap-xs mt-1">
+            <span id="metricTotal" class="text-3xl font-extrabold text-primary">-</span>
+          </div>
+        </div>
+        <div class="h-6 flex items-end gap-1 mt-4">
+          <div class="w-full bg-primary/20 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-primary h-full w-full"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Champion Favorite Card -->
+      <div class="glass-card p-5 flex flex-col justify-between">
+        <div>
+          <span class="font-label-bold text-[10px] text-on-surface-variant/70 uppercase tracking-widest font-bold">Campeón Favorito</span>
+          <div class="flex items-center gap-2 mt-1">
+            <div id="favFlagContainer" class="w-10 h-7 rounded border border-outline-variant/20 overflow-hidden hidden">
+              <img id="favFlag" src="" class="w-full h-full object-cover">
+            </div>
+            <span id="favTeamName" class="text-base font-extrabold text-on-surface uppercase">-</span>
+          </div>
+        </div>
+        <div class="text-[9px] text-on-surface-variant/80 font-bold mt-2" id="favVotesLabel">0 votos</div>
+      </div>
+
+      <!-- Active Schools Card -->
+      <div class="glass-card p-5 flex flex-col justify-between">
+        <div>
+          <span class="font-label-bold text-[10px] text-on-surface-variant/70 uppercase tracking-widest font-bold">Colegios Participantes</span>
+          <div class="flex items-baseline gap-xs mt-1">
+            <span id="metricSchools" class="text-3xl font-extrabold text-primary">-</span>
+          </div>
+        </div>
+        <div class="text-[9px] text-on-surface-variant/80 font-bold mt-2">Colegios distintos</div>
+      </div>
+
+      <!-- Minors Percentage Card -->
+      <div class="glass-card p-5 flex flex-col justify-between">
+        <div>
+          <span class="font-label-bold text-[10px] text-on-surface-variant/70 uppercase tracking-widest font-bold">Participación Menor (&lt;18)</span>
+          <div class="flex items-baseline gap-xs mt-1">
+            <span id="metricMinors" class="text-3xl font-extrabold text-primary">-</span>
+          </div>
+        </div>
+        <div class="h-6 flex items-end gap-1 mt-4">
+          <div class="w-full bg-secondary-container h-1.5 rounded-full overflow-hidden">
+            <div id="minorBar" class="bg-secondary h-full" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Top Champions & Schools Row -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-lg mb-lg">
+      
+      <!-- Top Champions Card -->
+      <div class="glass-card p-md border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+        <div class="flex items-center gap-sm mb-4">
+          <span class="material-symbols-outlined text-primary text-xl">emoji_events</span>
+          <span class="font-label-bold text-xs text-on-surface uppercase font-bold tracking-wider">Top 5 Campeones Pronosticados</span>
+        </div>
+        <div id="topTeamsList" class="space-y-3">
+          <!-- Dynamically filled -->
+          <div class="text-xs text-on-surface-variant italic">No hay datos de votación todavía.</div>
+        </div>
+      </div>
+
+      <!-- Top Schools Card -->
+      <div class="glass-card p-md border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+        <div class="flex items-center gap-sm mb-4">
+          <span class="material-symbols-outlined text-primary text-xl">school</span>
+          <span class="font-label-bold text-xs text-on-surface uppercase font-bold tracking-wider">Top 5 Colegios Participantes</span>
+        </div>
+        <div id="topSchoolsList" class="space-y-3">
+          <!-- Dynamically filled -->
+          <div class="text-xs text-on-surface-variant italic">No hay datos de colegios todavía.</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Definir Resultados Reales del Mundial -->
+    <section class="glass-card p-md border border-outline-variant/30 shadow-md mb-lg">
+      <button id="btnToggleRealResults" class="w-full flex justify-between items-center text-left focus:outline-none">
+        <div class="flex items-center gap-sm">
+          <span class="material-symbols-outlined text-primary text-xl">sports_soccer</span>
+          <span class="font-headline-md text-base text-on-surface uppercase tracking-wider font-bold">Definir Resultados Reales del Mundial</span>
+        </div>
+        <span id="chevronRealResults" class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+      </button>
+      
+      <div id="realResultsContent" class="hidden mt-md pt-md border-t border-outline-variant/10 animate-fade-in">
+        <p class="text-xs text-on-surface-variant mb-4">Ingresá los resultados oficiales para calcular los puntajes de los participantes automáticamente y filtrar a los ganadores.</p>
+        
+        <div class="flex flex-col gap-md">
+          <!-- Bracket Column -->
+          <div class="w-full">
+            <!-- Bracket Diagram -->
+            <div class="flex items-center justify-between gap-4 py-4 w-full select-none overflow-x-auto min-w-[500px] border-b border-outline-variant/10">
+              
+              <!-- Column 1: Semis -->
+              <div class="flex flex-col justify-around h-[240px] w-1/3">
+                <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
+                  <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">Semifinal 1</div>
+                  
+                  <!-- Slot 0 -->
+                  <div id="realSemi0" class="cursor-pointer flex items-center justify-between p-2 rounded-lg border bg-white/40 hover:border-primary/50 text-[10px] h-9">
+                    <!-- Dynamic content -->
+                  </div>
+                  <!-- Slot 1 -->
+                  <div id="realSemi1" class="cursor-pointer flex items-center justify-between p-2 rounded-lg border bg-white/40 hover:border-primary/50 text-[10px] h-9">
+                    <!-- Dynamic content -->
+                  </div>
+                </div>
+                
+                <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
+                  <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">Semifinal 2</div>
+                  
+                  <!-- Slot 2 -->
+                  <div id="realSemi2" class="cursor-pointer flex items-center justify-between p-2 rounded-lg border bg-white/40 hover:border-primary/50 text-[10px] h-9">
+                    <!-- Dynamic content -->
+                  </div>
+                  <!-- Slot 3 -->
+                  <div id="realSemi3" class="cursor-pointer flex items-center justify-between p-2 rounded-lg border bg-white/40 hover:border-primary/50 text-[10px] h-9">
+                    <!-- Dynamic content -->
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Connector 1 -->
+              <div class="flex flex-col justify-around h-[240px] text-on-surface-variant/20 font-bold text-xs">
+                <div>➔</div>
+                <div>➔</div>
+              </div>
+              
+              <!-- Column 2: Finals -->
+              <div class="flex flex-col justify-center h-[240px] w-1/3">
+                <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
+                  <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">Gran Final</div>
+                  
+                  <!-- Slot 0 -->
+                  <div id="realFinal0" class="cursor-pointer flex items-center justify-between p-2 rounded-lg border bg-white/40 hover:border-primary/50 text-[10px] h-9">
+                    <!-- Dynamic content -->
+                  </div>
+                  <!-- Slot 1 -->
+                  <div id="realFinal1" class="cursor-pointer flex items-center justify-between p-2 rounded-lg border bg-white/40 hover:border-primary/50 text-[10px] h-9">
+                    <!-- Dynamic content -->
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Connector 2 -->
+              <div class="flex flex-col justify-center h-[240px] text-primary/30 font-bold text-sm">
+                <div>➔</div>
+              </div>
+              
+              <!-- Column 3: Champion -->
+              <div class="flex flex-col justify-center h-[240px] w-1/3 items-center">
+                <div id="realChampion" class="w-full p-2.5 rounded-2xl border-2 border-dashed border-primary/30 text-center flex flex-col items-center justify-center h-[120px] shadow-sm cursor-pointer hover:border-primary/50">
+                  <!-- Dynamic content -->
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+        <!-- Selection Drawer in admin -->
+        <div id="realSelectorDrawer" class="hidden mt-4 bg-white/40 p-4 rounded-xl border border-outline-variant/20">
+          <!-- Dynamic Selector Content -->
+        </div>
+
+        <!-- Reset official results button -->
+        <div class="flex justify-end gap-sm mt-4">
+          <button id="btnResetRealResults" class="px-4 py-2 bg-red-50 text-red-600 border border-red-200 rounded-xl hover:bg-red-100 text-xs font-bold transition-all">
+            Limpiar Resultados Reales
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Records Table Container -->
+    <section class="glass-card overflow-hidden border border-outline-variant/30 shadow-md bg-white/50">
+      <div class="p-md border-b border-outline-variant/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-sm">
+        <h3 class="font-headline-md text-base font-bold text-on-surface uppercase tracking-wider">Registros de Participantes</h3>
+        <div class="flex flex-col sm:flex-row gap-sm w-full sm:w-auto items-stretch">
+          <select id="winnerFilterSelect" class="bg-white border border-outline-variant/30 rounded-xl text-xs outline-none focus:border-primary transition-all px-3 py-1.5 select-none">
+            <option value="all">Todos los registros</option>
+            <option value="has_points">Con puntos (> 0 pts)</option>
+            <option value="correct_champion">Acertaron Campeón</option>
+            <option value="perfect_score">Puntaje Perfecto (130 pts)</option>
+          </select>
+          <div class="relative w-full sm:w-64">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-lg">search</span>
+            <input id="searchInput" class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant/30 rounded-xl text-xs outline-none focus:border-primary transition-all" placeholder="Buscar por nombre, colegio..." type="text"/>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-surface-container-low/40 border-b border-outline-variant/20 select-none">
+              <th class="px-md py-3 font-label-bold text-on-surface-variant uppercase tracking-wider font-bold">Participante / ID</th>
+              <th class="px-md py-3 font-label-bold text-on-surface-variant uppercase tracking-wider font-bold">Edad</th>
+              <th class="px-md py-3 font-label-bold text-on-surface-variant uppercase tracking-wider font-bold">Colegio</th>
+              <th class="px-md py-3 font-label-bold text-on-surface-variant uppercase tracking-wider font-bold">Contacto</th>
+              <th class="px-md py-3 font-label-bold text-on-surface-variant uppercase tracking-wider font-bold">Tutor (Ref.)</th>
+              <th class="px-md py-3 font-label-bold text-on-surface-variant uppercase tracking-wider font-bold text-center">Puntos</th>
+              <th class="px-md py-3 font-label-bold text-on-surface-variant uppercase tracking-wider font-bold text-center">Predicción (Bracket)</th>
+              <th class="px-md py-3 font-label-bold text-on-surface-variant uppercase tracking-wider font-bold">Fecha Reg.</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody" class="divide-y divide-outline-variant/10">
+            <!-- Dynamically populated -->
+            <tr>
+              <td colspan="7" class="px-md py-8 text-center text-on-surface-variant italic">Cargando registros...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer Table Info -->
+      <div class="p-4 bg-surface-container-low/20 border-t border-outline-variant/10 flex justify-between items-center text-[10px] text-on-surface-variant font-medium select-none">
+        <span id="tableCountLabel">Mostrando 0 registros</span>
+        <span class="italic">Campaña UDI Predictor 2026</span>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Load registrations from LocalStorage
+    let registrations = [];
+    try {
+      const raw = localStorage.getItem('udi_worldcup_registrations');
+      if (raw) {
+        registrations = JSON.parse(raw);
+      }
+    } catch (e) {
+      console.error("Error parsing registrations from localStorage:", e);
+    }
+
+    // 48 Teams definition for official results selection
+    const allTeams = [
+      { code: 'ar', name: 'Argentina', group: 'CONMEBOL' },
+      { code: 'br', name: 'Brasil', group: 'CONMEBOL' },
+      { code: 'co', name: 'Colombia', group: 'CONMEBOL' },
+      { code: 'uy', name: 'Uruguay', group: 'CONMEBOL' },
+      { code: 'ec', name: 'Ecuador', group: 'CONMEBOL' },
+      { code: 've', name: 'Venezuela', group: 'CONMEBOL' },
+      { code: 'cl', name: 'Chile', group: 'CONMEBOL' },
+      { code: 'de', name: 'Alemania', group: 'UEFA' },
+      { code: 'fr', name: 'Francia', group: 'UEFA' },
+      { code: 'es', name: 'España', group: 'UEFA' },
+      { code: 'gb-eng', name: 'Inglaterra', group: 'UEFA' },
+      { code: 'pt', name: 'Portugal', group: 'UEFA' },
+      { code: 'nl', name: 'Países Bajos', group: 'UEFA' },
+      { code: 'it', name: 'Italia', group: 'UEFA' },
+      { code: 'pl', name: 'Polonia', group: 'UEFA' },
+      { code: 'hr', name: 'Croacia', group: 'UEFA' },
+      { code: 'ch', name: 'Suiza', group: 'UEFA' },
+      { code: 'dk', name: 'Dinamarca', group: 'UEFA' },
+      { code: 'at', name: 'Austria', group: 'UEFA' },
+      { code: 'rs', name: 'Serbia', group: 'UEFA' },
+      { code: 'gb-sct', name: 'Escocia', group: 'UEFA' },
+      { code: 'tr', name: 'Turquía', group: 'UEFA' },
+      { code: 'hu', name: 'Hungría', group: 'UEFA' },
+      { code: 'ro', name: 'Rumanía', group: 'UEFA' },
+      { code: 'ma', name: 'Marruecos', group: 'CAF' },
+      { code: 'sn', name: 'Senegal', group: 'CAF' },
+      { code: 'ng', name: 'Nigeria', group: 'CAF' },
+      { code: 'cm', name: 'Camerún', group: 'CAF' },
+      { code: 'eg', name: 'Egipto', group: 'CAF' },
+      { code: 'gh', name: 'Ghana', group: 'CAF' },
+      { code: 'ci', name: 'Costa de Marfil', group: 'CAF' },
+      { code: 'dz', name: 'Argelia', group: 'CAF' },
+      { code: 'tn', name: 'Túnez', group: 'CAF' },
+      { code: 'jp', name: 'Japón', group: 'AFC' },
+      { code: 'kr', name: 'Corea del Sur', group: 'AFC' },
+      { code: 'sa', name: 'Arabia Saudita', group: 'AFC' },
+      { code: 'au', name: 'Australia', group: 'AFC' },
+      { code: 'ir', name: 'Irán', group: 'AFC' },
+      { code: 'iq', name: 'Irak', group: 'AFC' },
+      { code: 'uz', name: 'Uzbekistán', group: 'AFC' },
+      { code: 'id', name: 'Indonesia', group: 'AFC' },
+      { code: 'us', name: 'Estados Unidos', group: 'CONCACAF' },
+      { code: 'mx', name: 'México', group: 'CONCACAF' },
+      { code: 'ca', name: 'Canadá', group: 'CONCACAF' },
+      { code: 'cr', name: 'Costa Rica', group: 'CONCACAF' },
+      { code: 'hn', name: 'Honduras', group: 'CONCACAF' },
+      { code: 'pa', name: 'Panamá', group: 'CONCACAF' },
+      { code: 'nz', name: 'Nueva Zelanda', group: 'OFC' }
+    ];
+
+    // Dom Elements
+    const metricTotal = document.getElementById('metricTotal');
+    const favFlagContainer = document.getElementById('favFlagContainer');
+    const favFlag = document.getElementById('favFlag');
+    const favTeamName = document.getElementById('favTeamName');
+    const favVotesLabel = document.getElementById('favVotesLabel');
+    const metricSchools = document.getElementById('metricSchools');
+    const metricMinors = document.getElementById('metricMinors');
+    const minorBar = document.getElementById('minorBar');
+    
+    const topTeamsList = document.getElementById('topTeamsList');
+    const topSchoolsList = document.getElementById('topSchoolsList');
+    
+    const tableBody = document.getElementById('tableBody');
+    const tableCountLabel = document.getElementById('tableCountLabel');
+    const searchInput = document.getElementById('searchInput');
+    const winnerFilterSelect = document.getElementById('winnerFilterSelect');
+    
+    const btnExportCSV = document.getElementById('btnExportCSV');
+    const btnExportExcel = document.getElementById('btnExportExcel');
+
+    // Official Results variables
+    let realResults = {
+      semis: [null, null, null, null],
+      finals: [null, null],
+      champion: null
+    };
+    try {
+      const saved = localStorage.getItem('udi_worldcup_real_results');
+      if (saved) realResults = JSON.parse(saved);
+    } catch (e) {
+      console.error("Error parsing real results:", e);
+    }
+
+    let activeStage = null; // 'semi' | 'final' | 'champion' | null
+    let activeIndex = null; // number | null
+    let filterGroup = 'TODOS';
+    let searchQuery = '';
+
+    // Collapsible Logic
+    const btnToggleRealResults = document.getElementById('btnToggleRealResults');
+    const realResultsContent = document.getElementById('realResultsContent');
+    const chevronRealResults = document.getElementById('chevronRealResults');
+    let isRealResultsOpen = false;
+
+    btnToggleRealResults.addEventListener('click', () => {
+      isRealResultsOpen = !isRealResultsOpen;
+      if (isRealResultsOpen) {
+        realResultsContent.classList.remove('hidden');
+        chevronRealResults.style.transform = 'rotate(180deg)';
+      } else {
+        realResultsContent.classList.add('hidden');
+        chevronRealResults.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Reset Official Results
+    document.getElementById('btnResetRealResults').addEventListener('click', () => {
+      if (confirm('¿Estás seguro de que querés limpiar los resultados oficiales reales?')) {
+        realResults = { semis: [null, null, null, null], finals: [null, null], champion: null };
+        localStorage.removeItem('udi_worldcup_real_results');
+        activeStage = null;
+        activeIndex = null;
+        document.getElementById('realSelectorDrawer').classList.add('hidden');
+        renderRealSlots();
+        renderTable(searchInput.value);
+      }
+    });
+
+    // Score computation logic
+    function getParticipantScore(p) {
+      const hasAnyReal = realResults.semis.some(Boolean) || realResults.finals.some(Boolean) || realResults.champion;
+      if (!hasAnyReal) return null;
+
+      let score = 0;
+
+      // 1. Semis (10 points each correct, order independent)
+      const realSemiCodes = realResults.semis.filter(Boolean).map(t => t.code);
+      if (p.semis && Array.isArray(p.semis)) {
+        p.semis.filter(Boolean).forEach(t => {
+          if (realSemiCodes.includes(t.code)) score += 10;
+        });
+      }
+
+      // 2. Finals (20 points each correct, order independent)
+      const realFinalCodes = realResults.finals.filter(Boolean).map(t => t.code);
+      if (p.finals && Array.isArray(p.finals)) {
+        p.finals.filter(Boolean).forEach(t => {
+          if (realFinalCodes.includes(t.code)) score += 20;
+        });
+      }
+
+      // 3. Champion (50 points)
+      if (realResults.champion && p.champion && p.champion.code === realResults.champion.code) {
+        score += 50;
+      }
+
+      return score;
+    }
+
+    // Render official bracket slots
+    function renderRealSlots() {
+      const getSlotHTML = (team, isBlocked) => {
+        if (team) {
+          return `
+            <div class="flex items-center gap-1.5 overflow-hidden w-full">
+              <img src="https://flagcdn.com/w80/${team.code}.png" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
+              <span class="font-bold truncate uppercase text-on-surface">${team.name}</span>
+            </div>
+            <span class="text-[8px] bg-black/10 text-on-surface px-1 py-0.5 rounded font-bold uppercase">Cambiar</span>
+          `;
+        }
+        if (isBlocked) {
+          return `<span class="text-on-surface-variant/40 italic">Esperando...</span>`;
+        }
+        return `
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-xs text-primary/60">add_circle</span>
+            <span class="text-primary/80 font-bold uppercase">Elegir</span>
+          </div>
+        `;
+      };
+
+      // Set HTML and classes for Semis
+      for (let i = 0; i < 4; i++) {
+        const el = document.getElementById(`realSemi${i}`);
+        const isActive = activeStage === 'semi' && activeIndex === i;
+        el.className = `cursor-pointer flex items-center justify-between p-2 rounded-lg border text-[10px] h-9 transition-all duration-200 ${
+          isActive ? 'border-primary bg-primary/10 ring-1 ring-primary' : 'bg-white/40 border-outline-variant/30 hover:border-primary/50'
+        }`;
+        el.innerHTML = getSlotHTML(realResults.semis[i], false);
+      }
+
+      // Set HTML and classes for Finals
+      for (let i = 0; i < 2; i++) {
+        const el = document.getElementById(`realFinal${i}`);
+        const isActive = activeStage === 'final' && activeIndex === i;
+        const isBlocked = !realResults.semis[i * 2] || !realResults.semis[i * 2 + 1];
+        el.className = `cursor-pointer flex items-center justify-between p-2 rounded-lg border text-[10px] h-9 transition-all duration-200 ${
+          isActive ? 'border-primary bg-primary/10 ring-1 ring-primary' : 'bg-white/40 border-outline-variant/30 hover:border-primary/50'
+        } ${isBlocked ? 'opacity-60 cursor-not-allowed' : ''}`;
+        el.innerHTML = getSlotHTML(realResults.finals[i], isBlocked);
+      }
+
+      // Set HTML and classes for Champion
+      const elChamp = document.getElementById('realChampion');
+      const isChampActive = activeStage === 'champion';
+      const isChampBlocked = !realResults.finals[0] || !realResults.finals[1];
+      elChamp.className = `w-full p-2.5 rounded-2xl border-2 text-center flex flex-col items-center justify-center h-[120px] shadow-sm cursor-pointer transition-all duration-200 ${
+        isChampActive ? 'border-primary bg-primary/15' : 'border-dashed border-primary/30 hover:border-primary/50 bg-white/40'
+      } ${isChampBlocked ? 'opacity-65 cursor-not-allowed' : ''}`;
+
+      if (realResults.champion) {
+        elChamp.innerHTML = `
+          <span class="material-symbols-outlined text-2xl text-[#ffd700] mb-0.5 drop-shadow">trophy</span>
+          <img src="https://flagcdn.com/w160/${realResults.champion.code}.png" class="w-8 h-5 object-cover rounded shadow border border-white/20 mb-1">
+          <div class="text-[9px] font-extrabold uppercase text-on-surface tracking-wide truncate max-w-[80px]">${realResults.champion.name}</div>
+        `;
+      } else if (isChampBlocked) {
+        elChamp.innerHTML = `
+          <span class="material-symbols-outlined text-2xl text-on-surface-variant/30 mb-0.5">trophy</span>
+          <div class="text-[9px] text-on-surface-variant/40 italic font-medium">Esperando...</div>
+        `;
+      } else {
+        elChamp.innerHTML = `
+          <span class="material-symbols-outlined text-2xl text-[#ffd700]/70 mb-0.5">trophy</span>
+          <span class="material-symbols-outlined text-xs text-primary/60 mb-0.5">add_circle</span>
+          <div class="text-[9px] text-primary font-bold uppercase">Elegir</div>
+        `;
+      }
+    }
+
+    // Render selector drawer
+    function renderRealSelector() {
+      const drawer = document.getElementById('realSelectorDrawer');
+      if (activeStage === null) {
+        drawer.classList.add('hidden');
+        return;
+      }
+      drawer.classList.remove('hidden');
+
+      // 1. Calculate blockage
+      let isBlocked = false;
+      let blockMessage = '';
+      if (activeStage === 'final') {
+        const sA = realResults.semis[activeIndex * 2];
+        const sB = realResults.semis[activeIndex * 2 + 1];
+        if (!sA || !sB) {
+          isBlocked = true;
+          blockMessage = 'Primero debes definir ambos semifinalistas de esta llave.';
+        }
+      } else if (activeStage === 'champion') {
+        const fA = realResults.finals[0];
+        const fB = realResults.finals[1];
+        if (!fA || !fB) {
+          isBlocked = true;
+          blockMessage = 'Primero debes definir ambos finalistas de la Gran Final.';
+        }
+      }
+
+      // 2. Render content
+      if (isBlocked) {
+        drawer.innerHTML = `
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="text-xs font-bold uppercase text-primary tracking-wider">Definir Resultados Oficiales</h3>
+            <button id="btnCloseSelector" class="text-[10px] text-on-surface-variant/80 hover:text-on-surface font-extrabold uppercase bg-black/5 px-2 py-0.5 rounded">Cerrar</button>
+          </div>
+          <div class="p-4 bg-yellow-50 border border-yellow-200 text-yellow-800 text-xs rounded-xl font-medium text-center">
+            ${blockMessage}
+          </div>
+        `;
+        document.getElementById('btnCloseSelector').addEventListener('click', closeSelector);
+        return;
+      }
+
+      // Title determination
+      const title = activeStage === 'semi'
+        ? `Definir Semifinalista #${activeIndex + 1}`
+        : (activeStage === 'final'
+          ? `Definir Finalista - Llave ${activeIndex === 0 ? 'Izquierda' : 'Derecha'}`
+          : 'Definir Campeón del Mundo Oficial');
+
+      if (activeStage === 'semi') {
+        // Full 48 teams selector with search and filters
+        const filtered = allTeams.filter(t => {
+          const matchesQuery = t.name.toLowerCase().includes(searchQuery.toLowerCase());
+          const matchesGroup = filterGroup === 'TODOS' || t.group === filterGroup;
+          return matchesQuery && matchesGroup;
+        });
+
+        const GRP  = ['TODOS','CONMEBOL','UEFA','CAF','AFC','CONCACAF','OFC'];
+        const GLBL = { TODOS:'Todos', CONMEBOL:'Sudamérica', UEFA:'Europa', CAF:'África', AFC:'Asia', CONCACAF:'CONCACAF', OFC:'Oceanía' };
+        
+        let filterButtonsHtml = GRP.map(g => {
+          const isSel = filterGroup === g;
+          return `<button data-group="${g}" class="flex-none rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider border transition-all ${
+            isSel ? 'bg-primary border-primary text-white' : 'bg-white/65 border-black/15 text-on-surface-variant'
+          }">${GLBL[g]}</button>`;
+        }).join('');
+
+        let isAlreadySelected = (code) => realResults.semis.some((s, idx) => s && s.code === code && idx !== activeIndex);
+
+        let gridHtml = filtered.map(t => {
+          const isSelected = isAlreadySelected(t.code);
+          return `
+            <div data-code="${t.code}" class="flag-card group p-1.5 flex flex-col items-center gap-1 rounded-lg border bg-white/40 transition-all duration-200 ${
+              isSelected ? 'opacity-30 cursor-not-allowed bg-black/5' : 'cursor-pointer hover:bg-white/80 hover:scale-105'
+            }" style="border-color: rgba(0,0,0,0.08);">
+              <div class="w-full aspect-[3/2] rounded overflow-hidden shadow-sm bg-white border border-outline-variant/10">
+                <img src="https://flagcdn.com/w80/${t.code}.png" class="w-full h-full object-cover">
+              </div>
+              <span class="text-[9px] text-center uppercase tracking-tight text-on-surface font-bold truncate w-full">${t.name}</span>
+            </div>
+          `;
+        }).join('');
+
+        drawer.innerHTML = `
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="text-xs font-bold uppercase text-primary tracking-wider">${title}</h3>
+            <button id="btnCloseSelector" class="text-[10px] text-on-surface-variant/80 hover:text-on-surface font-extrabold uppercase bg-black/5 px-2 py-0.5 rounded">Cerrar</button>
+          </div>
+          <!-- Search input -->
+          <div class="mb-3 relative">
+            <input id="realSearchInput" class="w-full bg-white/50 border border-outline-variant/40 rounded-xl py-2 pl-10 pr-4 text-xs outline-none focus:border-primary transition-all" placeholder="Buscar selección..." type="text" value="${searchQuery}"/>
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-base">search</span>
+          </div>
+          <!-- Filters -->
+          <div class="flex gap-1 overflow-x-auto pb-1.5 mb-3 custom-scrollbar">
+            ${filterButtonsHtml}
+          </div>
+          <!-- Grid -->
+          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 overflow-y-auto max-h-[160px] pr-1 custom-scrollbar">
+            ${gridHtml || '<div class="col-span-full text-center text-xs italic text-on-surface-variant py-4">No se encontraron selecciones</div>'}
+          </div>
+        `;
+
+        // Wire events
+        document.getElementById('btnCloseSelector').addEventListener('click', closeSelector);
+        
+        const searchEl = document.getElementById('realSearchInput');
+        searchEl.focus();
+        searchEl.setSelectionRange(searchEl.value.length, searchEl.value.length);
+        searchEl.addEventListener('input', (e) => {
+          searchQuery = e.target.value;
+          renderRealSelector();
+        });
+
+        drawer.querySelectorAll('button[data-group]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            filterGroup = e.target.getAttribute('data-group');
+            renderRealSelector();
+          });
+        });
+
+        drawer.querySelectorAll('div[data-code]').forEach(card => {
+          card.addEventListener('click', (e) => {
+            const code = card.getAttribute('data-code');
+            if (isAlreadySelected(code)) return;
+            const team = allTeams.find(t => t.code === code);
+            
+            const nextSemis = [...realResults.semis];
+            const oldTeam = nextSemis[activeIndex];
+            nextSemis[activeIndex] = team;
+
+            // Clear dependent winner stages if changed
+            const nextFinals = [...realResults.finals];
+            let nextChampion = realResults.champion;
+            if (oldTeam && oldTeam.code !== team.code) {
+              const targetFinalIdx = activeIndex < 2 ? 0 : 1;
+              if (nextFinals[targetFinalIdx] && nextFinals[targetFinalIdx].code === oldTeam.code) {
+                nextFinals[targetFinalIdx] = null;
+                if (nextChampion && nextChampion.code === oldTeam.code) {
+                  nextChampion = null;
+                }
+              }
+            }
+
+            realResults = { semis: nextSemis, finals: nextFinals, champion: nextChampion };
+            saveRealResults();
+          });
+        });
+
+      } else {
+        // 2 candidates grid for finals and champion
+        let candidates = [];
+        if (activeStage === 'final') {
+          candidates = [realResults.semis[activeIndex * 2], realResults.semis[activeIndex * 2 + 1]];
+        } else if (activeStage === 'champion') {
+          candidates = [realResults.finals[0], realResults.finals[1]];
+        }
+
+        let gridHtml = candidates.map(t => {
+          if (!t) return '';
+          return `
+            <div data-code="${t.code}" class="glass-card p-4 rounded-xl flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition-all duration-200 border border-outline-variant/30 hover:border-primary/50 w-36">
+              <div class="w-full aspect-[3/2] rounded overflow-hidden shadow-sm bg-white border border-outline-variant/10">
+                <img src="https://flagcdn.com/w160/${t.code}.png" class="w-full h-full object-cover">
+              </div>
+              <span class="text-xs font-bold uppercase text-on-surface truncate w-full text-center">${t.name}</span>
+            </div>
+          `;
+        }).join('');
+
+        drawer.innerHTML = `
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="text-xs font-bold uppercase text-primary tracking-wider">${title}</h3>
+            <button id="btnCloseSelector" class="text-[10px] text-on-surface-variant/80 hover:text-on-surface font-extrabold uppercase bg-black/5 px-2 py-0.5 rounded">Cerrar</button>
+          </div>
+          <div class="flex justify-center gap-6 py-4">
+            ${gridHtml}
+          </div>
+        `;
+
+        document.getElementById('btnCloseSelector').addEventListener('click', closeSelector);
+        
+        drawer.querySelectorAll('div[data-code]').forEach(card => {
+          card.addEventListener('click', () => {
+            const code = card.getAttribute('data-code');
+            const team = allTeams.find(t => t.code === code);
+            
+            if (activeStage === 'final') {
+              const nextFinals = [...realResults.finals];
+              const oldTeam = nextFinals[activeIndex];
+              nextFinals[activeIndex] = team;
+
+              let nextChampion = realResults.champion;
+              if (oldTeam && oldTeam.code !== team.code && nextChampion && nextChampion.code === oldTeam.code) {
+                nextChampion = null;
+              }
+              realResults = { ...realResults, finals: nextFinals, champion: nextChampion };
+            } else {
+              realResults = { ...realResults, champion: team };
+            }
+            saveRealResults();
+          });
+        });
+      }
+    }
+
+    function saveRealResults() {
+      try {
+        localStorage.setItem('udi_worldcup_real_results', JSON.stringify(realResults));
+      } catch (e) {
+        console.error("Error writing real results to local storage:", e);
+      }
+      activeStage = null;
+      activeIndex = null;
+      searchQuery = '';
+      filterGroup = 'TODOS';
+      renderRealSlots();
+      renderRealSelector();
+      renderTable(searchInput.value);
+    }
+
+    function closeSelector() {
+      activeStage = null;
+      activeIndex = null;
+      searchQuery = '';
+      filterGroup = 'TODOS';
+      renderRealSlots();
+      renderRealSelector();
+    }
+
+    // Connect Slot Clicks
+    for (let i = 0; i < 4; i++) {
+      document.getElementById(`realSemi${i}`).addEventListener('click', () => {
+        activeStage = 'semi';
+        activeIndex = i;
+        renderRealSlots();
+        renderRealSelector();
+      });
+    }
+
+    for (let i = 0; i < 2; i++) {
+      document.getElementById(`realFinal${i}`).addEventListener('click', () => {
+        activeStage = 'final';
+        activeIndex = i;
+        renderRealSlots();
+        renderRealSelector();
+      });
+    }
+
+    document.getElementById('realChampion').addEventListener('click', () => {
+      activeStage = 'champion';
+      activeIndex = 0;
+      renderRealSlots();
+      renderRealSelector();
+    });
+
+    // Calculate metrics
+    function updateMetrics() {
+      const total = registrations.length;
+      metricTotal.textContent = total;
+      
+      // Active schools count
+      const schools = new Set(registrations.map(r => r.colegio ? r.colegio.trim().toLowerCase() : '')).size;
+      metricSchools.textContent = schools;
+      
+      // Minors %
+      const minorsCount = registrations.filter(r => r.edad < 18).length;
+      const minorsPercent = total ? Math.round((minorsCount / total) * 100) : 0;
+      metricMinors.textContent = `${minorsPercent}%`;
+      minorBar.style.width = `${minorsPercent}%`;
+      
+      // Champion predictions counts
+      const champCounts = {};
+      registrations.forEach(r => {
+        if (r.champion && r.champion.name) {
+          champCounts[r.champion.name] = (champCounts[r.champion.name] || 0) + 1;
+        }
+      });
+      
+      const sortedChamps = Object.entries(champCounts).sort((a, b) => b[1] - a[1]);
+      if (sortedChamps.length > 0) {
+        const favoriteName = sortedChamps[0][0];
+        const favoriteVotes = sortedChamps[0][1];
+        
+        // Find corresponding team object to get flag code
+        const registeredMatch = registrations.find(r => r.champion && r.champion.name === favoriteName);
+        if (registeredMatch && registeredMatch.champion) {
+          favFlag.src = `https://flagcdn.com/w80/${registeredMatch.champion.code}.png`;
+          favFlagContainer.classList.remove('hidden');
+        }
+        favTeamName.textContent = favoriteName;
+        favVotesLabel.textContent = `${favoriteVotes} ${favoriteVotes === 1 ? 'voto' : 'votos'}`;
+      } else {
+        favFlagContainer.classList.add('hidden');
+        favTeamName.textContent = "-";
+        favVotesLabel.textContent = "0 votos";
+      }
+
+      // Render Top 5 Champions
+      if (sortedChamps.length > 0) {
+        topTeamsList.innerHTML = '';
+        sortedChamps.slice(0, 5).forEach(([name, count]) => {
+          const match = registrations.find(r => r.champion && r.champion.name === name);
+          const flagUrl = match ? `https://flagcdn.com/w80/${match.champion.code}.png` : '';
+          const pct = Math.round((count / total) * 100);
+          
+          const div = document.createElement('div');
+          div.className = "flex items-center gap-2 text-xs";
+          div.innerHTML = `
+            <img src="${flagUrl}" class="w-6 h-4 object-cover rounded border border-outline-variant/10 flex-shrink-0">
+            <span class="font-bold w-24 truncate uppercase">${name}</span>
+            <div class="flex-grow bg-outline-variant/20 h-2 rounded-full overflow-hidden">
+              <div class="bg-primary h-full" style="width: ${pct}%"></div>
+            </div>
+            <span class="text-on-surface-variant/80 font-bold text-[10px] w-12 text-right">${count} votos (${pct}%)</span>
+          `;
+          topTeamsList.appendChild(div);
+        });
+      } else {
+        topTeamsList.innerHTML = '<div class="text-xs text-on-surface-variant italic">No hay datos de votación todavía.</div>';
+      }
+
+      // Render Top 5 Schools
+      const schoolCounts = {};
+      registrations.forEach(r => {
+        if (r.colegio) {
+          const name = r.colegio.trim();
+          schoolCounts[name] = (schoolCounts[name] || 0) + 1;
+        }
+      });
+      
+      const sortedSchools = Object.entries(schoolCounts).sort((a, b) => b[1] - a[1]);
+      if (sortedSchools.length > 0) {
+        topSchoolsList.innerHTML = '';
+        sortedSchools.slice(0, 5).forEach(([name, count]) => {
+          const pct = Math.round((count / total) * 100);
+          
+          const div = document.createElement('div');
+          div.className = "flex items-center gap-2 text-xs";
+          div.innerHTML = `
+            <span class="font-bold w-28 truncate uppercase" title="${name}">${name}</span>
+            <div class="flex-grow bg-outline-variant/20 h-2 rounded-full overflow-hidden">
+              <div class="bg-secondary h-full" style="width: ${pct}%"></div>
+            </div>
+            <span class="text-on-surface-variant/80 font-bold text-[10px] w-12 text-right">${count} reg. (${pct}%)</span>
+          `;
+          topSchoolsList.appendChild(div);
+        });
+      } else {
+        topSchoolsList.innerHTML = '<div class="text-xs text-on-surface-variant italic">No hay datos de colegios todavía.</div>';
+      }
+    }
+
+    // Render table rows with scores and sorting
+    function renderTable(filter = '') {
+      tableBody.innerHTML = '';
+      
+      // Compute scores on the fly
+      const parsedWithScores = registrations.map(r => ({
+        ...r,
+        _score: getParticipantScore(r)
+      }));
+
+      // Filter by text search and dropdown winner filters
+      const filtered = parsedWithScores.filter(r => {
+        const query = filter.toLowerCase();
+        const matchesName = r.nombre ? r.nombre.toLowerCase().includes(query) : false;
+        const matchesEmail = r.email ? r.email.toLowerCase().includes(query) : false;
+        const matchesTel = r.telefono ? r.telefono.includes(query) : false;
+        const matchesSchool = r.colegio ? r.colegio.toLowerCase().includes(query) : false;
+        
+        const matchesQuery = matchesName || matchesEmail || matchesTel || matchesSchool;
+        if (!matchesQuery) return false;
+
+        const filterType = winnerFilterSelect.value;
+        if (filterType === 'all') return true;
+        if (filterType === 'has_points') return r._score !== null && r._score > 0;
+        if (filterType === 'correct_champion') {
+          return realResults.champion && r.champion && r.champion.code === realResults.champion.code;
+        }
+        if (filterType === 'perfect_score') return r._score === 130;
+        return true;
+      });
+
+      // Sort by score (if results are set)
+      const hasRealResults = realResults.semis.some(Boolean) || realResults.finals.some(Boolean) || realResults.champion;
+      if (hasRealResults) {
+        filtered.sort((a, b) => {
+          const diff = (b._score || 0) - (a._score || 0);
+          if (diff !== 0) return diff;
+          // Tie-break: earlier registrations first
+          const dateA = a.timestamp ? new Date(a.timestamp) : new Date(0);
+          const dateB = b.timestamp ? new Date(b.timestamp) : new Date(0);
+          return dateA - dateB;
+        });
+      }
+
+      tableCountLabel.textContent = `Mostrando ${filtered.length} de ${registrations.length} registros`;
+
+      if (filtered.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="8" class="px-md py-8 text-center text-on-surface-variant italic bg-white/20">
+              No se encontraron participantes que coincidan con los filtros y la búsqueda.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filtered.forEach(r => {
+        const row = document.createElement('tr');
+        row.className = "hover:bg-white/40 transition-colors border-b border-outline-variant/10";
+        
+        // Formulate semi flags
+        let semisFlagsHtml = '';
+        if (r.semis && Array.isArray(r.semis)) {
+          r.semis.forEach(team => {
+            if (team) {
+              const isHit = realResults.semis.filter(Boolean).some(t => t.code === team.code);
+              const borderStyle = isHit ? 'border-green-500 ring-1 ring-green-500' : 'border-outline-variant/10';
+              semisFlagsHtml += `<img src="https://flagcdn.com/w80/${team.code}.png" class="w-5 h-3 object-cover rounded shadow-sm border ${borderStyle}" title="${team.name} ${isHit ? '(Acierto)' : ''}">`;
+            }
+          });
+        }
+        
+        // Formulate finals flags
+        let finalsFlagsHtml = '';
+        if (r.finals && Array.isArray(r.finals)) {
+          r.finals.forEach(team => {
+            if (team) {
+              const isHit = realResults.finals.filter(Boolean).some(t => t.code === team.code);
+              const borderStyle = isHit ? 'border-green-500 ring-1 ring-green-500' : 'border-outline-variant/10';
+              finalsFlagsHtml += `<img src="https://flagcdn.com/w80/${team.code}.png" class="w-5 h-3 object-cover rounded shadow-sm border ${borderStyle}" title="${team.name} ${isHit ? '(Acierto)' : ''}">`;
+            }
+          });
+        }
+
+        // Formulate champion flag
+        let champFlagHtml = '';
+        if (r.champion) {
+          const isHit = realResults.champion && r.champion.code === realResults.champion.code;
+          const borderStyle = isHit ? 'border-green-500 bg-green-500/10' : 'border-[#ffd700] bg-[#ffd700]/10';
+          champFlagHtml = `
+            <div class="flex items-center gap-1 border rounded px-1 py-0.5 ${borderStyle}" title="Campeón: ${r.champion.name} ${isHit ? '(Acierto)' : ''}">
+              <img src="https://flagcdn.com/w80/${r.champion.code}.png" class="w-5 h-3 object-cover rounded shadow-sm">
+              <span class="text-[9px] font-bold text-on-surface uppercase truncate max-w-[40px]">${r.champion.name}</span>
+            </div>
+          `;
+        }
+
+        const dateFormatted = r.timestamp ? new Date(r.timestamp).toLocaleDateString('es-ES', {
+          day: '2-digit',
+          month: 'short',
+          hour: '2-digit',
+          minute: '2-digit'
+        }) : '-';
+
+        const scoreHtml = r._score !== null 
+          ? `<span class="inline-flex items-center justify-center bg-primary/15 text-primary text-xs font-extrabold px-2.5 py-1 rounded-full border border-primary/20">${r._score} pts</span>`
+          : `<span class="text-on-surface-variant/40 font-bold">-</span>`;
+
+        row.innerHTML = `
+          <td class="px-md py-3.5">
+            <div class="font-bold text-on-surface uppercase tracking-tight">${r.nombre || '-'}</div>
+            <div class="text-[9px] text-on-surface-variant/80 font-bold mt-0.5">TICKET: #${r.participationNumber || '------'}</div>
+          </td>
+          <td class="px-md py-3.5 font-medium">${r.edad || '-'}</td>
+          <td class="px-md py-3.5 font-bold uppercase text-primary/95 text-[11px] truncate max-w-[120px]" title="${r.colegio || ''}">${r.colegio || '-'}</td>
+          <td class="px-md py-3.5 leading-normal">
+            <div class="font-medium text-on-surface-variant">${r.email || '-'}</div>
+            <div class="text-[10px] text-on-surface-variant/80 font-semibold mt-0.5">${r.telefono || '-'}</div>
+          </td>
+          <td class="px-md py-3.5 text-on-surface-variant font-semibold">${r.telefonoTutor || '-'}</td>
+          <td class="px-md py-3.5 font-bold text-center">${scoreHtml}</td>
+          <td class="px-md py-3.5">
+            <div class="flex items-center gap-4 justify-center">
+              <div>
+                <div class="text-[7px] text-on-surface-variant/60 font-bold uppercase text-center mb-0.5">Semis</div>
+                <div class="flex gap-0.5">${semisFlagsHtml || '<span class="text-[9px] italic text-on-surface-variant/40">-</span>'}</div>
+              </div>
+              <div class="text-on-surface-variant/20 font-bold">➔</div>
+              <div>
+                <div class="text-[7px] text-on-surface-variant/60 font-bold uppercase text-center mb-0.5">Final</div>
+                <div class="flex gap-0.5">${finalsFlagsHtml || '<span class="text-[9px] italic text-on-surface-variant/40">-</span>'}</div>
+              </div>
+              <div class="text-on-surface-variant/20 font-bold">➔</div>
+              <div>
+                <div class="text-[7px] text-on-surface-variant/60 font-bold uppercase text-center mb-0.5">Campeón</div>
+                <div>${champFlagHtml || '<span class="text-[9px] italic text-on-surface-variant/40">-</span>'}</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-md py-3.5 text-on-surface-variant/85 font-medium whitespace-nowrap">${dateFormatted}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Search and Dropdown Filter Events
+    searchInput.addEventListener('input', (e) => {
+      renderTable(e.target.value);
+    });
+
+    winnerFilterSelect.addEventListener('change', () => {
+      renderTable(searchInput.value);
+    });
+
+    // CSV compile utility
+    function compileCSV() {
+      // CSV Headers
+      const headers = ['ID Ticket', 'Nombre', 'Edad', 'Telefono', 'Email', 'Colegio', 'Telefono Tutor', 'Semifinalistas', 'Finalistas', 'Campeon', 'Puntos Obtenidos', 'Fecha Registro'];
+      const rows = [headers];
+      
+      registrations.forEach(r => {
+        const semisNames = r.semis ? r.semis.map(t => t ? t.name : '').filter(Boolean).join(' | ') : '';
+        const finalsNames = r.finals ? r.finals.map(t => t ? t.name : '').filter(Boolean).join(' | ') : '';
+        const champName = r.champion ? r.champion.name : '';
+        const score = getParticipantScore(r);
+        const scoreStr = score !== null ? score : '-';
+        const dateStr = r.timestamp ? new Date(r.timestamp).toISOString() : '';
+        
+        rows.push([
+          `#${r.participationNumber || ''}`,
+          r.nombre || '',
+          r.edad || '',
+          r.telefono || '',
+          r.email || '',
+          r.colegio || '',
+          r.telefonoTutor || '',
+          semisNames,
+          finalsNames,
+          champName,
+          scoreStr,
+          dateStr
+        ]);
+      });
+      
+      return rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(',')).join('\n');
+    }
+
+    // CSV Download
+    btnExportCSV.addEventListener('click', () => {
+      if (registrations.length === 0) {
+        alert("No hay registros para exportar.");
+        return;
+      }
+      const csvContent = "\uFEFF" + compileCSV(); // add UTF-8 BOM
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", `Reporte_Mundial_2026_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+
+    // Excel Download (delimited by semicolon for native Excel reading)
+    btnExportExcel.addEventListener('click', () => {
+      if (registrations.length === 0) {
+        alert("No hay registros para exportar.");
+        return;
+      }
+      // Excel-friendly CSV with semicolon separator
+      const headers = ['ID Ticket', 'Nombre', 'Edad', 'Telefono', 'Email', 'Colegio', 'Telefono Tutor', 'Semifinalistas', 'Finalistas', 'Campeon', 'Puntos Obtenidos', 'Fecha Registro'];
+      const rows = [headers];
+      
+      registrations.forEach(r => {
+        const semisNames = r.semis ? r.semis.map(t => t ? t.name : '').filter(Boolean).join(' - ') : '';
+        const finalsNames = r.finals ? r.finals.map(t => t ? t.name : '').filter(Boolean).join(' - ') : '';
+        const champName = r.champion ? r.champion.name : '';
+        const score = getParticipantScore(r);
+        const scoreStr = score !== null ? score : '-';
+        const dateStr = r.timestamp ? new Date(r.timestamp).toLocaleString('es-ES') : '';
+        
+        rows.push([
+          `#${r.participationNumber || ''}`,
+          r.nombre || '',
+          r.edad || '',
+          r.telefono || '',
+          r.email || '',
+          r.colegio || '',
+          r.telefonoTutor || '',
+          semisNames,
+          finalsNames,
+          champName,
+          scoreStr,
+          dateStr
+        ]);
+      });
+      
+      const excelCSVContent = "\uFEFF" + rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(';')).join('\n');
+      const blob = new Blob([excelCSVContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", `Reporte_Excel_Mundial_2026_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+
+    // Initial render
+    updateMetrics();
+    renderRealSlots();
+    renderTable();
+  </script>
+</body>
+</html>

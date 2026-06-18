@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body { background:#040B05; height:100%; }
+    input::placeholder { color:rgba(255,255,255,.28); }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; }
+    ::-webkit-scrollbar { width:4px; height:4px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:rgba(255,255,255,.14); border-radius:2px; }
+
+    @keyframes float-dot {
+      0%   { transform:translateY(0) scale(1);   opacity:.5; }
+      50%  { transform:translateY(-42vh) scale(1.2); opacity:.25; }
+      100% { transform:translateY(-90vh) scale(.8); opacity:0; }
+    }
+    @keyframes glow-trophy {
+      0%,100% { box-shadow:0 0 30px rgba(255,207,0,.35), 0 0 60px rgba(255,207,0,.15); }
+      50%      { box-shadow:0 0 55px rgba(255,207,0,.6),  0 0 90px rgba(255,207,0,.3); }
+    }
+    @keyframes fade-up {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes bounce-in {
+      0%  { transform:scale(.35); opacity:0; }
+      55% { transform:scale(1.07); }
+      80% { transform:scale(.97); }
+      100%{ transform:scale(1);   opacity:1; }
+    }
+    @keyframes ring-pulse {
+      0%,100% { transform:scale(1);    opacity:.7; }
+      50%      { transform:scale(1.08); opacity:1; }
+    }
+  </style>
+</helmet>
+
+<!-- ════ OUTER SHELL — dark pitch atmosphere ════ -->
+<div style="min-height:100vh; background:#040B05; background-image:repeating-linear-gradient(0deg,transparent 0px,transparent 72px,rgba(0,180,70,.04) 72px,rgba(0,180,70,.04) 144px); color:#fff; font-family:'Plus Jakarta Sans',sans-serif; position:relative;">
+
+  <!-- ══════════════════════════════════════
+       PANTALLA 0  ·  HERO
+  ══════════════════════════════════════ -->
+  <sc-if value="{{ isHero }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative; min-height:100vh; overflow:hidden;">
+
+      <!-- Stadium atmosphere layers -->
+      <div style="position:absolute;inset:0;z-index:0;pointer-events:none;
+        background:
+          radial-gradient(ellipse 90% 55% at 50% -8%, rgba(255,240,130,.06) 0%, transparent 55%),
+          radial-gradient(ellipse 60% 70% at -5%  50%, rgba(0,87,168,.14)  0%, transparent 55%),
+          radial-gradient(ellipse 60% 70% at 105% 50%, rgba(200,16,46,.1)  0%, transparent 55%),
+          radial-gradient(ellipse 100% 45% at 50% 100%,rgba(0,90,35,.25)  0%, transparent 60%);"></div>
+
+      <!-- Floating pitch particles -->
+      {{ particles }}
+
+      <!-- Content -->
+      <div style="position:relative;z-index:1;max-width:500px;margin:0 auto;padding:0 20px;">
+
+        <!-- NAV BAR -->
+        <div style="display:flex;align-items:center;gap:14px;padding:22px 0 10px;">
+          <div style="background:#fff;border-radius:9px;padding:6px 10px;flex-shrink:0;box-shadow:0 2px 14px rgba(0,0,0,.4);">
+            <img src="./uploads/logo-1781790033987.png" alt="UDI" style="height:36px;object-fit:contain;display:block;">
+          </div>
+          <div>
+            <div style="font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em;line-height:1.4;">Universidad para el</div>
+            <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.88);text-transform:uppercase;letter-spacing:.06em;line-height:1.3;">Desarrollo y la Innovación</div>
+          </div>
+        </div>
+
+        <!-- FIFA 2026 BADGE -->
+        <div style="text-align:center;padding-top:24px;">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,87,168,.25);border:1px solid rgba(0,87,168,.5);border-radius:100px;padding:7px 20px;margin-bottom:24px;">
+            <span style="color:#FFD700;font-size:13px;">⚽</span>
+            <span style="color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;">FIFA World Cup 2026</span>
+          </div>
+        </div>
+
+        <!-- TROPHY -->
+        <div style="text-align:center;margin-bottom:20px;">
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:134px;height:134px;background:rgba(255,207,0,.1);border:1px solid rgba(255,207,0,.25);border-radius:50%;animation:glow-trophy 3s ease-in-out infinite;position:relative;">
+            <span style="font-size:72px;line-height:1;filter:drop-shadow(0 4px 20px rgba(255,207,0,.5));">🏆</span>
+          </div>
+        </div>
+
+        <!-- MAIN TITLE & CTA -->
+        <div style="text-align:center;animation:fade-up .65s ease both;padding:0 6px;">
+          <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,12vw,62px);line-height:.94;letter-spacing:.01em;margin-bottom:14px;text-wrap:balance;">
+            PRONOSTICA AL<br>
+            <span style="color:#FFD700;">CAMPEÓN</span><br>
+            DEL MUNDIAL Y GANA
+          </h1>
+          <p style="color:rgba(255,255,255,.6);font-size:16px;line-height:1.65;margin-bottom:30px;">
+            Participa gratis. Si aciertas al campeón,<br>¡participas en el sorteo de premios!
+          </p>
+
+          <button onClick="{{ goToForm }}"
+            style="background:#C8102E;color:#fff;border:none;border-radius:100px;padding:20px 48px;font-size:18px;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;letter-spacing:.04em;box-shadow:0 8px 28px rgba(200,16,46,.4);width:100%;max-width:340px;transition:transform .18s,box-shadow .18s;"
+            style-hover="transform:translateY(-3px);box-shadow:0 14px 36px rgba(200,16,46,.55);">
+            PARTICIPAR AHORA →
+          </button>
+          <p style="color:rgba(255,255,255,.25);font-size:12px;margin-top:10px;letter-spacing:.03em;">Gratis · Sin costo · En menos de 60 segundos</p>
+        </div>
+
+        <!-- COUNTDOWN -->
+        <div style="margin:36px 0 30px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:22px 12px;text-align:center;">
+          <p style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.35);margin-bottom:16px;">⏱ Tiempo hasta la Gran Final</p>
+          <div style="display:flex;justify-content:center;align-items:flex-start;gap:4px;">
+            <div style="flex:1;text-align:center;min-width:0;">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,10vw,54px);color:#FFD700;line-height:1;">{{ cdDias }}</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.1em;margin-top:2px;">Días</div>
+            </div>
+            <div style="color:rgba(255,255,255,.2);font-size:38px;line-height:1.05;padding-top:4px;">:</div>
+            <div style="flex:1;text-align:center;min-width:0;">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,10vw,54px);color:#FFD700;line-height:1;">{{ cdHoras }}</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.1em;margin-top:2px;">Horas</div>
+            </div>
+            <div style="color:rgba(255,255,255,.2);font-size:38px;line-height:1.05;padding-top:4px;">:</div>
+            <div style="flex:1;text-align:center;min-width:0;">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,10vw,54px);color:#FFD700;line-height:1;">{{ cdMin }}</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.1em;margin-top:2px;">Min</div>
+            </div>
+            <div style="color:rgba(255,255,255,.2);font-size:38px;line-height:1.05;padding-top:4px;">:</div>
+            <div style="flex:1;text-align:center;min-width:0;">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,10vw,54px);color:#FFD700;line-height:1;">{{ cdSeg }}</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.1em;margin-top:2px;">Seg</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOW TO PARTICIPATE -->
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Bebas Neue',sans-serif;font-size:30px;text-align:center;margin-bottom:16px;letter-spacing:.03em;">
+            ¿CÓMO <span style="color:#FFD700;">PARTICIPAR?</span>
+          </h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <sc-for list="{{ steps }}" as="step" hint-placeholder-count="4">
+              <div style="background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px 14px;">
+                <div style="width:34px;height:34px;background:#0057A8;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-family:'Bebas Neue',sans-serif;font-size:20px;color:#fff;line-height:1;">{{ step.num }}</div>
+                <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35;">{{ step.text }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- BOTTOM CTA -->
+        <div style="text-align:center;padding-bottom:72px;">
+          <button onClick="{{ goToForm }}"
+            style="background:#C8102E;color:#fff;border:none;border-radius:100px;padding:18px 40px;font-size:17px;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;width:100%;max-width:340px;letter-spacing:.04em;box-shadow:0 6px 24px rgba(200,16,46,.38);"
+            style-hover="transform:translateY(-2px);">
+            ¡QUIERO PARTICIPAR! ⚽
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ══════════════════════════════════════
+       PANTALLA 1  ·  FORMULARIO
+  ══════════════════════════════════════ -->
+  <sc-if value="{{ isForm }}" hint-placeholder-val="{{ false }}">
+    <div style="min-height:100vh;animation:fade-up .4s ease both;">
+      <div style="position:fixed;inset:0;background:radial-gradient(ellipse 110% 55% at 50% -8%,rgba(0,87,168,.25),transparent 60%);pointer-events:none;z-index:0;"></div>
+
+      <div style="position:relative;z-index:1;max-width:500px;margin:0 auto;padding:0 20px;">
+
+        <!-- PROGRESS HEADER -->
+        <div style="display:flex;align-items:center;gap:14px;padding:24px 0 20px;">
+          <button onClick="{{ goBack }}"
+            style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:17px;flex-shrink:0;transition:background .15s;"
+            style-hover="background:rgba(255,255,255,.16);">←</button>
+          <div style="flex:1;">
+            <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px;text-transform:uppercase;letter-spacing:.1em;">Paso 1 de 3</div>
+            <div style="height:4px;background:rgba(255,255,255,.09);border-radius:2px;overflow:hidden;">
+              <div style="width:33%;height:100%;background:linear-gradient(90deg,#0057A8,#C8102E);border-radius:2px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:.95;margin-bottom:6px;letter-spacing:.01em;">
+          REGISTRA TUS <span style="color:#FFD700;">DATOS</span>
+        </h2>
+        <p style="color:rgba(255,255,255,.48);font-size:14px;margin-bottom:22px;">Completa el formulario. Solo tarda 60 segundos.</p>
+
+        <!-- FORM CARD -->
+        <div style="background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:24px;">
+
+          <div style="margin-bottom:14px;">
+            <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.48);margin-bottom:7px;">Nombre Completo *</label>
+            <input type="text" value="{{ nombre }}" onChange="{{ onNombreChange }}" placeholder="Tu nombre completo"
+              style="display:block;width:100%;background:rgba(255,255,255,.07);border:1.5px solid {{ bnNombre }};border-radius:12px;padding:14px 16px;color:#fff;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;">
+            <sc-if value="{{ errNombre }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#f87171;font-size:12px;margin-top:5px;display:block;">{{ errNombre }}</span>
+            </sc-if>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.48);margin-bottom:7px;">Edad *</label>
+            <input type="number" value="{{ edad }}" onChange="{{ onEdadChange }}" placeholder="Ej: 22" min="5" max="120"
+              style="display:block;width:100%;background:rgba(255,255,255,.07);border:1.5px solid {{ bnEdad }};border-radius:12px;padding:14px 16px;color:#fff;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;">
+            <sc-if value="{{ errEdad }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#f87171;font-size:12px;margin-top:5px;display:block;">{{ errEdad }}</span>
+            </sc-if>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.48);margin-bottom:7px;">Teléfono *</label>
+            <input type="tel" value="{{ telefono }}" onChange="{{ onTelefonoChange }}" placeholder="Ej: 6671234567"
+              style="display:block;width:100%;background:rgba(255,255,255,.07);border:1.5px solid {{ bnTelefono }};border-radius:12px;padding:14px 16px;color:#fff;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;">
+            <sc-if value="{{ errTelefono }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#f87171;font-size:12px;margin-top:5px;display:block;">{{ errTelefono }}</span>
+            </sc-if>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.48);margin-bottom:7px;">Correo Electrónico *</label>
+            <input type="email" value="{{ email }}" onChange="{{ onEmailChange }}" placeholder="tu@correo.com"
+              style="display:block;width:100%;background:rgba(255,255,255,.07);border:1.5px solid {{ bnEmail }};border-radius:12px;padding:14px 16px;color:#fff;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;">
+            <sc-if value="{{ errEmail }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#f87171;font-size:12px;margin-top:5px;display:block;">{{ errEmail }}</span>
+            </sc-if>
+          </div>
+
+          <div style="margin-bottom:22px;">
+            <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.48);margin-bottom:7px;">Teléfono de Referencia *</label>
+            <input type="tel" value="{{ telefonoTutor }}" onChange="{{ onTutorChange }}" placeholder="Tutor o contacto de referencia"
+              style="display:block;width:100%;background:rgba(255,255,255,.07);border:1.5px solid {{ bnTutor }};border-radius:12px;padding:14px 16px;color:#fff;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;">
+            <sc-if value="{{ errTutor }}" hint-placeholder-val="{{ false }}">
+              <span style="color:#f87171;font-size:12px;margin-top:5px;display:block;">{{ errTutor }}</span>
+            </sc-if>
+          </div>
+
+          <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;margin-bottom:8px;">
+            <input type="checkbox" checked="{{ terminos }}" onChange="{{ onTerminosChange }}"
+              style="width:20px;height:20px;accent-color:#0057A8;margin-top:2px;flex-shrink:0;cursor:pointer;">
+            <span style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.5;">Acepto los <span style="color:#60a5fa;text-decoration:underline;cursor:pointer;">términos y condiciones</span> y autorizo el uso de mis datos para esta promoción.</span>
+          </label>
+          <sc-if value="{{ errTerminos }}" hint-placeholder-val="{{ false }}">
+            <div style="color:#f87171;font-size:12px;margin-bottom:10px;">{{ errTerminos }}</div>
+          </sc-if>
+
+        </div>
+
+        <div style="padding:18px 0 56px;">
+          <button onClick="{{ submitForm }}"
+            style="width:100%;background:#C8102E;color:#fff;border:none;border-radius:100px;padding:19px;font-size:16px;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;letter-spacing:.04em;box-shadow:0 6px 26px rgba(200,16,46,.35);transition:transform .18s;"
+            style-hover="transform:translateY(-2px);">
+            SIGUIENTE: ELIGE TU CAMPEÓN →
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ══════════════════════════════════════
+       PANTALLA 2  ·  SELECTOR DE CAMPEÓN
+  ══════════════════════════════════════ -->
+  <sc-if value="{{ isPicker }}" hint-placeholder-val="{{ false }}">
+    <div style="min-height:100vh;animation:fade-up .4s ease both;">
+      <div style="position:fixed;inset:0;background:radial-gradient(ellipse 110% 50% at 50% -8%,rgba(0,87,168,.2),transparent 58%);pointer-events:none;z-index:0;"></div>
+
+      <div style="position:relative;z-index:1;max-width:500px;margin:0 auto;padding:0 20px;">
+
+        <!-- PROGRESS HEADER -->
+        <div style="display:flex;align-items:center;gap:14px;padding:24px 0 20px;">
+          <button onClick="{{ goBack }}"
+            style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:17px;flex-shrink:0;"
+            style-hover="background:rgba(255,255,255,.16);">←</button>
+          <div style="flex:1;">
+            <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px;text-transform:uppercase;letter-spacing:.1em;">Paso 2 de 3</div>
+            <div style="height:4px;background:rgba(255,255,255,.09);border-radius:2px;overflow:hidden;">
+              <div style="width:66%;height:100%;background:linear-gradient(90deg,#0057A8,#C8102E);border-radius:2px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:.95;margin-bottom:6px;letter-spacing:.01em;">
+          ¿QUIÉN SERÁ EL <span style="color:#FFD700;">CAMPEÓN?</span>
+        </h2>
+        <p style="color:rgba(255,255,255,.48);font-size:14px;margin-bottom:20px;">Elige una selección. Solo puedes elegir una.</p>
+
+        <!-- SEARCH -->
+        <div style="position:relative;margin-bottom:12px;">
+          <span style="position:absolute;left:15px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.3);font-size:16px;pointer-events:none;">🔍</span>
+          <input type="text" value="{{ searchQuery }}" onChange="{{ onSearchChange }}" placeholder="Buscar selección..."
+            style="display:block;width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:12px 16px 12px 46px;color:#fff;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;">
+        </div>
+
+        <!-- FILTER TABS -->
+        <div style="display:flex;gap:7px;overflow-x:auto;padding-bottom:10px;margin-bottom:18px;-webkit-overflow-scrolling:touch;">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7">
+            <button onClick="{{ f.onSelect }}"
+              style="flex:none;background:{{ f.bg }};border:1px solid {{ f.border }};color:#fff;border-radius:100px;padding:7px 15px;font-size:11px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;white-space:nowrap;text-transform:uppercase;letter-spacing:.06em;transition:transform .15s;"
+              style-hover="transform:scale(1.04);">{{ f.label }}</button>
+          </sc-for>
+        </div>
+
+        <!-- TEAM GRID -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-bottom:134px;">
+          <sc-for list="{{ filteredTeams }}" as="team" hint-placeholder-count="12">
+            <div onClick="{{ team.onSelect }}"
+              style="background:{{ team.cardBg }};border:{{ team.cardBorder }};border-radius:14px;padding:14px 8px 11px;text-align:center;cursor:pointer;transition:transform .18s,box-shadow .18s;"
+              style-hover="transform:scale(1.05);box-shadow:0 4px 22px rgba(0,87,168,.4);">
+              <img src="{{ team.flagUrl }}" alt="{{ team.name }}" style="width:54px;height:36px;object-fit:cover;border-radius:4px;margin-bottom:7px;box-shadow:0 2px 8px rgba(0,0,0,.5);">
+              <div style="font-size:11px;font-weight:600;color:#fff;line-height:1.25;">{{ team.name }}</div>
+              <div style="font-size:9px;color:rgba(255,255,255,.36);margin-top:3px;text-transform:uppercase;letter-spacing:.05em;">{{ team.group }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+      </div>
+
+      <!-- STICKY CONFIRM BAR -->
+      <sc-if value="{{ hasPending }}" hint-placeholder-val="{{ false }}">
+        <div style="position:fixed;bottom:0;left:0;right:0;background:rgba(4,11,5,.94);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.1);padding:16px 20px 28px;z-index:200;">
+          <div style="max-width:500px;margin:0 auto;">
+            <div style="display:flex;align-items:center;gap:11px;margin-bottom:11px;">
+              <img src="{{ pendingFlag }}" alt="{{ pendingName }}" style="width:40px;height:27px;object-fit:cover;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.4);">
+              <span style="font-size:14px;color:rgba(255,255,255,.75);">Tu pronóstico: <strong style="color:#fff;">{{ pendingName }}</strong></span>
+            </div>
+            <button onClick="{{ confirmTeam }}"
+              style="width:100%;background:#C8102E;color:#fff;border:none;border-radius:100px;padding:17px;font-size:16px;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;letter-spacing:.04em;box-shadow:0 6px 26px rgba(200,16,46,.4);">
+              CONFIRMAR PRONÓSTICO ✓
+            </button>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </sc-if>
+
+  <!-- ══════════════════════════════════════
+       PANTALLA 3  ·  CONFIRMACIÓN
+  ══════════════════════════════════════ -->
+  <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
+    <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 20px;position:relative;">
+      <div style="position:fixed;inset:0;background:radial-gradient(ellipse 90% 65% at 50% 50%,rgba(0,87,168,.22),transparent 62%);pointer-events:none;z-index:0;"></div>
+
+      <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10;"></canvas>
+
+      <div style="position:relative;z-index:1;max-width:420px;width:100%;animation:bounce-in .65s cubic-bezier(.36,.07,.19,.97) both;">
+
+        <!-- CHECK ICON -->
+        <div style="width:90px;height:90px;background:#0057A8;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:42px;box-shadow:0 10px 36px rgba(0,87,168,.5);animation:ring-pulse 2.2s ease-in-out infinite;">✓</div>
+
+        <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,10vw,50px);line-height:.96;margin-bottom:12px;letter-spacing:.01em;">
+          ¡TU PARTICIPACIÓN<br>FUE REGISTRADA!
+        </h1>
+        <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.65;margin-bottom:30px;">
+          Tu pronóstico quedó guardado exitosamente.<br>Si aciertas al campeón, ¡participas en el sorteo!
+        </p>
+
+        <!-- PARTICIPATION CARD -->
+        <div style="background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:26px;margin-bottom:24px;">
+          <div style="text-align:center;margin-bottom:18px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.36);margin-bottom:5px;">Número de Participación</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:58px;color:#FFD700;letter-spacing:.06em;line-height:1;">#{{ participationNumber }}</div>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,.09);padding-top:18px;display:flex;align-items:center;gap:16px;justify-content:center;">
+            <img src="{{ confirmedFlag }}" alt="{{ confirmedName }}" style="width:54px;height:36px;object-fit:cover;border-radius:5px;box-shadow:0 3px 14px rgba(0,0,0,.5);">
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;">Tu pronóstico</div>
+              <div style="font-size:20px;font-weight:700;color:#fff;">{{ confirmedName }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SHARE -->
+        <p style="font-size:11px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px;">¡Comparte tu pronóstico!</p>
+        <div style="display:flex;gap:12px;margin-bottom:28px;">
+          <a href="{{ waUrl }}" target="_blank" rel="noopener"
+            style="flex:1;background:#25D366;color:#fff;text-decoration:none;border-radius:100px;padding:15px 10px;font-size:14px;font-weight:700;text-align:center;font-family:'Plus Jakarta Sans',sans-serif;display:block;box-shadow:0 4px 16px rgba(37,211,102,.28);">📱 WhatsApp</a>
+          <a href="{{ fbUrl }}" target="_blank" rel="noopener"
+            style="flex:1;background:#1877F2;color:#fff;text-decoration:none;border-radius:100px;padding:15px 10px;font-size:14px;font-weight:700;text-align:center;font-family:'Plus Jakarta Sans',sans-serif;display:block;box-shadow:0 4px 16px rgba(24,119,242,.28);">👍 Facebook</a>
+        </div>
+
+        <!-- UDI FOOTER MARK -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:22px;opacity:.45;">
+          <div style="background:#fff;border-radius:6px;padding:3px 7px;">
+            <img src="./uploads/logo-1781790033987.png" alt="UDI" style="height:20px;object-fit:contain;display:block;">
+          </div>
+          <span style="font-size:11px;color:rgba(255,255,255,.75);font-weight:600;">UDI · Mundial 2026</span>
+        </div>
+
+        <button onClick="{{ resetForm }}"
+          style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);border-radius:100px;padding:13px 30px;font-size:14px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .15s;"
+          style-hover="background:rgba(255,255,255,.13);">
+          Nueva Participación
+        </button>
+
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 390, &quot;height&quot;: 844 }
+}">
+class Component extends DCLogic {
+  state = {
+    screen: 0,
+    form: { nombre:'', edad:'', telefono:'', email:'', telefonoTutor:'', terminos:false },
+    errors: {},
+    pendingTeam: null,
+    selectedTeam: null,
+    participationNumber: null,
+    searchQuery: '',
+    filterGroup: 'TODOS',
+    cd: { d:31, h:0, m:0, s:0 }
+  };
+
+  allTeams = [
+    {code:'ar',name:'Argentina',group:'CONMEBOL'},
+    {code:'br',name:'Brasil',group:'CONMEBOL'},
+    {code:'co',name:'Colombia',group:'CONMEBOL'},
+    {code:'uy',name:'Uruguay',group:'CONMEBOL'},
+    {code:'ec',name:'Ecuador',group:'CONMEBOL'},
+    {code:'ve',name:'Venezuela',group:'CONMEBOL'},
+    {code:'cl',name:'Chile',group:'CONMEBOL'},
+    {code:'de',name:'Alemania',group:'UEFA'},
+    {code:'fr',name:'Francia',group:'UEFA'},
+    {code:'es',name:'España',group:'UEFA'},
+    {code:'gb-eng',name:'Inglaterra',group:'UEFA'},
+    {code:'pt',name:'Portugal',group:'UEFA'},
+    {code:'nl',name:'Países Bajos',group:'UEFA'},
+    {code:'it',name:'Italia',group:'UEFA'},
+    {code:'pl',name:'Polonia',group:'UEFA'},
+    {code:'hr',name:'Croacia',group:'UEFA'},
+    {code:'ch',name:'Suiza',group:'UEFA'},
+    {code:'dk',name:'Dinamarca',group:'UEFA'},
+    {code:'at',name:'Austria',group:'UEFA'},
+    {code:'rs',name:'Serbia',group:'UEFA'},
+    {code:'gb-sct',name:'Escocia',group:'UEFA'},
+    {code:'tr',name:'Turquía',group:'UEFA'},
+    {code:'hu',name:'Hungría',group:'UEFA'},
+    {code:'ro',name:'Rumanía',group:'UEFA'},
+    {code:'ma',name:'Marruecos',group:'CAF'},
+    {code:'sn',name:'Senegal',group:'CAF'},
+    {code:'ng',name:'Nigeria',group:'CAF'},
+    {code:'cm',name:'Camerún',group:'CAF'},
+    {code:'eg',name:'Egipto',group:'CAF'},
+    {code:'gh',name:'Ghana',group:'CAF'},
+    {code:'ci',name:'Costa de Marfil',group:'CAF'},
+    {code:'dz',name:'Argelia',group:'CAF'},
+    {code:'tn',name:'Túnez',group:'CAF'},
+    {code:'jp',name:'Japón',group:'AFC'},
+    {code:'kr',name:'Corea del Sur',group:'AFC'},
+    {code:'sa',name:'Arabia Saudita',group:'AFC'},
+    {code:'au',name:'Australia',group:'AFC'},
+    {code:'ir',name:'Irán',group:'AFC'},
+    {code:'iq',name:'Irak',group:'AFC'},
+    {code:'uz',name:'Uzbekistán',group:'AFC'},
+    {code:'id',name:'Indonesia',group:'AFC'},
+    {code:'us',name:'Estados Unidos',group:'CONCACAF'},
+    {code:'mx',name:'México',group:'CONCACAF'},
+    {code:'ca',name:'Canadá',group:'CONCACAF'},
+    {code:'cr',name:'Costa Rica',group:'CONCACAF'},
+    {code:'hn',name:'Honduras',group:'CONCACAF'},
+    {code:'pa',name:'Panamá',group:'CONCACAF'},
+    {code:'nz',name:'Nueva Zelanda',group:'OFC'}
+  ];
+
+  componentDidMount() {
+    const tick = () => {
+      const fin = new Date('2026-07-19T21:00:00Z');
+      const now = new Date();
+      const diff = Math.max(0, fin - now);
+      this.setState({ cd: {
+        d: Math.floor(diff / 86400000),
+        h: Math.floor((diff % 86400000) / 3600000),
+        m: Math.floor((diff % 3600000) / 60000),
+        s: Math.floor((diff % 60000) / 1000)
+      }});
+    };
+    tick();
+    this._cdTimer = setInterval(tick, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._cdTimer);
+    if (this._rafId) cancelAnimationFrame(this._rafId);
+  }
+
+  componentDidUpdate(_, prev) {
+    if (prev.screen !== this.state.screen) {
+      window.scrollTo(0, 0);
+      if (this.state.screen === 3) {
+        setTimeout(() => this._launchConfetti(), 450);
+      }
+    }
+  }
+
+  _launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    if (!canvas) return;
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    // FIFA-themed colors: blue, red, gold, white, green
+    const palette = ['#FFD700','#C8102E','#0057A8','#FFFFFF','#00A651','#F97316'];
+    const pieces = Array.from({ length: 250 }, () => ({
+      x:  Math.random() * canvas.width,
+      y: -20 - Math.random() * 200,
+      vx: (Math.random() - .5) * 5.5,
+      vy: 2.5 + Math.random() * 3.5,
+      c:  palette[Math.floor(Math.random() * palette.length)],
+      w:  5 + Math.random() * 10,
+      h:  3 + Math.random() * 7,
+      r:  Math.random() * 360,
+      rv: (Math.random() - .5) * 13
+    }));
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let live = 0;
+      pieces.forEach(p => {
+        if (p.y < canvas.height + 25) {
+          live++;
+          p.x += p.vx; p.y += p.vy; p.vy += .07; p.r += p.rv;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.r * Math.PI / 180);
+          ctx.globalAlpha = Math.max(0, 1 - (p.y / canvas.height) * .8);
+          ctx.fillStyle = p.c;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+      });
+      if (live > 0) this._rafId = requestAnimationFrame(draw);
+    };
+    this._rafId = requestAnimationFrame(draw);
+  }
+
+  _validate() {
+    const { form } = this.state;
+    const e = {};
+    if (!form.nombre.trim()) e.nombre = 'El nombre es obligatorio';
+    const age = parseInt(form.edad);
+    if (!form.edad || isNaN(age) || age < 5 || age > 120) e.edad = 'Ingresa una edad válida (5–120)';
+    const tel = form.telefono.replace(/[\s\-\+\(\)]/g, '');
+    if (!tel || !/^\d{7,15}$/.test(tel)) e.telefono = 'Ingresa un teléfono válido (7–15 dígitos)';
+    if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Ingresa un correo electrónico válido';
+    const tt = form.telefonoTutor.replace(/[\s\-\+\(\)]/g, '');
+    if (!tt || !/^\d{7,15}$/.test(tt)) e.telefonoTutor = 'Ingresa un teléfono de referencia válido';
+    if (!form.terminos) e.terminos = 'Debes aceptar los términos y condiciones';
+    return e;
+  }
+
+  renderVals() {
+    const { screen, form, errors, pendingTeam, selectedTeam, participationNumber, searchQuery, filterGroup, cd } = this.state;
+    const pad = n => String(n).padStart(2, '0');
+
+    // Lazy-init particles
+    if (!this._ptcls) {
+      this._ptcls = React.createElement('div',
+        { style: { position:'absolute', inset:0, overflow:'hidden', pointerEvents:'none', zIndex:0 } },
+        ...Array.from({ length: 18 }, (_, i) => React.createElement('div', {
+          key: i,
+          style: {
+            position: 'absolute',
+            width:  3 + (i * 7) % 18,
+            height: 3 + (i * 7) % 18,
+            left:  `${(i * 19 + 7) % 95}%`,
+            top:   `${(i * 27 + 3) % 98}%`,
+            borderRadius: '50%',
+            background: [
+              'rgba(0,87,168,0.3)',
+              'rgba(200,16,46,0.22)',
+              'rgba(255,215,0,0.18)',
+              'rgba(0,166,81,0.2)'
+            ][i % 4],
+            animation: `float-dot ${14 + (i * 5) % 16}s ${-(i * 3) % 18}s infinite ease-in-out`,
+            filter: 'blur(1.5px)'
+          }
+        }))
+      );
+    }
+
+    // Filter & enrich teams
+    const filteredTeams = this.allTeams
+      .filter(t => {
+        const nm = t.name.toLowerCase().includes(searchQuery.toLowerCase());
+        const gm = filterGroup === 'TODOS' || t.group === filterGroup;
+        return nm && gm;
+      })
+      .map(t => {
+        const sel = pendingTeam && pendingTeam.code === t.code;
+        return {
+          ...t,
+          flagUrl:    `https://flagcdn.com/w80/${t.code}.png`,
+          cardBg:     sel ? 'rgba(0,87,168,0.35)' : 'rgba(0,0,0,0.35)',
+          cardBorder: sel ? '2px solid #FFD700' : '1px solid rgba(255,255,255,0.09)',
+          onSelect:   () => this.setState({ pendingTeam: t })
+        };
+      });
+
+    // Confederation filter tabs
+    const GRP  = ['TODOS','CONMEBOL','UEFA','CAF','AFC','CONCACAF','OFC'];
+    const GLBL = { TODOS:'Todos', CONMEBOL:'Sudamérica', UEFA:'Europa', CAF:'África', AFC:'Asia', CONCACAF:'CONCACAF', OFC:'Oceanía' };
+    const filters = GRP.map(g => ({
+      label:    GLBL[g],
+      bg:       filterGroup === g ? '#0057A8' : 'rgba(255,255,255,0.07)',
+      border:   filterGroup === g ? '#0057A8' : 'rgba(255,255,255,0.1)',
+      onSelect: () => this.setState({ filterGroup: g })
+    }));
+
+    // Form border colors
+    const bc = f => errors[f] ? '#f87171' : 'rgba(255,255,255,0.14)';
+
+    // Share content
+    const tname = selectedTeam ? selectedTeam.name : 'mi selección';
+    const shareText = encodeURIComponent(
+      `¡Pronostiqué que ${tname} será Campeón del Mundial 2026! Participa gratis en la campaña de UDI 🏆⚽ https://udi.edu.mx`
+    );
+
+    return {
+      isHero:    screen === 0,
+      isForm:    screen === 1,
+      isPicker:  screen === 2,
+      isConfirm: screen === 3,
+      particles: this._ptcls,
+
+      cdDias:  pad(cd.d),
+      cdHoras: pad(cd.h),
+      cdMin:   pad(cd.m),
+      cdSeg:   pad(cd.s),
+
+      steps: [
+        { num:'1', text:'Registra tus datos' },
+        { num:'2', text:'Elige al campeón' },
+        { num:'3', text:'Confirma tu participación' },
+        { num:'4', text:'Si aciertas, ¡ganas!' }
+      ],
+
+      goToForm: () => this.setState({ screen: 1 }),
+      goBack: () => {
+        const ns = Math.max(0, screen - 1);
+        this.setState({ screen: ns, errors: {}, pendingTeam: ns < 2 ? null : pendingTeam });
+      },
+
+      // Form values
+      nombre: form.nombre, edad: form.edad, telefono: form.telefono,
+      email: form.email, telefonoTutor: form.telefonoTutor, terminos: form.terminos,
+
+      // Errors (empty string = hidden via sc-if)
+      errNombre:   errors.nombre         || '',
+      errEdad:     errors.edad           || '',
+      errTelefono: errors.telefono       || '',
+      errEmail:    errors.email          || '',
+      errTutor:    errors.telefonoTutor  || '',
+      errTerminos: errors.terminos       || '',
+
+      // Border colors
+      bnNombre: bc('nombre'), bnEdad: bc('edad'), bnTelefono: bc('telefono'),
+      bnEmail:  bc('email'),  bnTutor: bc('telefonoTutor'),
+
+      // Handlers
+      onNombreChange:   e => this.setState(s => ({ form: { ...s.form, nombre: e.target.value } })),
+      onEdadChange:     e => this.setState(s => ({ form: { ...s.form, edad: e.target.value } })),
+      onTelefonoChange: e => this.setState(s => ({ form: { ...s.form, telefono: e.target.value } })),
+      onEmailChange:    e => this.setState(s => ({ form: { ...s.form, email: e.target.value } })),
+      onTutorChange:    e => this.setState(s => ({ form: { ...s.form, telefonoTutor: e.target.value } })),
+      onTerminosChange: e => this.setState(s => ({ form: { ...s.form, terminos: e.target.checked } })),
+      submitForm: () => {
+        const errs = this._validate();
+        if (Object.keys(errs).length === 0) this.setState({ screen: 2, errors: {} });
+        else this.setState({ errors: errs });
+      },
+
+      // Team picker
+      filteredTeams, filters, searchQuery,
+      onSearchChange: e => this.setState({ searchQuery: e.target.value }),
+
+      hasPending:  !!pendingTeam,
+      pendingName: pendingTeam ? pendingTeam.name : '',
+      pendingFlag: pendingTeam ? `https://flagcdn.com/w80/${pendingTeam.code}.png` : '',
+      confirmTeam: () => {
+        if (!pendingTeam) return;
+        const num = 100000 + Math.floor(Math.random() * 900000);
+        this.setState({ selectedTeam: pendingTeam, participationNumber: num, screen: 3, pendingTeam: null });
+      },
+
+      // Confirmation
+      participationNumber: participationNumber || '------',
+      confirmedName: selectedTeam ? selectedTeam.name : '',
+      confirmedFlag: selectedTeam ? `https://flagcdn.com/w80/${selectedTeam.code}.png` : '',
+      waUrl: `https://wa.me/?text=${shareText}`,
+      fbUrl: `https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fudi.edu.mx&quote=${shareText}`,
+
+      resetForm: () => this.setState({
+        screen: 0,
+        form: { nombre:'', edad:'', telefono:'', email:'', telefonoTutor:'', terminos: false },
+        errors: {}, pendingTeam: null, selectedTeam: null,
+        participationNumber: null, searchQuery: '', filterGroup: 'TODOS'
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
