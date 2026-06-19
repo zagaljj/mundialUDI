@@ -927,9 +927,17 @@
 
               <!-- Submit button container at the bottom -->
               <div class="pt-6 border-t border-outline-variant/10 flex justify-end mt-4">
-                <button onClick="{{ submitBracket }}" class="btn-gradient px-8 py-3.5 rounded-full font-label-bold text-xs text-on-primary-container shadow-md flex items-center gap-2 group hover:scale-105 duration-200 transition-all font-bold">
-                  CONFIRMAR PRONÓSTICO
-                  <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm">arrow_forward</span>
+                <button onClick="{{ submitBracket }}" 
+                        disabled="{{ isSaving }}"
+                        class="btn-gradient px-8 py-3.5 rounded-full font-label-bold text-xs text-on-primary-container shadow-md flex items-center gap-2 group hover:scale-105 duration-200 transition-all font-bold opacity-90 disabled:opacity-50 disabled:cursor-not-allowed">
+                  <sc-if value="{{ isSaving }}">
+                    <span class="animate-spin rounded-full h-3.5 w-3.5 border-2 border-on-primary-container border-t-transparent flex-shrink-0"></span>
+                    <span>GUARDANDO...</span>
+                  </sc-if>
+                  <sc-if value="{{ !isSaving }}">
+                    <span>CONFIRMAR PRONÓSTICO</span>
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm">arrow_forward</span>
+                  </sc-if>
                 </button>
               </div>
             </div>
@@ -1040,6 +1048,8 @@
 <script type="text/x-dc" data-dc-script data-props="{
   &quot;$preview&quot;: { &quot;width&quot;: 390, &quot;height&quot;: 844 }
 }">
+const GOOGLE_SCRIPT_URL = '';
+
 class Component extends DCLogic {
   state = {
     screen: 0,
@@ -1053,7 +1063,8 @@ class Component extends DCLogic {
     searchQuery: '',
     filterGroup: 'TODOS',
     cd: { d: 30, h: 0, m: 0, s: 0 },
-    participationNumber: null
+    participationNumber: null,
+    isSaving: false
   };
 
   openSelector(stage, idx) {
@@ -1432,6 +1443,7 @@ class Component extends DCLogic {
       isForm:    screen === 1,
       isBracket: screen === 2,
       isConfirm: screen === 3,
+      isSaving:  this.state.isSaving,
       particles: this._ptcls,
 
       cdDias:  pad(cd.d),
@@ -1607,6 +1619,8 @@ class Component extends DCLogic {
           this.setState({ errors: { bracket: 'Por favor completa todo el árbol del fixture antes de confirmar.' } });
           return;
         }
+
+        if (this.state.isSaving) return;
         const num = 100000 + Math.floor(Math.random() * 900000);
 
         const newReg = {
@@ -1619,19 +1633,44 @@ class Component extends DCLogic {
           semis: semis,
           finals: finals,
           champion: champion,
-          participationNumber: num,
-          timestamp: new Date().toISOString()
+          id: num,
+          action: 'register'
         };
 
-        const updated = [...(this._registrations || []), newReg];
-        try {
-          localStorage.setItem('udi_worldcup_registrations', JSON.stringify(updated));
-          this._registrations = updated;
-        } catch (e) {
-          console.error("Error writing to LocalStorage:", e);
-        }
+        const proceedLocal = () => {
+          const updated = [...(this._registrations || []), { ...newReg, participationNumber: num, timestamp: new Date().toISOString() }];
+          try {
+            localStorage.setItem('udi_worldcup_registrations', JSON.stringify(updated));
+            this._registrations = updated;
+          } catch (e) {
+            console.error("Error writing to LocalStorage:", e);
+          }
+          this.setState({ isSaving: false, selectedTeam: champion, participationNumber: num, screen: 3, errors: {} });
+        };
 
-        this.setState({ selectedTeam: champion, participationNumber: num, screen: 3, errors: {} });
+        if (GOOGLE_SCRIPT_URL) {
+          this.setState({ isSaving: true });
+          fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newReg)
+          })
+          .then(() => {
+            proceedLocal();
+          })
+          .catch(err => {
+            console.error("Error saving to Google Sheets:", err);
+            this.setState({ 
+              isSaving: false, 
+              errors: { bracket: 'Hubo un error de conexión con Google Sheets. Intentalo de nuevo.' } 
+            });
+          });
+        } else {
+          proceedLocal();
+        }
       },
 
       participationNumber: participationNumber || '------',

@@ -412,7 +412,9 @@
   </main>
 
   <script>
-    // Load registrations from LocalStorage
+    const GOOGLE_SCRIPT_URL = '';
+
+    // Load registrations from LocalStorage (with fallback setup)
     let registrations = [];
     try {
       const raw = localStorage.getItem('udi_worldcup_registrations');
@@ -855,18 +857,56 @@
     }
 
     function saveRealResults() {
-      try {
-        localStorage.setItem('udi_worldcup_real_results', JSON.stringify(realResults));
-      } catch (e) {
-        console.error("Error writing real results to local storage:", e);
+      const proceedLocal = () => {
+        try {
+          localStorage.setItem('udi_worldcup_real_results', JSON.stringify(realResults));
+        } catch (e) {
+          console.error("Error writing real results to local storage:", e);
+        }
+        activeStage = null;
+        activeIndex = null;
+        searchQuery = '';
+        filterGroup = 'TODOS';
+        renderRealSlots();
+        renderRealSelector();
+        renderTable(searchInput.value);
+      };
+
+      if (GOOGLE_SCRIPT_URL) {
+        const loader = document.createElement('div');
+        loader.id = 'gs-loader';
+        loader.className = 'fixed bottom-4 right-4 bg-primary text-on-primary text-xs font-bold px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 z-50 animate-bounce';
+        loader.innerHTML = `
+          <span class="animate-spin rounded-full h-3.5 w-3.5 border-2 border-white border-t-transparent flex-shrink-0"></span>
+          <span>Sincronizando resultados con Google Sheets...</span>
+        `;
+        document.body.appendChild(loader);
+
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            action: 'saveResults',
+            realResults: realResults
+          })
+        })
+        .then(() => {
+          proceedLocal();
+        })
+        .catch(err => {
+          console.error("Error saving real results to Google Sheets:", err);
+          alert("Hubo un error de conexión con Google Sheets al guardar los resultados oficiales.");
+        })
+        .finally(() => {
+          const el = document.getElementById('gs-loader');
+          if (el) el.remove();
+        });
+      } else {
+        proceedLocal();
       }
-      activeStage = null;
-      activeIndex = null;
-      searchQuery = '';
-      filterGroup = 'TODOS';
-      renderRealSlots();
-      renderRealSelector();
-      renderTable(searchInput.value);
     }
 
     function closeSelector() {
@@ -1249,10 +1289,43 @@
       document.body.removeChild(link);
     });
 
-    // Initial render
-    updateMetrics();
-    renderRealSlots();
-    renderTable();
+    // Initial render and sync
+    async function initDashboard() {
+      if (GOOGLE_SCRIPT_URL) {
+        const loader = document.createElement('div');
+        loader.id = 'gs-loader';
+        loader.className = 'fixed bottom-4 right-4 bg-primary text-on-primary text-xs font-bold px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 z-50 animate-bounce';
+        loader.innerHTML = `
+          <span class="animate-spin rounded-full h-3.5 w-3.5 border-2 border-white border-t-transparent flex-shrink-0"></span>
+          <span>Sincronizando con Google Sheets...</span>
+        `;
+        document.body.appendChild(loader);
+
+        try {
+          const res = await fetch(GOOGLE_SCRIPT_URL);
+          const data = await res.json();
+          if (data) {
+            if (data.registrations) {
+              registrations = data.registrations;
+            }
+            if (data.realResults) {
+              realResults = data.realResults;
+            }
+          }
+        } catch(e) {
+          console.error("Error fetching data from Google Sheets:", e);
+        } finally {
+          const el = document.getElementById('gs-loader');
+          if (el) el.remove();
+        }
+      }
+      
+      updateMetrics();
+      renderRealSlots();
+      renderTable();
+    }
+
+    initDashboard();
   </script>
 </body>
 </html>
