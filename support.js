@@ -810,6 +810,7 @@
       }
       __setLogicState(update, cb) {
         const prev = this.logic.state;
+        this.__prevLogicState = prev;
         const patch = typeof update === "function" ? update(prev) : update;
         this.logic.state = { ...prev, ...patch };
         this.setState((s) => ({ __v: s.__v + 1 }), cb);
@@ -854,7 +855,9 @@
           }
         } else {
           try {
-            this.logic.componentDidUpdate(prevProps);
+            const prevState = this.__prevLogicState;
+            this.__prevLogicState = undefined;
+            this.logic.componentDidUpdate(prevProps, prevState);
           } catch (e) {
             console.error(e);
           }

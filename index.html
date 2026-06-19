@@ -175,7 +175,7 @@
     <div class="max-w-container-max mx-auto px-gutter py-sm flex justify-between items-center h-16">
       <div class="flex items-center gap-sm">
         <div class="bg-white border border-outline-variant/30 rounded-lg p-1.5 shadow-sm">
-          <img src="./uploads/logo-1781790033987.png" alt="UDI" class="h-9 object-contain block">
+          <img src="./uploads/logo-udi-sport.png" alt="UDI" class="h-9 object-contain block">
         </div>
         <div class="hidden sm:block text-left">
           <div class="text-[8px] text-on-surface-variant/70 uppercase tracking-widest font-bold leading-none">Universidad para el</div>
@@ -1150,7 +1150,7 @@ class Component extends DCLogic {
   }
 
   componentDidUpdate(_, prev) {
-    if (prev.screen !== this.state.screen) {
+    if (prev && prev.screen !== this.state.screen) {
       window.scrollTo(0, 0);
       if (this.state.screen === 3) {
         setTimeout(() => this._launchConfetti(), 450);
