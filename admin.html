@@ -114,6 +114,31 @@
 </head>
 <body class="bg-background text-on-background min-h-screen" style="background: linear-gradient(rgba(249, 249, 255, 0.94), rgba(249, 249, 255, 0.94)), url('./assets/stadium_pitch_bg.png') no-repeat center center / cover fixed;">
 
+  <!-- Auth Modal -->
+  <div id="authModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-lg flex items-center justify-center z-50 transition-opacity duration-300">
+    <div class="glass-card max-w-sm w-full mx-gutter p-6 rounded-2xl border border-outline-variant/30 shadow-2xl flex flex-col items-center text-center">
+      <div class="bg-white border border-outline-variant/30 rounded-xl p-2 shadow-sm mb-4">
+        <img src="./uploads/logo-udi-sport.png" alt="UDI" class="h-10 object-contain block">
+      </div>
+      <h2 class="font-headline-md text-xl text-primary font-bold tracking-wide uppercase">Acceso Administrador</h2>
+      <p class="text-[10px] text-on-surface-variant/80 mt-1 mb-6 uppercase tracking-wider font-bold">Ingresá el PIN de seguridad</p>
+      
+      <div class="w-full space-y-3">
+        <input id="authPinInput" 
+               type="password" 
+               placeholder="••••" 
+               class="w-full text-center tracking-widest bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all" />
+        
+        <p id="authErrorMsg" class="hidden text-red-600 text-xs font-bold animate-pulse"></p>
+        
+        <button id="btnAuthSubmit" 
+                class="w-full btn-gradient py-3.5 rounded-xl font-label-bold text-xs text-on-primary-container shadow-md flex items-center justify-center gap-2 font-bold hover:scale-[1.02] duration-200 transition-all uppercase tracking-wider">
+          Ingresar al Panel
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Sidebar Component -->
   <aside class="hidden lg:flex flex-col h-screen py-md bg-surface-container-high w-64 fixed left-0 top-0 shadow-md z-40">
     <div class="px-md mb-xl flex items-center gap-2">
@@ -856,7 +881,7 @@
       }
     }
 
-    function saveRealResults() {
+     function saveRealResults() {
       const proceedLocal = () => {
         try {
           localStorage.setItem('udi_worldcup_real_results', JSON.stringify(realResults));
@@ -873,6 +898,7 @@
       };
 
       if (GOOGLE_SCRIPT_URL) {
+        const currentPin = sessionStorage.getItem('udi_admin_pin') || '';
         const loader = document.createElement('div');
         loader.id = 'gs-loader';
         loader.className = 'fixed bottom-4 right-4 bg-primary text-on-primary text-xs font-bold px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 z-50 animate-bounce';
@@ -890,7 +916,8 @@
           },
           body: JSON.stringify({
             action: 'saveResults',
-            realResults: realResults
+            realResults: realResults,
+            pin: currentPin
           })
         })
         .then(() => {
@@ -1289,40 +1316,108 @@
       document.body.removeChild(link);
     });
 
-    // Initial render and sync
-    async function initDashboard() {
-      if (GOOGLE_SCRIPT_URL) {
-        const loader = document.createElement('div');
-        loader.id = 'gs-loader';
-        loader.className = 'fixed bottom-4 right-4 bg-primary text-on-primary text-xs font-bold px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 z-50 animate-bounce';
-        loader.innerHTML = `
-          <span class="animate-spin rounded-full h-3.5 w-3.5 border-2 border-white border-t-transparent flex-shrink-0"></span>
-          <span>Sincronizando con Google Sheets...</span>
-        `;
-        document.body.appendChild(loader);
+    // Initial render and sync with PIN Security
+    const authModal = document.getElementById('authModal');
+    const authPinInput = document.getElementById('authPinInput');
+    const authErrorMsg = document.getElementById('authErrorMsg');
+    const btnAuthSubmit = document.getElementById('btnAuthSubmit');
 
-        try {
-          const res = await fetch(GOOGLE_SCRIPT_URL);
-          const data = await res.json();
-          if (data) {
-            if (data.registrations) {
-              registrations = data.registrations;
-            }
-            if (data.realResults) {
-              realResults = data.realResults;
-            }
-          }
-        } catch(e) {
-          console.error("Error fetching data from Google Sheets:", e);
-        } finally {
-          const el = document.getElementById('gs-loader');
-          if (el) el.remove();
+    async function initDashboard() {
+      if (!GOOGLE_SCRIPT_URL) {
+        if (authModal) authModal.classList.add('hidden');
+        updateMetrics();
+        renderRealSlots();
+        renderTable();
+        return;
+      }
+
+      const savedPin = sessionStorage.getItem('udi_admin_pin');
+      if (savedPin) {
+        const success = await attemptSync(savedPin);
+        if (success) {
+          if (authModal) authModal.classList.add('hidden');
+          return;
+        } else {
+          sessionStorage.removeItem('udi_admin_pin');
         }
       }
+
+      if (authModal) authModal.classList.remove('hidden');
+    }
+
+    async function attemptSync(pin) {
+      const loader = document.createElement('div');
+      loader.id = 'gs-loader';
+      loader.className = 'fixed bottom-4 right-4 bg-primary text-on-primary text-xs font-bold px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 z-50 animate-bounce';
+      loader.innerHTML = `
+        <span class="animate-spin rounded-full h-3.5 w-3.5 border-2 border-white border-t-transparent flex-shrink-0"></span>
+        <span>Sincronizando con Google Sheets...</span>
+      `;
+      document.body.appendChild(loader);
+
+      try {
+        const res = await fetch(`${GOOGLE_SCRIPT_URL}?pin=${encodeURIComponent(pin)}`);
+        const data = await res.json();
+        
+        if (data && data.status === 'success') {
+          if (data.registrations) registrations = data.registrations;
+          if (data.realResults) realResults = data.realResults;
+          
+          updateMetrics();
+          renderRealSlots();
+          renderTable();
+          return true;
+        } else {
+          console.error("Auth failed:", data ? data.message : "unknown");
+          return false;
+        }
+      } catch(e) {
+        console.error("Error fetching data from Google Sheets:", e);
+        return false;
+      } finally {
+        const el = document.getElementById('gs-loader');
+        if (el) el.remove();
+      }
+    }
+
+    async function handleAuth() {
+      const pin = authPinInput.value.trim();
+      if (!pin) {
+        authErrorMsg.textContent = "Ingresá un PIN válido";
+        authErrorMsg.classList.remove('hidden');
+        return;
+      }
+
+      authErrorMsg.classList.add('hidden');
+      btnAuthSubmit.disabled = true;
+      btnAuthSubmit.innerHTML = `
+        <span class="animate-spin rounded-full h-4 w-4 border-2 border-on-primary-container border-t-transparent flex-shrink-0"></span>
+        <span>Verificando...</span>
+      `;
+
+      const success = await attemptSync(pin);
       
-      updateMetrics();
-      renderRealSlots();
-      renderTable();
+      btnAuthSubmit.disabled = false;
+      btnAuthSubmit.innerHTML = `Ingresar al Panel`;
+
+      if (success) {
+        sessionStorage.setItem('udi_admin_pin', pin);
+        if (authModal) authModal.classList.add('hidden');
+      } else {
+        authErrorMsg.textContent = "PIN Incorrecto o error de conexión";
+        authErrorMsg.classList.remove('hidden');
+        authPinInput.value = '';
+        authPinInput.focus();
+      }
+    }
+
+    if (btnAuthSubmit) {
+      btnAuthSubmit.addEventListener('click', handleAuth);
+    }
+    if (authPinInput) {
+      authPinInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleAuth();
+      });
     }
 
     initDashboard();
