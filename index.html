@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="es">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>WORLD CUP PREDICTOR - UDI</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Predicción mundialista - UDI</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
   <script src="./support.js"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -90,15 +93,15 @@
             "body-lg": ["Inter"]
           },
           "fontSize": {
-            "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
-            "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
-            "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "0.02em", "fontWeight": "400"}],
-            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
-            "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
-            "display-lg-mobile": ["48px", {"lineHeight": "1.1", "fontWeight": "400"}],
-            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-            "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
-            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "400" }],
+            "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "400" }],
+            "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "400" }],
+            "label-bold": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "display-lg-mobile": ["48px", { "lineHeight": "1.1", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
           }
         },
       },
@@ -108,6 +111,7 @@
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
+
     .glass-card {
       background: rgba(255, 255, 255, 0.78);
       backdrop-filter: blur(16px);
@@ -115,940 +119,1175 @@
       border: 1px solid rgba(255, 255, 255, 0.4);
       box-shadow: 0 8px 32px 0 rgba(0, 27, 68, 0.05);
     }
+
     .cta-gradient {
       background: linear-gradient(to bottom, #ffd700, #e9c400);
     }
+
     .btn-gradient {
       background: linear-gradient(to bottom, #ffd700, #e9c400);
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .btn-gradient:hover {
       transform: scale(1.02);
     }
+
     .flag-card {
       transition: all 0.25s ease;
     }
+
     .pulse-stadium {
       animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: .7; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .7;
+      }
     }
+
     @keyframes float-ball {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(6deg); }
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(6deg);
+      }
     }
+
     @keyframes float-dot {
-      0%   { transform:translateY(0) scale(1);   opacity:.4; }
-      50%  { transform:translateY(-42vh) scale(1.15); opacity:.2; }
-      100% { transform:translateY(-90vh) scale(.8); opacity:0; }
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: .4;
+      }
+
+      50% {
+        transform: translateY(-42vh) scale(1.15);
+        opacity: .2;
+      }
+
+      100% {
+        transform: translateY(-90vh) scale(.8);
+        opacity: 0;
+      }
     }
+
     .custom-scrollbar::-webkit-scrollbar {
       width: 4px;
       height: 4px;
     }
+
     .custom-scrollbar::-webkit-scrollbar-track {
       background: transparent;
     }
+
     .custom-scrollbar::-webkit-scrollbar-thumb {
       background: rgba(112, 93, 0, 0.2);
       border-radius: 2px;
     }
+
     .scrollbar-hide::-webkit-scrollbar {
       display: none;
     }
+
     @keyframes pulse-gentle {
-      0%, 100% { transform: scale(1); box-shadow: 0 12px 40px rgba(233, 196, 0, 0.45); }
-      50% { transform: scale(1.04); box-shadow: 0 12px 48px rgba(233, 196, 0, 0.65); }
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 12px 40px rgba(233, 196, 0, 0.45);
+      }
+
+      50% {
+        transform: scale(1.04);
+        box-shadow: 0 12px 48px rgba(233, 196, 0, 0.65);
+      }
     }
+
     .animate-pulse-gentle {
       animation: pulse-gentle 3s infinite ease-in-out;
     }
   </style>
 </head>
-<body class="text-on-background font-body-md overflow-x-hidden" style="min-height: 100vh; background: linear-gradient(rgba(249, 249, 255, 0.88), rgba(249, 249, 255, 0.88)), url('./assets/stadium_pitch_bg.png') no-repeat center center / cover fixed;">
-<x-dc>
 
-  <!-- Navigation Bar -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
-    <div class="max-w-container-max mx-auto px-gutter py-sm flex justify-between items-center h-16">
-      <div class="flex items-center gap-sm">
-        <div class="bg-white border border-outline-variant/30 rounded-lg p-1.5 shadow-sm">
-          <img src="./uploads/logo-udi-sport.png" alt="UDI" class="h-9 object-contain block">
+<body class="text-on-background font-body-md overflow-x-hidden"
+  style="min-height: 100vh; background: linear-gradient(rgba(249, 249, 255, 0.88), rgba(249, 249, 255, 0.88)), url('./assets/stadium_pitch_bg.png') no-repeat center center / cover fixed;">
+  <x-dc>
+
+    <!-- Navigation Bar -->
+    <header
+      class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
+      <div class="max-w-container-max mx-auto px-gutter py-sm flex justify-between items-center h-16">
+        <div class="flex items-center gap-sm">
+          <div class="bg-white border border-outline-variant/30 rounded-lg p-1.5 shadow-sm">
+            <img src="./uploads/logo-udi-sport.png" alt="UDI" class="h-9 object-contain block">
+          </div>
+          <div class="hidden sm:block text-left">
+            <div class="text-[8px] text-on-surface-variant/70 uppercase tracking-widest font-bold leading-none">
+              Universidad para el</div>
+            <div class="text-[10px] font-bold text-on-surface uppercase tracking-wider mt-0.5 leading-none">Desarrollo y
+              la Innovación</div>
+          </div>
         </div>
-        <div class="hidden sm:block text-left">
-          <div class="text-[8px] text-on-surface-variant/70 uppercase tracking-widest font-bold leading-none">Universidad para el</div>
-          <div class="text-[10px] font-bold text-on-surface uppercase tracking-wider mt-0.5 leading-none">Desarrollo y la Innovación</div>
+        <div class="flex items-center gap-sm sm:gap-md">
+          <div class="font-headline-md text-headline-md text-primary tracking-tight text-right text-sm sm:text-base">
+            MUNDIAL 2026</div>
+          <sc-if value="{{ isHero }}">
+            <button onClick="{{ goToForm }}"
+              class="hidden sm:inline-flex cta-gradient text-on-primary-container font-label-bold text-xs px-5 py-2 rounded-full uppercase tracking-wider hover:scale-105 duration-200 transition-all shadow-md font-extrabold">
+              Armar Pronóstico
+            </button>
+          </sc-if>
         </div>
       </div>
-      <div class="flex items-center gap-sm sm:gap-md">
-        <div class="font-headline-md text-headline-md text-primary tracking-tight text-right text-sm sm:text-base">MUNDIAL 2026</div>
-        <sc-if value="{{ isHero }}">
-          <button onClick="{{ goToForm }}" class="hidden sm:inline-flex cta-gradient text-on-primary-container font-label-bold text-xs px-5 py-2 rounded-full uppercase tracking-wider hover:scale-105 duration-200 transition-all shadow-md font-extrabold">
-            Armar Pronóstico
-          </button>
-        </sc-if>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="pt-16">
+    <main class="pt-16">
 
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          SCREEN 0 — HERO / LANDING PAGE
     ══════════════════════════════════════ -->
-    <sc-if value="{{ isHero }}" hint-placeholder-val="{{ true }}">
-      <section class="relative min-h-[calc(100vh-64px)] flex items-center overflow-hidden py-12">
-        <div class="absolute inset-0 pointer-events-none z-0 opacity-40">
-          <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-container rounded-full blur-[100px]"></div>
-          <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-container rounded-full blur-[100px]"></div>
-        </div>
+      <sc-if value="{{ isHero }}" hint-placeholder-val="{{ true }}">
+        <section class="relative min-h-[calc(100vh-64px)] flex items-center overflow-hidden py-12">
+          <div class="absolute inset-0 pointer-events-none z-0 opacity-40">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-container rounded-full blur-[100px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-container rounded-full blur-[100px]"></div>
+          </div>
 
-        {{ particles }}
+          {{ particles }}
 
-        <div class="max-w-container-max mx-auto px-gutter relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-lg items-center w-full">
-          <!-- Left Column Content -->
-          <div class="lg:col-span-7 flex flex-col items-start gap-md">
-            <div class="inline-flex items-center gap-xs bg-secondary-container text-on-secondary-container px-sm py-1 rounded-full shadow-sm">
-              <span class="w-2 h-2 rounded-full bg-secondary pulse-stadium"></span>
-              <span class="font-label-bold text-[11px] uppercase tracking-wider font-bold">Inscripciones Abiertas</span>
-            </div>
-            
-            <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface leading-none tracking-tight">
-              PRONOSTICA LAS FINALES DEL MUNDIAL Y GANA GRANDES PREMIOS
-            </h1>
-            
-            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
-              Arma tu llave desde semifinales hasta el campeón. Participa gratis registrando tu fixture de la UDI.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-sm w-full sm:w-auto items-center mt-2">
-              <div class="flex flex-col items-center sm:items-start glass-card px-md py-sm rounded-xl w-full sm:w-auto">
-                <span class="text-[9px] font-bold text-on-surface-variant/80 uppercase tracking-widest">TIEMPO RESTANTE:</span>
-                <div class="flex gap-sm mt-1" id="countdown">
-                  <div class="flex flex-col items-center"><span class="font-headline-md text-xl text-primary font-bold">{{ cdDias }}</span><span class="text-[9px] uppercase font-bold text-on-surface-variant/60">Días</span></div>
-                  <div class="flex flex-col items-center"><span class="font-headline-md text-xl text-primary font-bold">{{ cdHoras }}</span><span class="text-[9px] uppercase font-bold text-on-surface-variant/60">Hrs</span></div>
-                  <div class="flex flex-col items-center"><span class="font-headline-md text-xl text-primary font-bold">{{ cdMin }}</span><span class="text-[9px] uppercase font-bold text-on-surface-variant/60">Min</span></div>
-                  <div class="flex flex-col items-center"><span class="font-headline-md text-xl text-primary font-bold">{{ cdSeg }}</span><span class="text-[9px] uppercase font-bold text-on-surface-variant/60">Seg</span></div>
+          <div
+            class="max-w-container-max mx-auto px-gutter relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-lg items-center w-full">
+            <!-- Left Column Content -->
+            <div class="lg:col-span-7 flex flex-col items-start gap-md">
+              <div
+                class="inline-flex items-center gap-xs bg-secondary-container text-on-secondary-container px-sm py-1 rounded-full shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-secondary pulse-stadium"></span>
+                <span class="font-label-bold text-[11px] uppercase tracking-wider font-bold">Inscripciones
+                  Abiertas</span>
+              </div>
+
+              <h1
+                class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface leading-none tracking-tight">
+                PRONOSTICA LAS FINALES DEL MUNDIAL Y GANA GRANDES PREMIOS
+              </h1>
+
+              <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+                Arma tu llave desde semifinales hasta el campeón. Participa gratis registrando tu fixture de la UDI.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-sm w-full sm:w-auto items-center mt-2">
+                <div
+                  class="flex flex-col items-center sm:items-start glass-card px-md py-sm rounded-xl w-full sm:w-auto">
+                  <span class="text-[9px] font-bold text-on-surface-variant/80 uppercase tracking-widest">TIEMPO
+                    RESTANTE:</span>
+                  <div class="flex gap-sm mt-1" id="countdown">
+                    <div class="flex flex-col items-center"><span
+                        class="font-headline-md text-xl text-primary font-bold">{{ cdDias }}</span><span
+                        class="text-[9px] uppercase font-bold text-on-surface-variant/60">Días</span></div>
+                    <div class="flex flex-col items-center"><span
+                        class="font-headline-md text-xl text-primary font-bold">{{ cdHoras }}</span><span
+                        class="text-[9px] uppercase font-bold text-on-surface-variant/60">Hrs</span></div>
+                    <div class="flex flex-col items-center"><span
+                        class="font-headline-md text-xl text-primary font-bold">{{ cdMin }}</span><span
+                        class="text-[9px] uppercase font-bold text-on-surface-variant/60">Min</span></div>
+                    <div class="flex flex-col items-center"><span
+                        class="font-headline-md text-xl text-primary font-bold">{{ cdSeg }}</span><span
+                        class="text-[9px] uppercase font-bold text-on-surface-variant/60">Seg</span></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Right Column: Trophy/Ball illustration -->
-          <div class="lg:col-span-5 relative flex justify-center items-center">
-            <div class="relative w-full aspect-square max-w-[420px] flex items-center justify-center">
-              <div class="absolute inset-0 bg-primary/15 blur-[90px] rounded-full"></div>
-              <img class="w-[280px] h-[280px] object-contain relative z-10 drop-shadow-2xl" src="./assets/world_cup_ball.png?t=2" style="animation: float-ball 6s ease-in-out infinite;" alt="Official World Cup Ball"/>
+            <!-- Right Column: Trophy/Ball illustration -->
+            <div class="lg:col-span-5 relative flex justify-center items-center">
+              <div class="relative w-full aspect-square max-w-[420px] flex items-center justify-center">
+                <div class="absolute inset-0 bg-primary/15 blur-[90px] rounded-full"></div>
+                <img class="w-[280px] h-[280px] object-contain relative z-10 drop-shadow-2xl"
+                  src="./assets/world_cup_ball.png?t=2" style="animation: float-ball 6s ease-in-out infinite;"
+                  alt="Official World Cup Ball" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Steps Info Section -->
-      <section class="py-12 bg-white/40 border-y border-outline-variant/20">
-        <div class="max-w-container-max mx-auto px-gutter">
-          <h2 class="font-headline-md text-2xl text-center text-on-surface mb-8 tracking-wide">¿CÓMO PARTICIPAR?</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
-            <sc-for list="{{ steps }}" as="step" hint-placeholder-count="4">
-              <div class="glass-card p-md rounded-2xl flex gap-md items-start shadow-sm border border-outline-variant/30 hover:border-primary/50 transition-colors duration-300">
-                <div class="bg-primary text-on-primary w-11 h-11 flex items-center justify-center rounded-xl font-headline-md text-lg font-bold flex-shrink-0 shadow-sm">{{ step.num }}</div>
-                <div>
-                  <h4 class="font-label-bold text-xs uppercase text-primary font-bold tracking-wider mb-1">{{ step.title }}</h4>
-                  <p class="text-on-surface-variant text-sm leading-relaxed">{{ step.text }}</p>
+        <!-- Steps Info Section -->
+        <section class="py-12 bg-white/40 border-y border-outline-variant/20">
+          <div class="max-w-container-max mx-auto px-gutter">
+            <h2 class="font-headline-md text-2xl text-center text-on-surface mb-8 tracking-wide">¿CÓMO PARTICIPAR?</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+              <sc-for list="{{ steps }}" as="step" hint-placeholder-count="4">
+                <div
+                  class="glass-card p-md rounded-2xl flex gap-md items-start shadow-sm border border-outline-variant/30 hover:border-primary/50 transition-colors duration-300">
+                  <div
+                    class="bg-primary text-on-primary w-11 h-11 flex items-center justify-center rounded-xl font-headline-md text-lg font-bold flex-shrink-0 shadow-sm">
+                    {{ step.num }}</div>
+                  <div>
+                    <h4 class="font-label-bold text-xs uppercase text-primary font-bold tracking-wider mb-1">{{
+                      step.title }}</h4>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">{{ step.text }}</p>
+                  </div>
                 </div>
-              </div>
-            </sc-for>
+              </sc-for>
+            </div>
           </div>
-        </div>
-      </section>
-    </sc-if>
+        </section>
+      </sc-if>
 
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          SCREEN 1 — REGISTRATION + INTERACTIVE BRACKET
     ══════════════════════════════════════ -->
-    <sc-if value="{{ isForm }}" hint-placeholder-val="{{ false }}">
-      <section class="max-w-container-max mx-auto px-gutter py-lg relative">
-        
-        <!-- Progress Header -->
-        <div class="flex items-center gap-md mb-8 max-w-2xl mx-auto">
-          <button onClick="{{ goBack }}" class="bg-white border border-outline-variant/30 hover:bg-black/5 text-on-surface w-11 h-11 rounded-full cursor-pointer flex items-center justify-center transition-all font-bold shadow-sm">←</button>
-          <div class="flex-1">
-            <div class="text-[10px] text-on-surface-variant/60 mb-1.5 uppercase tracking-wider font-bold">Paso 1 de 2: Registra tus Datos</div>
-            <div class="h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
-              <div class="w-1/2 h-full bg-gradient-to-r from-primary to-secondary rounded-full"></div>
-            </div>
-          </div>
-        </div>
+      <sc-if value="{{ isForm }}" hint-placeholder-val="{{ false }}">
+        <section class="max-w-container-max mx-auto px-gutter py-lg relative">
 
-        <div class="max-w-2xl mx-auto animate-fade-in">
-          <!-- Registration Form Container -->
-          <div class="glass-card p-md lg:p-lg rounded-2xl flex flex-col justify-between border border-outline-variant/30 shadow-md">
-            <div>
-              <h1 class="font-headline-md text-2xl text-primary mb-2 font-bold tracking-wide">ÚNETE AL JUEGO</h1>
-              <p class="font-body-md text-sm text-on-surface-variant mb-6 leading-relaxed">Completa tu información personal para poder armar tu pronóstico.</p>
-              
-              <div class="flex flex-col gap-md">
-                <!-- Name Input -->
-                <div class="flex flex-col gap-xs">
-                  <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Nombre Completo *</label>
-                  <input class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all" placeholder="Lionel Messi" required type="text" value="{{ nombre }}" onChange="{{ onNombreChange }}"/>
-                  <sc-if value="{{ errNombre }}">
-                    <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errNombre }}</span>
-                  </sc-if>
-                </div>
-
-                <div class="grid grid-cols-2 gap-md">
-                  <!-- Age Input -->
-                  <div class="flex flex-col gap-xs">
-                    <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Edad *</label>
-                    <input class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all" placeholder="15" required type="number" value="{{ edad }}" onChange="{{ onEdadChange }}"/>
-                    <sc-if value="{{ errEdad }}">
-                      <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errEdad }}</span>
-                    </sc-if>
-                  </div>
-                  <!-- Phone Input -->
-                  <div class="flex flex-col gap-xs">
-                    <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Teléfono *</label>
-                    <input class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all" placeholder="Ej: 6671234567" required type="tel" value="{{ telefono }}" onChange="{{ onTelefonoChange }}"/>
-                    <sc-if value="{{ errTelefono }}">
-                      <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errTelefono }}</span>
-                    </sc-if>
-                  </div>
-                </div>
-
-                <!-- Email Input -->
-                <div class="flex flex-col gap-xs">
-                  <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Email *</label>
-                  <input class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all" placeholder="messi@email.com" required type="email" value="{{ email }}" onChange="{{ onEmailChange }}"/>
-                  <sc-if value="{{ errEmail }}">
-                    <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errEmail }}</span>
-                  </sc-if>
-                </div>
-
-                <!-- School Input (Colegio) -->
-                <div class="flex flex-col gap-xs">
-                  <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Colegio *</label>
-                  <input class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all" placeholder="Colegio San Ignacio" required type="text" value="{{ colegio }}" onChange="{{ onColegioChange }}"/>
-                  <sc-if value="{{ errColegio }}">
-                    <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errColegio }}</span>
-                  </sc-if>
-                </div>
-
-                <!-- Reference Phone Input -->
-                <div class="flex flex-col gap-xs">
-                  <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Teléfono de Referencia (Tutor) *</label>
-                  <input class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all" placeholder="Ej: 6677654321" required type="tel" value="{{ telefonoTutor }}" onChange="{{ onTutorChange }}"/>
-                  <p class="text-[10px] text-on-surface-variant/80 italic mt-1 font-medium">Obligatorio para todos los participantes.</p>
-                  <sc-if value="{{ errTutor }}">
-                    <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errTutor }}</span>
-                  </sc-if>
-                </div>
-
-                <!-- Terms and Conditions Checkbox -->
-                <div class="flex flex-col gap-xs mt-1">
-                  <label class="flex items-start gap-sm cursor-pointer group">
-                    <input class="mt-1 rounded border-outline-variant/60 text-primary focus:ring-primary h-4 w-4 cursor-pointer" required type="checkbox" checked="{{ terminos }}" onChange="{{ onTerminosChange }}"/>
-                    <span class="text-[11px] text-on-surface-variant group-hover:text-on-surface transition-colors leading-normal font-medium">
-                      Acepto los <a class="text-primary underline font-bold" href="#">Términos y Condiciones</a> y la Política de Privacidad de la campaña.
-                    </span>
-                  </label>
-                  <sc-if value="{{ errTerminos }}">
-                    <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errTerminos }}</span>
-                  </sc-if>
-                </div>
+          <!-- Progress Header -->
+          <div class="flex items-center gap-md mb-8 max-w-2xl mx-auto">
+            <button onClick="{{ goBack }}"
+              class="bg-white border border-outline-variant/30 hover:bg-black/5 text-on-surface w-11 h-11 rounded-full cursor-pointer flex items-center justify-center transition-all font-bold shadow-sm">←</button>
+            <div class="flex-1">
+              <div class="text-[10px] text-on-surface-variant/60 mb-1.5 uppercase tracking-wider font-bold">Paso 1 de 2:
+                Registra tus Datos</div>
+              <div class="h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
+                <div class="w-1/2 h-full bg-gradient-to-r from-primary to-secondary rounded-full"></div>
               </div>
             </div>
-
-            <div class="pt-6 border-t border-outline-variant/10 flex justify-end mt-6">
-              <button onClick="{{ submitForm }}" class="btn-gradient px-8 py-3.5 rounded-full font-label-bold text-xs text-on-primary-container shadow-md flex items-center gap-2 group hover:scale-105 duration-200 transition-all font-bold">
-                CONTINUAR AL PRONÓSTICO
-                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm">arrow_forward</span>
-              </button>
-            </div>
           </div>
-        </div>
-      </section>
-    </sc-if>
 
-    <!-- ══════════════════════════════════════
-         SCREEN 2 — INTERACTIVE BRACKET BUILDER
-         ══════════════════════════════════════ -->
-    <sc-if value="{{ isBracket }}" hint-placeholder-val="{{ false }}">
-      <section class="max-w-container-max mx-auto px-gutter py-lg relative">
-        
-        <!-- Progress Header -->
-        <div class="flex items-center gap-md mb-8 max-w-6xl mx-auto">
-          <button onClick="{{ goBack }}" class="bg-white border border-outline-variant/30 hover:bg-black/5 text-on-surface w-11 h-11 rounded-full cursor-pointer flex items-center justify-center transition-all font-bold shadow-sm">←</button>
-          <div class="flex-1">
-            <div class="text-[10px] text-on-surface-variant/60 mb-1.5 uppercase tracking-wider font-bold">Paso 2 de 2: Arma tu Pronóstico</div>
-            <div class="h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
-              <div class="w-full h-full bg-gradient-to-r from-primary to-secondary rounded-full"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg max-w-6xl mx-auto items-stretch animate-fade-in">
-          <!-- Left Column: Summary Widget -->
-          <div class="hidden lg:flex lg:col-span-4 flex-col gap-md">
-            <div class="glass-card p-md rounded-2xl flex-grow flex flex-col justify-between border border-outline-variant/30 shadow-md">
+          <div class="max-w-2xl mx-auto animate-fade-in">
+            <!-- Registration Form Container -->
+            <div
+              class="glass-card p-md lg:p-lg rounded-2xl flex flex-col justify-between border border-outline-variant/30 shadow-md">
               <div>
-                <h2 class="font-headline-md text-xl text-primary mb-2 font-bold tracking-wide">TU PRONÓSTICO</h2>
-                <p class="font-body-md text-xs text-on-surface-variant mb-6 leading-relaxed">Visualiza los equipos elegidos. Haz clic en las flechas para avanzarlos.</p>
-                
-                <!-- Bracket Summary Widget -->
-                <div class="glass-card p-4 rounded-xl border border-outline-variant/20 bg-primary/5">
-                  <h3 class="font-label-bold text-[10px] text-primary uppercase tracking-widest font-bold mb-3">Resumen de Predicciones</h3>
-                  <div class="flex flex-col gap-3">
-                    <!-- Semis -->
-                    <div>
-                      <div class="text-[9px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">Semifinalistas:</div>
-                      <div class="flex gap-2">
-                        <div class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center" title="Semi 1">
-                          <sc-if value="{{ hasSemi0 }}"><img src="{{ semi0Flag }}" class="w-full h-full object-cover"></sc-if>
-                        </div>
-                        <div class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center" title="Semi 2">
-                          <sc-if value="{{ hasSemi1 }}"><img src="{{ semi1Flag }}" class="w-full h-full object-cover"></sc-if>
-                        </div>
-                        <div class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center" title="Semi 3">
-                          <sc-if value="{{ hasSemi2 }}"><img src="{{ semi2Flag }}" class="w-full h-full object-cover"></sc-if>
-                        </div>
-                        <div class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center" title="Semi 4">
-                          <sc-if value="{{ hasSemi3 }}"><img src="{{ semi3Flag }}" class="w-full h-full object-cover"></sc-if>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Finals -->
-                    <div>
-                      <div class="text-[9px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">Finalistas:</div>
-                      <div class="flex gap-2">
-                        <div class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center" title="Finalista 1">
-                          <sc-if value="{{ hasFinal0 }}"><img src="{{ final0Flag }}" class="w-full h-full object-cover"></sc-if>
-                        </div>
-                        <div class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center" title="Finalista 2">
-                          <sc-if value="{{ hasFinal1 }}"><img src="{{ final1Flag }}" class="w-full h-full object-cover"></sc-if>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Champion -->
-                    <div>
-                      <div class="text-[9px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">Campeón:</div>
-                      <div class="flex items-center gap-2">
-                        <div class="w-12 h-8 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center" title="Campeón">
-                          <sc-if value="{{ hasChampion }}"><img src="{{ championFlag }}" class="w-full h-full object-cover"></sc-if>
-                        </div>
-                        <span class="text-sm font-extrabold uppercase text-on-surface truncate max-w-[120px]">{{ championName }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <h1 class="font-headline-md text-2xl text-primary mb-2 font-bold tracking-wide">ÚNETE AL JUEGO</h1>
+                <p class="font-body-md text-sm text-on-surface-variant mb-6 leading-relaxed">Completa tu información
+                  personal para poder armar tu pronóstico.</p>
 
-                <!-- Custom error for bracket validation -->
-                <sc-if value="{{ errBracket }}">
-                  <div class="mt-4 p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium animate-fade-in">
-                    {{ errBracket }}
-                  </div>
-                </sc-if>
-              </div>
-
-              <div class="mt-6 pt-4 border-t border-outline-variant/10 text-xs text-on-surface-variant/70 leading-normal">
-                Haz clic en los slots vacíos del árbol para elegir un equipo. Luego avánzalos usando las flechas hasta coronar al Campeón.
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Column: Bracket Diagram and Selector -->
-          <div class="lg:col-span-8 flex flex-col gap-md">
-            <div id="bracket-container-card" class="glass-card p-md lg:p-lg rounded-2xl h-full flex flex-col justify-between border border-outline-variant/30 shadow-md">
-              <div>
-                <div class="flex justify-between items-end mb-4">
-                  <div>
-                    <h2 class="font-headline-md text-xl text-on-surface font-bold tracking-wide">ÁRBOL DE PREDICCIONES</h2>
-                    <p class="font-body-md text-xs text-on-surface-variant">Llena las semifinales, haz avanzar a tus finalistas y corona a tu campeón.</p>
-                  </div>
-                </div>
-
-                <!-- Dynamic flag selector (Now at the top!) -->
-                <sc-if value="{{ showSelector }}">
-                  <div class="mb-6 bg-white/60 p-4 rounded-xl border border-outline-variant/20 animate-fade-in shadow-sm">
-                    <div class="flex justify-between items-center mb-3">
-                      <h3 class="text-xs font-bold uppercase text-primary tracking-wider">{{ selectorTitle }}</h3>
-                      <button onClick="{{ closeSelector }}" class="text-[10px] text-on-surface-variant/80 hover:text-on-surface font-extrabold uppercase bg-black/5 px-2 py-0.5 rounded">Cerrar</button>
-                    </div>
-                    
-                    <sc-if value="{{ isSelectorBlocked }}">
-                      <div class="p-4 bg-yellow-50 border border-yellow-200 text-yellow-800 text-xs rounded-xl font-medium text-center">
-                        {{ selectorBlockMessage }}
-                      </div>
-                    </sc-if>
-
-                    <sc-if value="{{ !isSelectorBlocked }}">
-                      <sc-if value="{{ isSemiSelector }}">
-                        <!-- Search Input -->
-                        <div class="mb-3 relative">
-                          <input class="w-full bg-white/50 border border-outline-variant/40 rounded-xl py-2 pl-10 pr-4 text-xs outline-none focus:border-primary transition-all" placeholder="Buscar selección..." type="text" value="{{ searchQuery }}" onChange="{{ onSearchChange }}"/>
-                          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-base">search</span>
-                        </div>
-                        <!-- Confederation filters -->
-                        <div class="flex gap-1 overflow-x-auto pb-1.5 mb-3 -webkit-overflow-scrolling-touch custom-scrollbar">
-                          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7">
-                            <button onClick="{{ f.onSelect }}"
-                              class="flex-none rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider border transition-all"
-                              style="background: {{ f.bg }}; border-color: {{ f.border }}; color: {{ f.textColor }};">{{ f.label }}</button>
-                          </sc-for>
-                        </div>
-                        <!-- Flag grid -->
-                        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 overflow-y-auto max-h-[160px] pr-1 custom-scrollbar">
-                          <sc-for list="{{ filteredTeams }}" as="team" hint-placeholder-count="12">
-                            <div onClick="{{ team.onSelect }}"
-                              class="{{ team.cardClass }}"
-                              style="border-color: {{ team.cardBorder }};">
-                              <div class="w-full aspect-[3/2] rounded overflow-hidden shadow-sm bg-white border border-outline-variant/10">
-                                <img src="{{ team.flagUrl }}" alt="{{ team.name }}" class="w-full h-full object-cover">
-                              </div>
-                              <span class="text-[9px] text-center uppercase tracking-tight text-on-surface group-hover:text-primary transition-colors font-bold truncate w-full">{{ team.name }}</span>
-                            </div>
-                          </sc-for>
-                        </div>
-                      </sc-if>
-
-                      <sc-if value="{{ isStageSelector }}">
-                        <div class="flex justify-center gap-6 py-4">
-                          <sc-for list="{{ selectorCandidates }}" as="candidate">
-                            <div onClick="{{ candidate.onSelect }}"
-                                 class="glass-card p-4 rounded-xl flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition-all duration-200 border border-outline-variant/30 hover:border-primary/50 w-28 sm:w-36">
-                              <div class="w-full aspect-[3/2] rounded overflow-hidden shadow-sm bg-white border border-outline-variant/10">
-                                <img src="{{ candidate.flagUrl }}" alt="{{ candidate.name }}" class="w-full h-full object-cover">
-                              </div>
-                              <span class="text-xs font-bold uppercase text-on-surface truncate w-full text-center">{{ candidate.name }}</span>
-                            </div>
-                          </sc-for>
-                        </div>
-                      </sc-if>
+                <div class="flex flex-col gap-md">
+                  <!-- Name Input -->
+                  <div class="flex flex-col gap-xs">
+                    <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Nombre
+                      Completo *</label>
+                    <input
+                      class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all"
+                      placeholder="Lionel Messi" required type="text" value="{{ nombre }}"
+                      onChange="{{ onNombreChange }}" />
+                    <sc-if value="{{ errNombre }}">
+                      <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errNombre }}</span>
                     </sc-if>
                   </div>
-                </sc-if>
 
-                 <!-- Interactive Bracket Diagram (Desktop) -->
-                <div class="hidden md:flex items-center justify-between gap-4 py-4 w-full select-none border-b border-outline-variant/10">
-                  
-                  <!-- Column 1: Semifinalists -->
-                  <div class="flex flex-col justify-around h-[300px] w-1/3">
-                    <!-- Matchup 1 -->
-                    <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
-                      <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">Semifinal 1</div>
-                      
-                      <!-- Slot 0 -->
-                      <div onClick="{{ handleSemi0Click }}" 
-                           class="{{ semi0Class }}" 
-                           style="background: {{ semi0Bg }}; border-color: {{ semi0Border }};">
-                        <div class="flex items-center gap-1.5 overflow-hidden w-full">
-                          <sc-if value="{{ semi0IsWinner }}">
-                            <span class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasSemi0 }}">
-                            <img src="{{ semi0Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ semi0Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasSemi0 }}">
-                            <span class="material-symbols-outlined text-xs text-on-surface-variant/40 flex-shrink-0">add_circle</span>
-                            <span class="text-[10px] text-on-surface-variant/60 font-medium italic">Elegir</span>
-                          </sc-if>
-                        </div>
-                        <sc-if value="{{ hasSemi0 }}">
-                          <button onClick="{{ editSemi0 }}" class="text-[8px] bg-black/10 hover:bg-black/20 text-on-surface px-1.5 py-0.5 rounded font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
-                        </sc-if>
-                      </div>
-
-                      <!-- Slot 1 -->
-                      <div onClick="{{ handleSemi1Click }}" 
-                           class="{{ semi1Class }}" 
-                           style="background: {{ semi1Bg }}; border-color: {{ semi1Border }};">
-                        <div class="flex items-center gap-1.5 overflow-hidden w-full">
-                          <sc-if value="{{ semi1IsWinner }}">
-                            <span class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasSemi1 }}">
-                            <img src="{{ semi1Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ semi1Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasSemi1 }}">
-                            <span class="material-symbols-outlined text-xs text-on-surface-variant/40 flex-shrink-0">add_circle</span>
-                            <span class="text-[10px] text-on-surface-variant/60 font-medium italic">Elegir</span>
-                          </sc-if>
-                        </div>
-                        <sc-if value="{{ hasSemi1 }}">
-                          <button onClick="{{ editSemi1 }}" class="text-[8px] bg-black/10 hover:bg-black/20 text-on-surface px-1.5 py-0.5 rounded font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
-                        </sc-if>
-                      </div>
-                    </div>
-
-                    <!-- Matchup 2 -->
-                    <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
-                      <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">Semifinal 2</div>
-                      
-                      <!-- Slot 2 -->
-                      <div onClick="{{ handleSemi2Click }}" 
-                           class="{{ semi2Class }}" 
-                           style="background: {{ semi2Bg }}; border-color: {{ semi2Border }};">
-                        <div class="flex items-center gap-1.5 overflow-hidden w-full">
-                          <sc-if value="{{ semi2IsWinner }}">
-                            <span class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasSemi2 }}">
-                            <img src="{{ semi2Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ semi2Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasSemi2 }}">
-                            <span class="material-symbols-outlined text-xs text-on-surface-variant/40 flex-shrink-0">add_circle</span>
-                            <span class="text-[10px] text-on-surface-variant/60 font-medium italic">Elegir</span>
-                          </sc-if>
-                        </div>
-                        <sc-if value="{{ hasSemi2 }}">
-                          <button onClick="{{ editSemi2 }}" class="text-[8px] bg-black/10 hover:bg-black/20 text-on-surface px-1.5 py-0.5 rounded font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
-                        </sc-if>
-                      </div>
-
-                      <!-- Slot 3 -->
-                      <div onClick="{{ handleSemi3Click }}" 
-                           class="{{ semi3Class }}" 
-                           style="background: {{ semi3Bg }}; border-color: {{ semi3Border }};">
-                        <div class="flex items-center gap-1.5 overflow-hidden w-full">
-                          <sc-if value="{{ semi3IsWinner }}">
-                            <span class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasSemi3 }}">
-                            <img src="{{ semi3Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ semi3Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasSemi3 }}">
-                            <span class="material-symbols-outlined text-xs text-on-surface-variant/40 flex-shrink-0">add_circle</span>
-                            <span class="text-[10px] text-on-surface-variant/60 font-medium italic">Elegir</span>
-                          </sc-if>
-                        </div>
-                        <sc-if value="{{ hasSemi3 }}">
-                          <button onClick="{{ editSemi3 }}" class="text-[8px] bg-black/10 hover:bg-black/20 text-on-surface px-1.5 py-0.5 rounded font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
-                        </sc-if>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Arrow Connectors 1 -->
-                  <div class="flex flex-col justify-around h-[300px] text-on-surface-variant/20 font-bold text-sm">
-                    <div>➔</div>
-                    <div>➔</div>
-                  </div>
-
-                  <!-- Column 2: Finals -->
-                  <div class="flex flex-col justify-center h-[300px] w-1/3">
-                    <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
-                      <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">Gran Final</div>
-                      
-                      <!-- Finalist 0 -->
-                      <div onClick="{{ handleFinal0Click }}" 
-                           class="{{ final0Class }}" 
-                           style="background: {{ final0Bg }}; border-color: {{ final0Border }};">
-                        <div class="flex items-center gap-1.5 overflow-hidden w-full">
-                          <sc-if value="{{ final0IsWinner }}">
-                            <span class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasFinal0 }}">
-                            <img src="{{ final0Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ final0Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasFinal0 }}">
-                            <sc-if value="{{ isFinal0Blocked }}">
-                              <span class="text-[9px] text-on-surface-variant/40 italic font-medium">Esperando...</span>
-                            </sc-if>
-                            <sc-if value="{{ !isFinal0Blocked }}">
-                              <span class="material-symbols-outlined text-xs text-primary/40 flex-shrink-0">add_circle</span>
-                              <span class="text-[9px] text-primary/60 font-medium italic">Elegir</span>
-                            </sc-if>
-                          </sc-if>
-                        </div>
-                      </div>
-
-                      <!-- Finalist 1 -->
-                      <div onClick="{{ handleFinal1Click }}" 
-                           class="{{ final1Class }}" 
-                           style="background: {{ final1Bg }}; border-color: {{ final1Border }};">
-                        <div class="flex items-center gap-1.5 overflow-hidden w-full">
-                          <sc-if value="{{ final1IsWinner }}">
-                            <span class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasFinal1 }}">
-                            <img src="{{ final1Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ final1Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasFinal1 }}">
-                            <sc-if value="{{ isFinal1Blocked }}">
-                              <span class="text-[9px] text-on-surface-variant/40 italic font-medium">Esperando...</span>
-                            </sc-if>
-                            <sc-if value="{{ !isFinal1Blocked }}">
-                              <span class="material-symbols-outlined text-xs text-primary/40 flex-shrink-0">add_circle</span>
-                              <span class="text-[9px] text-primary/60 font-medium italic">Elegir</span>
-                            </sc-if>
-                          </sc-if>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Arrow Connector 2 -->
-                  <div class="flex flex-col justify-center h-[300px] text-primary/30 font-bold text-base">
-                    <div>➔</div>
-                  </div>
-
-                  <!-- Column 3: Champion -->
-                  <div class="flex flex-col justify-center h-[300px] w-1/3 items-center">
-                    <div onClick="{{ handleChampionClick }}"
-                         class="w-full p-2.5 rounded-2xl border-2 text-center flex flex-col items-center justify-center h-[160px] shadow-md transition-all duration-300 cursor-pointer hover:border-primary/50" 
-                         style="border-color: {{ champBorder }}; background: {{ champBg }};">
-                      <span class="material-symbols-outlined text-3xl text-[#ffd700] mb-1 drop-shadow">trophy</span>
-                      <div class="text-[9px] uppercase tracking-widest text-[#705d00] font-bold mb-1">Campeón</div>
-                      <sc-if value="{{ hasChampion }}">
-                        <img src="{{ championFlag }}" class="w-9 h-6 object-cover rounded shadow mb-1 border border-white/20">
-                        <div class="text-[10px] font-extrabold uppercase text-on-surface tracking-wide truncate max-w-[80px]">{{ championName }}</div>
+                  <div class="grid grid-cols-2 gap-md">
+                    <!-- Age Input -->
+                    <div class="flex flex-col gap-xs">
+                      <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Edad
+                        *</label>
+                      <input
+                        class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all"
+                        placeholder="15" required type="number" value="{{ edad }}" onChange="{{ onEdadChange }}" />
+                      <sc-if value="{{ errEdad }}">
+                        <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errEdad }}</span>
                       </sc-if>
-                      <sc-if value="{{ !hasChampion }}">
-                        <sc-if value="{{ isChampionBlocked }}">
-                          <div class="text-[10px] text-[#705d00]/50 italic font-medium">Esperando...</div>
-                        </sc-if>
-                        <sc-if value="{{ !isChampionBlocked }}">
-                          <span class="material-symbols-outlined text-xs text-primary/60 mb-0.5">add_circle</span>
-                          <div class="text-[10px] text-primary font-bold">Elegir</div>
-                        </sc-if>
+                    </div>
+                    <!-- Phone Input -->
+                    <div class="flex flex-col gap-xs">
+                      <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Teléfono
+                        *</label>
+                      <input
+                        class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all"
+                        placeholder="Ej: 6671234567" required type="tel" value="{{ telefono }}"
+                        onChange="{{ onTelefonoChange }}" />
+                      <sc-if value="{{ errTelefono }}">
+                        <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errTelefono }}</span>
                       </sc-if>
                     </div>
                   </div>
 
+                  <!-- Email Input -->
+                  <div class="flex flex-col gap-xs">
+                    <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Email
+                      *</label>
+                    <input
+                      class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all"
+                      placeholder="messi@email.com" required type="email" value="{{ email }}"
+                      onChange="{{ onEmailChange }}" />
+                    <sc-if value="{{ errEmail }}">
+                      <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errEmail }}</span>
+                    </sc-if>
+                  </div>
+
+                  <!-- School Input (Colegio) -->
+                  <div class="flex flex-col gap-xs">
+                    <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Colegio
+                      *</label>
+                    <input
+                      class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all"
+                      placeholder="Colegio San Ignacio" required type="text" value="{{ colegio }}"
+                      onChange="{{ onColegioChange }}" />
+                    <sc-if value="{{ errColegio }}">
+                      <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errColegio }}</span>
+                    </sc-if>
+                  </div>
+
+                  <!-- Reference Phone Input -->
+                  <div class="flex flex-col gap-xs">
+                    <label class="font-label-bold text-xs font-bold text-primary uppercase tracking-wide">Teléfono de
+                      Referencia (Tutor) *</label>
+                    <input
+                      class="w-full bg-white/50 border border-outline-variant/50 focus:border-primary rounded-xl py-3 px-4 text-sm outline-none transition-all"
+                      placeholder="Ej: 6677654321" required type="tel" value="{{ telefonoTutor }}"
+                      onChange="{{ onTutorChange }}" />
+                    <p class="text-[10px] text-on-surface-variant/80 italic mt-1 font-medium">Obligatorio para todos los
+                      participantes.</p>
+                    <sc-if value="{{ errTutor }}">
+                      <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errTutor }}</span>
+                    </sc-if>
+                  </div>
+
+                  <!-- Terms and Conditions Checkbox -->
+                  <div class="flex flex-col gap-xs mt-1">
+                    <label class="flex items-start gap-sm cursor-pointer group">
+                      <input
+                        class="mt-1 rounded border-outline-variant/60 text-primary focus:ring-primary h-4 w-4 cursor-pointer"
+                        required type="checkbox" checked="{{ terminos }}" onChange="{{ onTerminosChange }}" />
+                      <span
+                        class="text-[11px] text-on-surface-variant group-hover:text-on-surface transition-colors leading-normal font-medium">
+                        Acepto los <a class="text-primary underline font-bold" href="#">Términos y Condiciones</a> y la
+                        Política de Privacidad de la campaña.
+                      </span>
+                    </label>
+                    <sc-if value="{{ errTerminos }}">
+                      <span class="text-error text-xs text-red-600 mt-1 block font-medium">{{ errTerminos }}</span>
+                    </sc-if>
+                  </div>
                 </div>
-
-                <!-- Interactive Bracket Diagram (Mobile) -->
-                <div class="block md:hidden space-y-6 py-4 border-b border-outline-variant/10">
-                  
-                  <!-- Step 1: Semifinalists -->
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                      <h3 class="text-xs font-bold uppercase tracking-wider text-primary">1. Seleccioná tus 4 Semifinalistas</h3>
-                      <span class="text-[9px] font-bold text-on-surface-variant/60 uppercase">Semifinal 1 y 2</span>
-                    </div>
-                    
-                    <!-- Matchup 1 on Mobile -->
-                    <div class="bg-black/5 p-3 rounded-2xl border border-outline-variant/10 space-y-2">
-                      <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold">Llave A (Semifinal 1)</div>
-                      
-                      <!-- Slot 0 -->
-                      <div onClick="{{ handleSemi0Click }}" 
-                           class="{{ semi0Class }}" 
-                           style="background: {{ semi0Bg }}; border-color: {{ semi0Border }}; padding: 10px; border-radius: 12px;">
-                        <div class="flex items-center gap-2 overflow-hidden w-full">
-                          <sc-if value="{{ semi0IsWinner }}">
-                            <span class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasSemi0 }}">
-                            <img src="{{ semi0Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-xs font-bold uppercase truncate">{{ semi0Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasSemi0 }}">
-                            <span class="material-symbols-outlined text-sm text-on-surface-variant/40 flex-shrink-0">add_circle</span>
-                            <span class="text-xs text-on-surface-variant/60 font-semibold italic">Elegir Equipo A</span>
-                          </sc-if>
-                        </div>
-                        <sc-if value="{{ hasSemi0 }}">
-                          <button onClick="{{ editSemi0 }}" class="text-[9px] bg-black/10 hover:bg-black/20 text-on-surface px-2 py-1 rounded-lg font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
-                        </sc-if>
-                      </div>
-
-                      <!-- Slot 1 -->
-                      <div onClick="{{ handleSemi1Click }}" 
-                           class="{{ semi1Class }}" 
-                           style="background: {{ semi1Bg }}; border-color: {{ semi1Border }}; padding: 10px; border-radius: 12px;">
-                        <div class="flex items-center gap-2 overflow-hidden w-full">
-                          <sc-if value="{{ semi1IsWinner }}">
-                            <span class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasSemi1 }}">
-                            <img src="{{ semi1Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-xs font-bold uppercase truncate">{{ semi1Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasSemi1 }}">
-                            <span class="material-symbols-outlined text-sm text-on-surface-variant/40 flex-shrink-0">add_circle</span>
-                            <span class="text-xs text-on-surface-variant/60 font-semibold italic">Elegir Equipo B</span>
-                          </sc-if>
-                        </div>
-                        <sc-if value="{{ hasSemi1 }}">
-                          <button onClick="{{ editSemi1 }}" class="text-[9px] bg-black/10 hover:bg-black/20 text-on-surface px-2 py-1 rounded-lg font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
-                        </sc-if>
-                      </div>
-                    </div>
-
-                    <!-- Matchup 2 on Mobile -->
-                    <div class="bg-black/5 p-3 rounded-2xl border border-outline-variant/10 space-y-2">
-                      <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold">Llave B (Semifinal 2)</div>
-                      
-                      <!-- Slot 2 -->
-                      <div onClick="{{ handleSemi2Click }}" 
-                           class="{{ semi2Class }}" 
-                           style="background: {{ semi2Bg }}; border-color: {{ semi2Border }}; padding: 10px; border-radius: 12px;">
-                        <div class="flex items-center gap-2 overflow-hidden w-full">
-                          <sc-if value="{{ semi2IsWinner }}">
-                            <span class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasSemi2 }}">
-                            <img src="{{ semi2Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-xs font-bold uppercase truncate">{{ semi2Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasSemi2 }}">
-                            <span class="material-symbols-outlined text-sm text-on-surface-variant/40 flex-shrink-0">add_circle</span>
-                            <span class="text-xs text-on-surface-variant/60 font-semibold italic">Elegir Equipo C</span>
-                          </sc-if>
-                        </div>
-                        <sc-if value="{{ hasSemi2 }}">
-                          <button onClick="{{ editSemi2 }}" class="text-[9px] bg-black/10 hover:bg-black/20 text-on-surface px-2 py-1 rounded-lg font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
-                        </sc-if>
-                      </div>
-
-                      <!-- Slot 3 -->
-                      <div onClick="{{ handleSemi3Click }}" 
-                           class="{{ semi3Class }}" 
-                           style="background: {{ semi3Bg }}; border-color: {{ semi3Border }}; padding: 10px; border-radius: 12px;">
-                        <div class="flex items-center gap-2 overflow-hidden w-full">
-                          <sc-if value="{{ semi3IsWinner }}">
-                            <span class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasSemi3 }}">
-                            <img src="{{ semi3Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-xs font-bold uppercase truncate">{{ semi3Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasSemi3 }}">
-                            <span class="material-symbols-outlined text-sm text-on-surface-variant/40 flex-shrink-0">add_circle</span>
-                            <span class="text-xs text-on-surface-variant/60 font-semibold italic">Elegir Equipo D</span>
-                          </sc-if>
-                        </div>
-                        <sc-if value="{{ hasSemi3 }}">
-                          <button onClick="{{ editSemi3 }}" class="text-[9px] bg-black/10 hover:bg-black/20 text-on-surface px-2 py-1 rounded-lg font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
-                        </sc-if>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Step 2: Finalists -->
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                      <h3 class="text-xs font-bold uppercase tracking-wider text-primary">2. Elegí tus 2 Finalistas</h3>
-                      <span class="text-[9px] font-bold text-on-surface-variant/60 uppercase">Hacé avanzar a tus ganadores</span>
-                    </div>
-                    
-                    <div class="bg-black/5 p-3 rounded-2xl border border-outline-variant/10 space-y-2">
-                      <!-- Finalist 0 -->
-                      <div onClick="{{ handleFinal0Click }}" 
-                           class="{{ final0Class }}" 
-                           style="background: {{ final0Bg }}; border-color: {{ final0Border }}; padding: 10px; border-radius: 12px;">
-                        <div class="flex items-center gap-2 overflow-hidden w-full">
-                          <sc-if value="{{ final0IsWinner }}">
-                            <span class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasFinal0 }}">
-                            <img src="{{ final0Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-xs font-bold uppercase truncate">{{ final0Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasFinal0 }}">
-                            <sc-if value="{{ isFinal0Blocked }}">
-                              <span class="text-xs text-on-surface-variant/40 italic font-medium">Esperando semifinalistas...</span>
-                            </sc-if>
-                            <sc-if value="{{ !isFinal0Blocked }}">
-                              <span class="material-symbols-outlined text-sm text-primary/40 flex-shrink-0">add_circle</span>
-                              <span class="text-xs text-primary/60 font-semibold italic">Elegir Finalista Llave A</span>
-                            </sc-if>
-                          </sc-if>
-                        </div>
-                      </div>
-
-                      <!-- Finalist 1 -->
-                      <div onClick="{{ handleFinal1Click }}" 
-                           class="{{ final1Class }}" 
-                           style="background: {{ final1Bg }}; border-color: {{ final1Border }}; padding: 10px; border-radius: 12px;">
-                        <div class="flex items-center gap-2 overflow-hidden w-full">
-                          <sc-if value="{{ final1IsWinner }}">
-                            <span class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
-                          </sc-if>
-                          <sc-if value="{{ hasFinal1 }}">
-                            <img src="{{ final1Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
-                            <span class="text-xs font-bold uppercase truncate">{{ final1Name }}</span>
-                          </sc-if>
-                          <sc-if value="{{ !hasFinal1 }}">
-                            <sc-if value="{{ isFinal1Blocked }}">
-                              <span class="text-xs text-on-surface-variant/40 italic font-medium">Esperando semifinalistas...</span>
-                            </sc-if>
-                            <sc-if value="{{ !isFinal1Blocked }}">
-                              <span class="material-symbols-outlined text-sm text-primary/40 flex-shrink-0">add_circle</span>
-                              <span class="text-xs text-primary/60 font-semibold italic">Elegir Finalista Llave B</span>
-                            </sc-if>
-                          </sc-if>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Step 3: Champion -->
-                  <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                      <h3 class="text-xs font-bold uppercase tracking-wider text-primary">3. Elegí al Campeón</h3>
-                      <span class="text-[9px] font-bold text-on-surface-variant/60 uppercase">El partido definitorio</span>
-                    </div>
-                    
-                    <div onClick="{{ handleChampionClick }}"
-                         class="w-full p-4 rounded-2xl border-2 text-center flex flex-col items-center justify-center min-h-[120px] shadow-md transition-all duration-300 cursor-pointer" 
-                         style="border-color: {{ champBorder }}; background: {{ champBg }};">
-                      <span class="material-symbols-outlined text-4xl text-[#ffd700] mb-1 drop-shadow">trophy</span>
-                      <div class="text-[10px] uppercase tracking-widest text-[#705d00] font-bold mb-1">Campeón de la Copa</div>
-                      <sc-if value="{{ hasChampion }}">
-                        <img src="{{ championFlag }}" class="w-10 h-7 object-cover rounded shadow mb-1.5 border border-white/20">
-                        <div class="text-sm font-extrabold uppercase text-on-surface tracking-wide truncate max-w-[150px]">{{ championName }}</div>
-                      </sc-if>
-                      <sc-if value="{{ !hasChampion }}">
-                        <sc-if value="{{ isChampionBlocked }}">
-                          <div class="text-xs text-[#705d00]/50 italic font-medium">Esperando finalistas...</div>
-                        </sc-if>
-                        <sc-if value="{{ !isChampionBlocked }}">
-                          <span class="material-symbols-outlined text-sm text-primary/60 mb-0.5">add_circle</span>
-                          <div class="text-xs text-primary font-bold">Elegir Campeón</div>
-                        </sc-if>
-                      </sc-if>
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- Selector moved to top -->
               </div>
 
-              <!-- Submit button container at the bottom -->
-              <div class="pt-6 border-t border-outline-variant/10 flex justify-end mt-4">
-                <button onClick="{{ submitBracket }}" 
-                        disabled="{{ isSaving }}"
-                        class="btn-gradient px-8 py-3.5 rounded-full font-label-bold text-xs text-on-primary-container shadow-md flex items-center gap-2 group hover:scale-105 duration-200 transition-all font-bold opacity-90 disabled:opacity-50 disabled:cursor-not-allowed">
-                  <sc-if value="{{ isSaving }}">
-                    <span class="animate-spin rounded-full h-3.5 w-3.5 border-2 border-on-primary-container border-t-transparent flex-shrink-0"></span>
-                    <span>GUARDANDO...</span>
-                  </sc-if>
-                  <sc-if value="{{ !isSaving }}">
-                    <span>CONFIRMAR PRONÓSTICO</span>
-                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm">arrow_forward</span>
-                  </sc-if>
+              <div class="pt-6 border-t border-outline-variant/10 flex justify-end mt-6">
+                <button onClick="{{ submitForm }}"
+                  class="btn-gradient px-8 py-3.5 rounded-full font-label-bold text-xs text-on-primary-container shadow-md flex items-center gap-2 group hover:scale-105 duration-200 transition-all font-bold">
+                  CONTINUAR AL PRONÓSTICO
+                  <span
+                    class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm">arrow_forward</span>
                 </button>
               </div>
             </div>
           </div>
+        </section>
+      </sc-if>
 
-        </div>
-      </section>
-    </sc-if>
+      <!-- ══════════════════════════════════════
+         SCREEN 2 — INTERACTIVE BRACKET BUILDER
+         ══════════════════════════════════════ -->
+      <sc-if value="{{ isBracket }}" hint-placeholder-val="{{ false }}">
+        <section class="max-w-container-max mx-auto px-gutter py-lg relative">
 
-    <!-- ══════════════════════════════════════
-         SCREEN 2 — CONFIRMATION / SUCCESS PAGE
-    ══════════════════════════════════════ -->
-    <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
-      <section class="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center py-12">
-        <canvas id="confetti-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
-
-        <div class="relative z-10 w-full max-w-2xl px-gutter flex flex-col items-center text-center">
-          <div class="mb-md relative">
-            <div class="absolute inset-0 bg-primary/20 rounded-full blur-xl opacity-60 pulse-stadium"></div>
-            <div class="relative bg-gradient-to-br from-primary-container to-[#ffe16d] text-on-primary-container w-20 h-20 rounded-full flex items-center justify-center shadow-md">
-              <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-            </div>
-          </div>
-
-          <h1 class="font-headline-lg text-3xl text-on-surface mb-2 font-bold tracking-tight">
-            ¡Tu participación fue registrada!
-          </h1>
-          <p class="font-body-md text-sm text-on-surface-variant max-w-md mx-auto leading-relaxed">
-            Tu fixture de semifinales, final y campeón fue guardado exitosamente. ¡Mucha suerte en el sorteo!
-          </p>
-
-          <!-- Bento Confirmation Card -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-sm w-full mt-8">
-            <!-- Ticket Info Card -->
-            <div class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center border border-outline-variant/30 shadow-sm col-span-1">
-              <span class="font-label-bold text-[10px] text-primary mb-1 uppercase tracking-widest font-bold">NÚMERO DE TICKET</span>
-              <span class="font-headline-lg text-3xl text-on-surface font-extrabold tracking-wide">#{{ participationNumber }}</span>
-            </div>
-            
-            <!-- Predict summary visual Card -->
-            <div class="glass-card p-5 rounded-2xl flex flex-col items-start border border-outline-variant/30 shadow-sm col-span-2 text-left">
-              <span class="font-label-bold text-[10px] text-primary mb-3 uppercase tracking-widest font-bold self-center">RESUMEN DEL FIXTURE</span>
-              <div class="flex justify-between w-full gap-4">
-                <div>
-                  <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">Semifinales:</div>
-                  <div class="flex gap-1">
-                    <img src="{{ semi0Flag }}" class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
-                    <img src="{{ semi1Flag }}" class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
-                    <img src="{{ semi2Flag }}" class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
-                    <img src="{{ semi3Flag }}" class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
-                  </div>
-                </div>
-                <div>
-                  <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">Finalistas:</div>
-                  <div class="flex gap-1">
-                    <img src="{{ final0Flag }}" class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
-                    <img src="{{ final1Flag }}" class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
-                  </div>
-                </div>
-                <div>
-                  <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">Campeón:</div>
-                  <div class="flex items-center gap-1.5">
-                    <img src="{{ championFlag }}" class="w-6 h-4 object-cover rounded shadow-sm border border-[#ffd700] ring-1 ring-[#ffd700]">
-                    <span class="text-[10px] font-extrabold uppercase text-on-surface truncate max-w-[60px]">{{ championName }}</span>
-                  </div>
-                </div>
+          <!-- Progress Header -->
+          <div class="flex items-center gap-md mb-8 max-w-6xl mx-auto">
+            <button onClick="{{ goBack }}"
+              class="bg-white border border-outline-variant/30 hover:bg-black/5 text-on-surface w-11 h-11 rounded-full cursor-pointer flex items-center justify-center transition-all font-bold shadow-sm">←</button>
+            <div class="flex-1">
+              <div class="text-[10px] text-on-surface-variant/60 mb-1.5 uppercase tracking-wider font-bold">Paso 2 de 2:
+                Arma tu Pronóstico</div>
+              <div class="h-1.5 bg-outline-variant/20 rounded-full overflow-hidden">
+                <div class="w-full h-full bg-gradient-to-r from-primary to-secondary rounded-full"></div>
               </div>
             </div>
           </div>
 
-          <!-- Bottom Actions -->
-          <div class="mt-8 flex flex-col sm:flex-row gap-md items-center justify-center w-full">
-            <button onClick="{{ resetForm }}" class="bg-primary hover:bg-primary/95 text-on-primary px-8 py-3.5 rounded-full font-label-bold text-sm shadow-md transition-all font-bold hover:scale-105 duration-200">
-              Registrar Nueva Participación
-            </button>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg max-w-6xl mx-auto items-stretch animate-fade-in">
+            <!-- Left Column: Summary Widget -->
+            <div class="hidden lg:flex lg:col-span-4 flex-col gap-md">
+              <div
+                class="glass-card p-md rounded-2xl flex-grow flex flex-col justify-between border border-outline-variant/30 shadow-md">
+                <div>
+                  <h2 class="font-headline-md text-xl text-primary mb-2 font-bold tracking-wide">TU PRONÓSTICO</h2>
+                  <p class="font-body-md text-xs text-on-surface-variant mb-6 leading-relaxed">Visualiza los equipos
+                    elegidos. Haz clic en las flechas para avanzarlos.</p>
+
+                  <!-- Bracket Summary Widget -->
+                  <div class="glass-card p-4 rounded-xl border border-outline-variant/20 bg-primary/5">
+                    <h3 class="font-label-bold text-[10px] text-primary uppercase tracking-widest font-bold mb-3">
+                      Resumen de Predicciones</h3>
+                    <div class="flex flex-col gap-3">
+                      <!-- Semis -->
+                      <div>
+                        <div class="text-[9px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">
+                          Semifinalistas:</div>
+                        <div class="flex gap-2">
+                          <div
+                            class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center"
+                            title="Semi 1">
+                            <sc-if value="{{ hasSemi0 }}"><img src="{{ semi0Flag }}"
+                                class="w-full h-full object-cover"></sc-if>
+                          </div>
+                          <div
+                            class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center"
+                            title="Semi 2">
+                            <sc-if value="{{ hasSemi1 }}"><img src="{{ semi1Flag }}"
+                                class="w-full h-full object-cover"></sc-if>
+                          </div>
+                          <div
+                            class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center"
+                            title="Semi 3">
+                            <sc-if value="{{ hasSemi2 }}"><img src="{{ semi2Flag }}"
+                                class="w-full h-full object-cover"></sc-if>
+                          </div>
+                          <div
+                            class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center"
+                            title="Semi 4">
+                            <sc-if value="{{ hasSemi3 }}"><img src="{{ semi3Flag }}"
+                                class="w-full h-full object-cover"></sc-if>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Finals -->
+                      <div>
+                        <div class="text-[9px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">
+                          Finalistas:</div>
+                        <div class="flex gap-2">
+                          <div
+                            class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center"
+                            title="Finalista 1">
+                            <sc-if value="{{ hasFinal0 }}"><img src="{{ final0Flag }}"
+                                class="w-full h-full object-cover"></sc-if>
+                          </div>
+                          <div
+                            class="w-10 h-7 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center"
+                            title="Finalista 2">
+                            <sc-if value="{{ hasFinal1 }}"><img src="{{ final1Flag }}"
+                                class="w-full h-full object-cover"></sc-if>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Champion -->
+                      <div>
+                        <div class="text-[9px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">
+                          Campeón:</div>
+                        <div class="flex items-center gap-2">
+                          <div
+                            class="w-12 h-8 rounded overflow-hidden border border-outline-variant/20 shadow-sm bg-white/50 flex-shrink-0 flex items-center justify-center"
+                            title="Campeón">
+                            <sc-if value="{{ hasChampion }}"><img src="{{ championFlag }}"
+                                class="w-full h-full object-cover"></sc-if>
+                          </div>
+                          <span class="text-sm font-extrabold uppercase text-on-surface truncate max-w-[120px]">{{
+                            championName }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Custom error for bracket validation -->
+                  <sc-if value="{{ errBracket }}">
+                    <div
+                      class="mt-4 p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl font-medium animate-fade-in">
+                      {{ errBracket }}
+                    </div>
+                  </sc-if>
+                </div>
+
+                <div
+                  class="mt-6 pt-4 border-t border-outline-variant/10 text-xs text-on-surface-variant/70 leading-normal">
+                  Haz clic en los slots vacíos del árbol para elegir un equipo. Luego avánzalos usando las flechas hasta
+                  coronar al Campeón.
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Bracket Diagram and Selector -->
+            <div class="lg:col-span-8 flex flex-col gap-md">
+              <div id="bracket-container-card"
+                class="glass-card p-md lg:p-lg rounded-2xl h-full flex flex-col justify-between border border-outline-variant/30 shadow-md">
+                <div>
+                  <div class="flex justify-between items-end mb-4">
+                    <div>
+                      <h2 class="font-headline-md text-xl text-on-surface font-bold tracking-wide">ÁRBOL DE PREDICCIONES
+                      </h2>
+                      <p class="font-body-md text-xs text-on-surface-variant">Llena las semifinales, haz avanzar a tus
+                        finalistas y corona a tu campeón.</p>
+                    </div>
+                  </div>
+
+                  <!-- Dynamic flag selector (Now at the top!) -->
+                  <sc-if value="{{ showSelector }}">
+                    <div
+                      class="mb-6 bg-white/60 p-4 rounded-xl border border-outline-variant/20 animate-fade-in shadow-sm">
+                      <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xs font-bold uppercase text-primary tracking-wider">{{ selectorTitle }}</h3>
+                        <button onClick="{{ closeSelector }}"
+                          class="text-[10px] text-on-surface-variant/80 hover:text-on-surface font-extrabold uppercase bg-black/5 px-2 py-0.5 rounded">Cerrar</button>
+                      </div>
+
+                      <sc-if value="{{ isSelectorBlocked }}">
+                        <div
+                          class="p-4 bg-yellow-50 border border-yellow-200 text-yellow-800 text-xs rounded-xl font-medium text-center">
+                          {{ selectorBlockMessage }}
+                        </div>
+                      </sc-if>
+
+                      <sc-if value="{{ !isSelectorBlocked }}">
+                        <sc-if value="{{ isSemiSelector }}">
+                          <!-- Search Input -->
+                          <div class="mb-3 relative">
+                            <input
+                              class="w-full bg-white/50 border border-outline-variant/40 rounded-xl py-2 pl-10 pr-4 text-xs outline-none focus:border-primary transition-all"
+                              placeholder="Buscar selección..." type="text" value="{{ searchQuery }}"
+                              onChange="{{ onSearchChange }}" />
+                            <span
+                              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-base">search</span>
+                          </div>
+                          <!-- Confederation filters -->
+                          <div
+                            class="flex gap-1 overflow-x-auto pb-1.5 mb-3 -webkit-overflow-scrolling-touch custom-scrollbar">
+                            <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7">
+                              <button onClick="{{ f.onSelect }}"
+                                class="flex-none rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider border transition-all"
+                                style="background: {{ f.bg }}; border-color: {{ f.border }}; color: {{ f.textColor }};">{{
+                                f.label }}</button>
+                            </sc-for>
+                          </div>
+                          <!-- Flag grid -->
+                          <div
+                            class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 overflow-y-auto max-h-[160px] pr-1 custom-scrollbar">
+                            <sc-for list="{{ filteredTeams }}" as="team" hint-placeholder-count="12">
+                              <div onClick="{{ team.onSelect }}" class="{{ team.cardClass }}"
+                                style="border-color: {{ team.cardBorder }};">
+                                <div
+                                  class="w-full aspect-[3/2] rounded overflow-hidden shadow-sm bg-white border border-outline-variant/10">
+                                  <img src="{{ team.flagUrl }}" alt="{{ team.name }}"
+                                    class="w-full h-full object-cover">
+                                </div>
+                                <span
+                                  class="text-[9px] text-center uppercase tracking-tight text-on-surface group-hover:text-primary transition-colors font-bold truncate w-full">{{
+                                  team.name }}</span>
+                              </div>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+
+                        <sc-if value="{{ isStageSelector }}">
+                          <div class="flex justify-center gap-6 py-4">
+                            <sc-for list="{{ selectorCandidates }}" as="candidate">
+                              <div onClick="{{ candidate.onSelect }}"
+                                class="glass-card p-4 rounded-xl flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition-all duration-200 border border-outline-variant/30 hover:border-primary/50 w-28 sm:w-36">
+                                <div
+                                  class="w-full aspect-[3/2] rounded overflow-hidden shadow-sm bg-white border border-outline-variant/10">
+                                  <img src="{{ candidate.flagUrl }}" alt="{{ candidate.name }}"
+                                    class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-xs font-bold uppercase text-on-surface truncate w-full text-center">{{
+                                  candidate.name }}</span>
+                              </div>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+
+                  <!-- Interactive Bracket Diagram (Desktop) -->
+                  <div
+                    class="hidden md:flex items-center justify-between gap-4 py-4 w-full select-none border-b border-outline-variant/10">
+
+                    <!-- Column 1: Semifinalists -->
+                    <div class="flex flex-col justify-around h-[300px] w-1/3">
+                      <!-- Matchup 1 -->
+                      <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
+                        <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">
+                          Semifinal 1</div>
+
+                        <!-- Slot 0 -->
+                        <div onClick="{{ handleSemi0Click }}" class="{{ semi0Class }}"
+                          style="background: {{ semi0Bg }}; border-color: {{ semi0Border }};">
+                          <div class="flex items-center gap-1.5 overflow-hidden w-full">
+                            <sc-if value="{{ semi0IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasSemi0 }}">
+                              <img src="{{ semi0Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ semi0Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasSemi0 }}">
+                              <span
+                                class="material-symbols-outlined text-xs text-on-surface-variant/40 flex-shrink-0">add_circle</span>
+                              <span class="text-[10px] text-on-surface-variant/60 font-medium italic">Elegir</span>
+                            </sc-if>
+                          </div>
+                          <sc-if value="{{ hasSemi0 }}">
+                            <button onClick="{{ editSemi0 }}"
+                              class="text-[8px] bg-black/10 hover:bg-black/20 text-on-surface px-1.5 py-0.5 rounded font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
+                          </sc-if>
+                        </div>
+
+                        <!-- Slot 1 -->
+                        <div onClick="{{ handleSemi1Click }}" class="{{ semi1Class }}"
+                          style="background: {{ semi1Bg }}; border-color: {{ semi1Border }};">
+                          <div class="flex items-center gap-1.5 overflow-hidden w-full">
+                            <sc-if value="{{ semi1IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasSemi1 }}">
+                              <img src="{{ semi1Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ semi1Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasSemi1 }}">
+                              <span
+                                class="material-symbols-outlined text-xs text-on-surface-variant/40 flex-shrink-0">add_circle</span>
+                              <span class="text-[10px] text-on-surface-variant/60 font-medium italic">Elegir</span>
+                            </sc-if>
+                          </div>
+                          <sc-if value="{{ hasSemi1 }}">
+                            <button onClick="{{ editSemi1 }}"
+                              class="text-[8px] bg-black/10 hover:bg-black/20 text-on-surface px-1.5 py-0.5 rounded font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
+                          </sc-if>
+                        </div>
+                      </div>
+
+                      <!-- Matchup 2 -->
+                      <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
+                        <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">
+                          Semifinal 2</div>
+
+                        <!-- Slot 2 -->
+                        <div onClick="{{ handleSemi2Click }}" class="{{ semi2Class }}"
+                          style="background: {{ semi2Bg }}; border-color: {{ semi2Border }};">
+                          <div class="flex items-center gap-1.5 overflow-hidden w-full">
+                            <sc-if value="{{ semi2IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasSemi2 }}">
+                              <img src="{{ semi2Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ semi2Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasSemi2 }}">
+                              <span
+                                class="material-symbols-outlined text-xs text-on-surface-variant/40 flex-shrink-0">add_circle</span>
+                              <span class="text-[10px] text-on-surface-variant/60 font-medium italic">Elegir</span>
+                            </sc-if>
+                          </div>
+                          <sc-if value="{{ hasSemi2 }}">
+                            <button onClick="{{ editSemi2 }}"
+                              class="text-[8px] bg-black/10 hover:bg-black/20 text-on-surface px-1.5 py-0.5 rounded font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
+                          </sc-if>
+                        </div>
+
+                        <!-- Slot 3 -->
+                        <div onClick="{{ handleSemi3Click }}" class="{{ semi3Class }}"
+                          style="background: {{ semi3Bg }}; border-color: {{ semi3Border }};">
+                          <div class="flex items-center gap-1.5 overflow-hidden w-full">
+                            <sc-if value="{{ semi3IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasSemi3 }}">
+                              <img src="{{ semi3Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ semi3Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasSemi3 }}">
+                              <span
+                                class="material-symbols-outlined text-xs text-on-surface-variant/40 flex-shrink-0">add_circle</span>
+                              <span class="text-[10px] text-on-surface-variant/60 font-medium italic">Elegir</span>
+                            </sc-if>
+                          </div>
+                          <sc-if value="{{ hasSemi3 }}">
+                            <button onClick="{{ editSemi3 }}"
+                              class="text-[8px] bg-black/10 hover:bg-black/20 text-on-surface px-1.5 py-0.5 rounded font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
+                          </sc-if>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Arrow Connectors 1 -->
+                    <div class="flex flex-col justify-around h-[300px] text-on-surface-variant/20 font-bold text-sm">
+                      <div>➔</div>
+                      <div>➔</div>
+                    </div>
+
+                    <!-- Column 2: Finals -->
+                    <div class="flex flex-col justify-center h-[300px] w-1/3">
+                      <div class="flex flex-col gap-2 bg-black/5 p-2 rounded-xl border border-outline-variant/10">
+                        <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-0.5">
+                          Gran Final</div>
+
+                        <!-- Finalist 0 -->
+                        <div onClick="{{ handleFinal0Click }}" class="{{ final0Class }}"
+                          style="background: {{ final0Bg }}; border-color: {{ final0Border }};">
+                          <div class="flex items-center gap-1.5 overflow-hidden w-full">
+                            <sc-if value="{{ final0IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasFinal0 }}">
+                              <img src="{{ final0Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ final0Name
+                                }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasFinal0 }}">
+                              <sc-if value="{{ isFinal0Blocked }}">
+                                <span
+                                  class="text-[9px] text-on-surface-variant/40 italic font-medium">Esperando...</span>
+                              </sc-if>
+                              <sc-if value="{{ !isFinal0Blocked }}">
+                                <span
+                                  class="material-symbols-outlined text-xs text-primary/40 flex-shrink-0">add_circle</span>
+                                <span class="text-[9px] text-primary/60 font-medium italic">Elegir</span>
+                              </sc-if>
+                            </sc-if>
+                          </div>
+                        </div>
+
+                        <!-- Finalist 1 -->
+                        <div onClick="{{ handleFinal1Click }}" class="{{ final1Class }}"
+                          style="background: {{ final1Bg }}; border-color: {{ final1Border }};">
+                          <div class="flex items-center gap-1.5 overflow-hidden w-full">
+                            <sc-if value="{{ final1IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[14px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasFinal1 }}">
+                              <img src="{{ final1Flag }}" class="w-6 h-4 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-[10px] font-bold uppercase truncate max-w-[80px]">{{ final1Name
+                                }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasFinal1 }}">
+                              <sc-if value="{{ isFinal1Blocked }}">
+                                <span
+                                  class="text-[9px] text-on-surface-variant/40 italic font-medium">Esperando...</span>
+                              </sc-if>
+                              <sc-if value="{{ !isFinal1Blocked }}">
+                                <span
+                                  class="material-symbols-outlined text-xs text-primary/40 flex-shrink-0">add_circle</span>
+                                <span class="text-[9px] text-primary/60 font-medium italic">Elegir</span>
+                              </sc-if>
+                            </sc-if>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Arrow Connector 2 -->
+                    <div class="flex flex-col justify-center h-[300px] text-primary/30 font-bold text-base">
+                      <div>➔</div>
+                    </div>
+
+                    <!-- Column 3: Champion -->
+                    <div class="flex flex-col justify-center h-[300px] w-1/3 items-center">
+                      <div onClick="{{ handleChampionClick }}"
+                        class="w-full p-2.5 rounded-2xl border-2 text-center flex flex-col items-center justify-center h-[160px] shadow-md transition-all duration-300 cursor-pointer hover:border-primary/50"
+                        style="border-color: {{ champBorder }}; background: {{ champBg }};">
+                        <span class="material-symbols-outlined text-3xl text-[#ffd700] mb-1 drop-shadow">trophy</span>
+                        <div class="text-[9px] uppercase tracking-widest text-[#705d00] font-bold mb-1">Campeón</div>
+                        <sc-if value="{{ hasChampion }}">
+                          <img src="{{ championFlag }}"
+                            class="w-9 h-6 object-cover rounded shadow mb-1 border border-white/20">
+                          <div
+                            class="text-[10px] font-extrabold uppercase text-on-surface tracking-wide truncate max-w-[80px]">
+                            {{ championName }}</div>
+                        </sc-if>
+                        <sc-if value="{{ !hasChampion }}">
+                          <sc-if value="{{ isChampionBlocked }}">
+                            <div class="text-[10px] text-[#705d00]/50 italic font-medium">Esperando...</div>
+                          </sc-if>
+                          <sc-if value="{{ !isChampionBlocked }}">
+                            <span class="material-symbols-outlined text-xs text-primary/60 mb-0.5">add_circle</span>
+                            <div class="text-[10px] text-primary font-bold">Elegir</div>
+                          </sc-if>
+                        </sc-if>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Interactive Bracket Diagram (Mobile) -->
+                  <div class="block md:hidden space-y-6 py-4 border-b border-outline-variant/10">
+
+                    <!-- Step 1: Semifinalists -->
+                    <div class="space-y-3">
+                      <div class="flex justify-between items-center">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-primary">1. Seleccioná tus 4
+                          Semifinalistas</h3>
+                        <span class="text-[9px] font-bold text-on-surface-variant/60 uppercase">Semifinal 1 y 2</span>
+                      </div>
+
+                      <!-- Matchup 1 on Mobile -->
+                      <div class="bg-black/5 p-3 rounded-2xl border border-outline-variant/10 space-y-2">
+                        <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold">Llave A
+                          (Semifinal 1)</div>
+
+                        <!-- Slot 0 -->
+                        <div onClick="{{ handleSemi0Click }}" class="{{ semi0Class }}"
+                          style="background: {{ semi0Bg }}; border-color: {{ semi0Border }}; padding: 10px; border-radius: 12px;">
+                          <div class="flex items-center gap-2 overflow-hidden w-full">
+                            <sc-if value="{{ semi0IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasSemi0 }}">
+                              <img src="{{ semi0Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-xs font-bold uppercase truncate">{{ semi0Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasSemi0 }}">
+                              <span
+                                class="material-symbols-outlined text-sm text-on-surface-variant/40 flex-shrink-0">add_circle</span>
+                              <span class="text-xs text-on-surface-variant/60 font-semibold italic">Elegir Equipo
+                                A</span>
+                            </sc-if>
+                          </div>
+                          <sc-if value="{{ hasSemi0 }}">
+                            <button onClick="{{ editSemi0 }}"
+                              class="text-[9px] bg-black/10 hover:bg-black/20 text-on-surface px-2 py-1 rounded-lg font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
+                          </sc-if>
+                        </div>
+
+                        <!-- Slot 1 -->
+                        <div onClick="{{ handleSemi1Click }}" class="{{ semi1Class }}"
+                          style="background: {{ semi1Bg }}; border-color: {{ semi1Border }}; padding: 10px; border-radius: 12px;">
+                          <div class="flex items-center gap-2 overflow-hidden w-full">
+                            <sc-if value="{{ semi1IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasSemi1 }}">
+                              <img src="{{ semi1Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-xs font-bold uppercase truncate">{{ semi1Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasSemi1 }}">
+                              <span
+                                class="material-symbols-outlined text-sm text-on-surface-variant/40 flex-shrink-0">add_circle</span>
+                              <span class="text-xs text-on-surface-variant/60 font-semibold italic">Elegir Equipo
+                                B</span>
+                            </sc-if>
+                          </div>
+                          <sc-if value="{{ hasSemi1 }}">
+                            <button onClick="{{ editSemi1 }}"
+                              class="text-[9px] bg-black/10 hover:bg-black/20 text-on-surface px-2 py-1 rounded-lg font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
+                          </sc-if>
+                        </div>
+                      </div>
+
+                      <!-- Matchup 2 on Mobile -->
+                      <div class="bg-black/5 p-3 rounded-2xl border border-outline-variant/10 space-y-2">
+                        <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold">Llave B
+                          (Semifinal 2)</div>
+
+                        <!-- Slot 2 -->
+                        <div onClick="{{ handleSemi2Click }}" class="{{ semi2Class }}"
+                          style="background: {{ semi2Bg }}; border-color: {{ semi2Border }}; padding: 10px; border-radius: 12px;">
+                          <div class="flex items-center gap-2 overflow-hidden w-full">
+                            <sc-if value="{{ semi2IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasSemi2 }}">
+                              <img src="{{ semi2Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-xs font-bold uppercase truncate">{{ semi2Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasSemi2 }}">
+                              <span
+                                class="material-symbols-outlined text-sm text-on-surface-variant/40 flex-shrink-0">add_circle</span>
+                              <span class="text-xs text-on-surface-variant/60 font-semibold italic">Elegir Equipo
+                                C</span>
+                            </sc-if>
+                          </div>
+                          <sc-if value="{{ hasSemi2 }}">
+                            <button onClick="{{ editSemi2 }}"
+                              class="text-[9px] bg-black/10 hover:bg-black/20 text-on-surface px-2 py-1 rounded-lg font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
+                          </sc-if>
+                        </div>
+
+                        <!-- Slot 3 -->
+                        <div onClick="{{ handleSemi3Click }}" class="{{ semi3Class }}"
+                          style="background: {{ semi3Bg }}; border-color: {{ semi3Border }}; padding: 10px; border-radius: 12px;">
+                          <div class="flex items-center gap-2 overflow-hidden w-full">
+                            <sc-if value="{{ semi3IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasSemi3 }}">
+                              <img src="{{ semi3Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-xs font-bold uppercase truncate">{{ semi3Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasSemi3 }}">
+                              <span
+                                class="material-symbols-outlined text-sm text-on-surface-variant/40 flex-shrink-0">add_circle</span>
+                              <span class="text-xs text-on-surface-variant/60 font-semibold italic">Elegir Equipo
+                                D</span>
+                            </sc-if>
+                          </div>
+                          <sc-if value="{{ hasSemi3 }}">
+                            <button onClick="{{ editSemi3 }}"
+                              class="text-[9px] bg-black/10 hover:bg-black/20 text-on-surface px-2 py-1 rounded-lg font-bold uppercase flex-shrink-0 ml-1">Cambiar</button>
+                          </sc-if>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Step 2: Finalists -->
+                    <div class="space-y-3">
+                      <div class="flex justify-between items-center">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-primary">2. Elegí tus 2 Finalistas
+                        </h3>
+                        <span class="text-[9px] font-bold text-on-surface-variant/60 uppercase">Hacé avanzar a tus
+                          ganadores</span>
+                      </div>
+
+                      <div class="bg-black/5 p-3 rounded-2xl border border-outline-variant/10 space-y-2">
+                        <!-- Finalist 0 -->
+                        <div onClick="{{ handleFinal0Click }}" class="{{ final0Class }}"
+                          style="background: {{ final0Bg }}; border-color: {{ final0Border }}; padding: 10px; border-radius: 12px;">
+                          <div class="flex items-center gap-2 overflow-hidden w-full">
+                            <sc-if value="{{ final0IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasFinal0 }}">
+                              <img src="{{ final0Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-xs font-bold uppercase truncate">{{ final0Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasFinal0 }}">
+                              <sc-if value="{{ isFinal0Blocked }}">
+                                <span class="text-xs text-on-surface-variant/40 italic font-medium">Esperando
+                                  semifinalistas...</span>
+                              </sc-if>
+                              <sc-if value="{{ !isFinal0Blocked }}">
+                                <span
+                                  class="material-symbols-outlined text-sm text-primary/40 flex-shrink-0">add_circle</span>
+                                <span class="text-xs text-primary/60 font-semibold italic">Elegir Finalista Llave
+                                  A</span>
+                              </sc-if>
+                            </sc-if>
+                          </div>
+                        </div>
+
+                        <!-- Finalist 1 -->
+                        <div onClick="{{ handleFinal1Click }}" class="{{ final1Class }}"
+                          style="background: {{ final1Bg }}; border-color: {{ final1Border }}; padding: 10px; border-radius: 12px;">
+                          <div class="flex items-center gap-2 overflow-hidden w-full">
+                            <sc-if value="{{ final1IsWinner }}">
+                              <span
+                                class="material-symbols-outlined text-[16px] text-secondary font-extrabold flex-shrink-0">check_circle</span>
+                            </sc-if>
+                            <sc-if value="{{ hasFinal1 }}">
+                              <img src="{{ final1Flag }}" class="w-7 h-5 object-cover rounded shadow-sm flex-shrink-0">
+                              <span class="text-xs font-bold uppercase truncate">{{ final1Name }}</span>
+                            </sc-if>
+                            <sc-if value="{{ !hasFinal1 }}">
+                              <sc-if value="{{ isFinal1Blocked }}">
+                                <span class="text-xs text-on-surface-variant/40 italic font-medium">Esperando
+                                  semifinalistas...</span>
+                              </sc-if>
+                              <sc-if value="{{ !isFinal1Blocked }}">
+                                <span
+                                  class="material-symbols-outlined text-sm text-primary/40 flex-shrink-0">add_circle</span>
+                                <span class="text-xs text-primary/60 font-semibold italic">Elegir Finalista Llave
+                                  B</span>
+                              </sc-if>
+                            </sc-if>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Step 3: Champion -->
+                    <div class="space-y-3">
+                      <div class="flex justify-between items-center">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-primary">3. Elegí al Campeón</h3>
+                        <span class="text-[9px] font-bold text-on-surface-variant/60 uppercase">El partido
+                          definitorio</span>
+                      </div>
+
+                      <div onClick="{{ handleChampionClick }}"
+                        class="w-full p-4 rounded-2xl border-2 text-center flex flex-col items-center justify-center min-h-[120px] shadow-md transition-all duration-300 cursor-pointer"
+                        style="border-color: {{ champBorder }}; background: {{ champBg }};">
+                        <span class="material-symbols-outlined text-4xl text-[#ffd700] mb-1 drop-shadow">trophy</span>
+                        <div class="text-[10px] uppercase tracking-widest text-[#705d00] font-bold mb-1">Campeón de la
+                          Copa</div>
+                        <sc-if value="{{ hasChampion }}">
+                          <img src="{{ championFlag }}"
+                            class="w-10 h-7 object-cover rounded shadow mb-1.5 border border-white/20">
+                          <div
+                            class="text-sm font-extrabold uppercase text-on-surface tracking-wide truncate max-w-[150px]">
+                            {{ championName }}</div>
+                        </sc-if>
+                        <sc-if value="{{ !hasChampion }}">
+                          <sc-if value="{{ isChampionBlocked }}">
+                            <div class="text-xs text-[#705d00]/50 italic font-medium">Esperando finalistas...</div>
+                          </sc-if>
+                          <sc-if value="{{ !isChampionBlocked }}">
+                            <span class="material-symbols-outlined text-sm text-primary/60 mb-0.5">add_circle</span>
+                            <div class="text-xs text-primary font-bold">Elegir Campeón</div>
+                          </sc-if>
+                        </sc-if>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Selector moved to top -->
+                </div>
+
+                <!-- Submit button container at the bottom -->
+                <div class="pt-6 border-t border-outline-variant/10 flex justify-end mt-4">
+                  <button onClick="{{ submitBracket }}" disabled="{{ isSaving }}"
+                    class="btn-gradient px-8 py-3.5 rounded-full font-label-bold text-xs text-on-primary-container shadow-md flex items-center gap-2 group hover:scale-105 duration-200 transition-all font-bold opacity-90 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <sc-if value="{{ isSaving }}">
+                      <span
+                        class="animate-spin rounded-full h-3.5 w-3.5 border-2 border-on-primary-container border-t-transparent flex-shrink-0"></span>
+                      <span>GUARDANDO...</span>
+                    </sc-if>
+                    <sc-if value="{{ !isSaving }}">
+                      <span>CONFIRMAR PRONÓSTICO</span>
+                      <span
+                        class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-sm">arrow_forward</span>
+                    </sc-if>
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
-        </div>
-      </section>
+        </section>
+      </sc-if>
+
+      <!-- ══════════════════════════════════════
+         SCREEN 2 — CONFIRMATION / SUCCESS PAGE
+    ══════════════════════════════════════ -->
+      <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
+        <section class="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center py-12">
+          <canvas id="confetti-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+          <div class="relative z-10 w-full max-w-2xl px-gutter flex flex-col items-center text-center">
+            <div class="mb-md relative">
+              <div class="absolute inset-0 bg-primary/20 rounded-full blur-xl opacity-60 pulse-stadium"></div>
+              <div
+                class="relative bg-gradient-to-br from-primary-container to-[#ffe16d] text-on-primary-container w-20 h-20 rounded-full flex items-center justify-center shadow-md">
+                <span class="material-symbols-outlined text-4xl"
+                  style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              </div>
+            </div>
+
+            <h1 class="font-headline-lg text-3xl text-on-surface mb-2 font-bold tracking-tight">
+              ¡Tu participación fue registrada!
+            </h1>
+            <p class="font-body-md text-sm text-on-surface-variant max-w-md mx-auto leading-relaxed">
+              Tu fixture de semifinales, final y campeón fue guardado exitosamente. ¡Mucha suerte en el sorteo!
+            </p>
+
+            <!-- Bento Confirmation Card -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-sm w-full mt-8">
+              <!-- Ticket Info Card -->
+              <div
+                class="glass-card p-5 rounded-2xl flex flex-col items-center justify-center border border-outline-variant/30 shadow-sm col-span-1">
+                <span class="font-label-bold text-[10px] text-primary mb-1 uppercase tracking-widest font-bold">NÚMERO
+                  DE TICKET</span>
+                <span class="font-headline-lg text-3xl text-on-surface font-extrabold tracking-wide">#{{
+                  participationNumber }}</span>
+              </div>
+
+              <!-- Predict summary visual Card -->
+              <div
+                class="glass-card p-5 rounded-2xl flex flex-col items-start border border-outline-variant/30 shadow-sm col-span-2 text-left">
+                <span
+                  class="font-label-bold text-[10px] text-primary mb-3 uppercase tracking-widest font-bold self-center">RESUMEN
+                  DEL FIXTURE</span>
+                <div class="flex justify-between w-full gap-4">
+                  <div>
+                    <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">
+                      Semifinales:</div>
+                    <div class="flex gap-1">
+                      <img src="{{ semi0Flag }}"
+                        class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
+                      <img src="{{ semi1Flag }}"
+                        class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
+                      <img src="{{ semi2Flag }}"
+                        class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
+                      <img src="{{ semi3Flag }}"
+                        class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">
+                      Finalistas:</div>
+                    <div class="flex gap-1">
+                      <img src="{{ final0Flag }}"
+                        class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
+                      <img src="{{ final1Flag }}"
+                        class="w-6 h-4 object-cover rounded shadow-sm border border-outline-variant/10">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="text-[8px] uppercase tracking-wider text-on-surface-variant/70 font-bold mb-1">Campeón:
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <img src="{{ championFlag }}"
+                        class="w-6 h-4 object-cover rounded shadow-sm border border-[#ffd700] ring-1 ring-[#ffd700]">
+                      <span class="text-[10px] font-extrabold uppercase text-on-surface truncate max-w-[60px]">{{
+                        championName }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Actions -->
+            <div class="mt-8 flex flex-col sm:flex-row gap-md items-center justify-center w-full">
+              <button onClick="{{ resetForm }}"
+                class="bg-primary hover:bg-primary/95 text-on-primary px-8 py-3.5 rounded-full font-label-bold text-sm shadow-md transition-all font-bold hover:scale-105 duration-200">
+                Registrar Nueva Participación
+              </button>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+    </main>
+
+    <sc-if value="{{ isHero }}">
+      <!-- Floating Bottom CTA for Mobile & Desktop -->
+      <div
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 md:left-auto md:right-8 md:translate-x-0 z-40 w-[92%] sm:w-[80%] md:w-auto max-w-sm">
+        <button onClick="{{ goToForm }}"
+          class="cta-gradient text-on-primary-container font-label-bold text-sm md:text-base px-6 py-4 md:py-3.5 rounded-xl uppercase tracking-wider hover:scale-105 active:scale-95 duration-200 transition-all shadow-[0_12px_40px_rgba(233,196,0,0.45)] font-extrabold w-full flex items-center justify-center gap-2 border border-primary-container animate-pulse-gentle">
+          <span class="material-symbols-outlined text-base md:text-lg">emoji_events</span>
+          Armar Mi Pronóstico
+        </button>
+      </div>
     </sc-if>
 
-  </main>
+    <!-- Footer Component -->
+    <footer
+      class="w-full py-8 px-gutter flex flex-col md:flex-row justify-between items-center gap-md max-w-container-max mx-auto bg-white/40 border-t border-outline-variant/20 mt-12 text-center md:text-left">
+      <div class="flex flex-col items-center md:items-start">
+        <div class="font-headline-md text-base text-on-surface font-bold tracking-wide">WORLD CUP PREDICTOR</div>
+        <p class="font-body-md text-xs text-on-surface-variant opacity-80 mt-1">© 2026 UDI Mundial Campaign. Todos los
+          derechos reservados.</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-md text-on-surface-variant font-label-sm text-xs">
+        <a class="hover:text-primary transition-colors font-medium" href="#">Términos de Servicio</a>
+        <a class="hover:text-primary transition-colors font-medium" href="#">Política de Privacidad</a>
+        <a class="hover:text-primary transition-colors font-medium" href="#">Soporte</a>
+      </div>
+    </footer>
 
-  <sc-if value="{{ isHero }}">
-    <!-- Floating Bottom CTA for Mobile & Desktop -->
-    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 md:left-auto md:right-8 md:translate-x-0 z-40 w-[92%] sm:w-[80%] md:w-auto max-w-sm">
-      <button onClick="{{ goToForm }}" class="cta-gradient text-on-primary-container font-label-bold text-sm md:text-base px-6 py-4 md:py-3.5 rounded-xl uppercase tracking-wider hover:scale-105 active:scale-95 duration-200 transition-all shadow-[0_12px_40px_rgba(233,196,0,0.45)] font-extrabold w-full flex items-center justify-center gap-2 border border-primary-container animate-pulse-gentle">
-        <span class="material-symbols-outlined text-base md:text-lg">emoji_events</span>
-        Armar Mi Pronóstico
-      </button>
-    </div>
-  </sc-if>
+  </x-dc>
 
-  <!-- Footer Component -->
-  <footer class="w-full py-8 px-gutter flex flex-col md:flex-row justify-between items-center gap-md max-w-container-max mx-auto bg-white/40 border-t border-outline-variant/20 mt-12 text-center md:text-left">
-    <div class="flex flex-col items-center md:items-start">
-      <div class="font-headline-md text-base text-on-surface font-bold tracking-wide">WORLD CUP PREDICTOR</div>
-      <p class="font-body-md text-xs text-on-surface-variant opacity-80 mt-1">© 2026 UDI Mundial Campaign. Todos los derechos reservados.</p>
-    </div>
-    <div class="flex flex-wrap justify-center gap-md text-on-surface-variant font-label-sm text-xs">
-      <a class="hover:text-primary transition-colors font-medium" href="#">Términos de Servicio</a>
-      <a class="hover:text-primary transition-colors font-medium" href="#">Política de Privacidad</a>
-      <a class="hover:text-primary transition-colors font-medium" href="#">Soporte</a>
-    </div>
-  </footer>
-
-</x-dc>
-
-<script type="text/x-dc" data-dc-script data-props="{
+  <script type="text/x-dc" data-dc-script data-props="{
   &quot;$preview&quot;: { &quot;width&quot;: 390, &quot;height&quot;: 844 }
 }">
-const GOOGLE_SCRIPT_URL = '';
+const GOOGLE_SCRIPT_URL = https://script.google.com/macros/s/AKfycbxIsYuGRvtZ3zR8DKk4aN_-7jghaqAL24jhY0WlVmFSPgNYUfAc5I985XmP2ZZrW9ro/exec;
 
 class Component extends DCLogic {
   state = {
@@ -1688,4 +1927,5 @@ class Component extends DCLogic {
 }
 </script>
 </body>
+
 </html>
